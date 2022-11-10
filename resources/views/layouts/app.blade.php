@@ -12,6 +12,10 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/icomoon.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
 {{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
@@ -82,5 +86,8 @@
             @yield('content')
         </main>
     </div>
+    <script href="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script href="{{ asset('js/plugins.js') }}"></script>
+    <script href="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
