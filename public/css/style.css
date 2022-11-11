@@ -1083,7 +1083,7 @@ button {
 .leaf-pattern-overlay {
     background-image: url(images/leaf.png);
     background-repeat: no-repeat;
-    background-position: bottom left;   
+    background-position: bottom left;
 }
 .corner-pattern-overlay {
     background-image: url(images/pattern2.png);
@@ -1100,7 +1100,7 @@ button {
   .page-title {
     font-size: 2.5em;
     margin-top: 1em;
-  }  
+  }
 }
 /*--- Section Title
 -----------------------------------------------*/
@@ -1149,14 +1149,14 @@ button {
 
 
 @media screen and (max-width: 1366px) {
-  .section-header .section-title:before, 
+  .section-header .section-title:before,
   .section-header .section-title:after {
       width: 30%;
   }
 }
 
 @media screen and (max-width: 999px) {
-  .section-header .section-title:before, 
+  .section-header .section-title:before,
   .section-header .section-title:after {
       width: 25%;
   }
@@ -1166,7 +1166,7 @@ button {
   .section-title {
     font-size: 2em;
   }
-  .section-header .section-title:before, 
+  .section-header .section-title:before,
   .section-header .section-title:after {
       top: 60px;
       width: 100%;
@@ -1230,7 +1230,7 @@ img.post-image {
 }
 .top-content .right-element .for-buy {
     margin-right: 40px;
-} 
+}
 
 /* - Search Form hover Effects
 ------------------------------------------------------------- */
@@ -1489,7 +1489,7 @@ img.post-image {
 .tabs {
     display: flex;
     flex-wrap: wrap;
-    margin: 55px 0; 
+    margin: 55px 0;
     justify-content: center;
     list-style: none;
 }
@@ -1504,7 +1504,7 @@ img.post-image {
     color: #111;
     border-bottom: 2px solid #9A884C;
 }
-img.books-image {  
+img.books-image {
     /*height: 290px;*/
     margin-right: 10px;
     margin-bottom: 20px;
@@ -1675,7 +1675,7 @@ span.prev-price {
 #latest-blog .categories {
     text-transform: uppercase;
 }
-.social-links li { 
+.social-links li {
     padding-right: 20px;
 }
 
@@ -1827,7 +1827,7 @@ footer#footer {
     bottom: 380px;
     opacity: 1;
 }
-.product-style figcaption {  
+.product-style figcaption {
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
@@ -1862,4 +1862,10 @@ footer#footer {
   .products-grid .product-style {
     width: 100%;
   }
+}
+
+/*MY STYLES__________________*/
+
+.main-logo {
+    width: 5vw;
 }
