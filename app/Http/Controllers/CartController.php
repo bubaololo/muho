@@ -24,7 +24,7 @@ class CartController extends Controller
                 'image' => $request->image,
             ],
         ]);
-        session()->flash('success', 'Product is Added to Cart Successfully !');
+        session()->flash('success', 'Товар успешно добавлен в корзину !');
 
         return redirect()->route('cart.list');
     }
@@ -41,7 +41,7 @@ class CartController extends Controller
             ]
         );
 
-        session()->flash('success', 'Item Cart is Updated Successfully !');
+        session()->flash('success', 'Товар успешно обновлён !');
 
         return redirect()->route('cart.list');
     }
@@ -49,7 +49,7 @@ class CartController extends Controller
     public function removeCart(Request $request)
     {
         \Cart::remove($request->id);
-        session()->flash('success', 'Item Cart Remove Successfully !');
+        session()->flash('success', 'Товар успешно удалён !');
 
         return redirect()->route('cart.list');
     }
@@ -58,7 +58,7 @@ class CartController extends Controller
     {
         \Cart::clear();
 
-        session()->flash('success', 'All Item Cart Clear Successfully !');
+        session()->flash('success', 'Корзина успешно очищена !');
 
         return redirect()->route('cart.list');
     }
