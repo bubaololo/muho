@@ -78,9 +78,9 @@
                 <div class="product-list" data-aos="fade-up">
                     <div class="row">
                         @foreach ($products as $product)
-                            <div class="col-md-3">
+                            <a href="/product/{{ $product->id }}" class="col-md-3">
                                 <figure class="product-style">
-                                    <img src="images/tmpimg/{{ $product->image }}" alt="muhomor" class="product-item">
+                                    <img src="{{ asset($product->image) }}" alt="muhomor" class="product-item">
                                     <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" value="{{ $product->id }}" name="id">
@@ -97,7 +97,7 @@
                                         <div class="item-price">{{ $product->price }}р.</div>
                                     </figcaption>
                                 </figure>
-                            </div>
+                            </a>
                         @endforeach
 {{--                        <div class="col-md-3">--}}
 {{--                            <figure class="product-style">--}}

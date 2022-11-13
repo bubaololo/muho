@@ -33,7 +33,7 @@
 
                     <div class="col-md-2">
                         <div class="main-logo">
-                            <a href="{{ route('index') }}"><img src="images/muho_logo.svg" alt="logo"></a>
+                            <a href="{{ route('index') }}"><img src="{{ asset('images/muho_logo.svg') }}" alt="logo"></a>
                         </div>
 
                     </div>
