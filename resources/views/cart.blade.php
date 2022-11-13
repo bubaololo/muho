@@ -10,19 +10,19 @@
                             <p class="text-green-800">{{ $message }}</p>
                         </div>
                     @endif
-                    <h3 class="text-3xl font-bold">Carts</h3>
+                    <h3 class="text-3xl font-bold">Корзина</h3>
                     <div class="flex-1">
                         <table class="w-full text-sm lg:text-base" cellspacing="0">
                             <thead>
                             <tr class="h-12 uppercase">
                                 <th class="hidden md:table-cell"></th>
-                                <th class="text-left">Name</th>
+                                <th class="text-left">Название</th>
                                 <th class="pl-5 text-left lg:text-right lg:pl-0">
                                     <span class="lg:hidden" title="Quantity">Qtd</span>
                                     <span class="hidden lg:inline">Quantity</span>
                                 </th>
-                                <th class="hidden text-right md:table-cell"> price</th>
-                                <th class="hidden text-right md:table-cell"> Remove </th>
+                                <th class="hidden text-right md:table-cell"> цена</th>
+                                <th class="hidden text-right md:table-cell"> Удалить </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,14 +48,14 @@
                                                     <input type="hidden" name="id" value="{{ $item->id}}" >
                                                     <input type="text" name="quantity" value="{{ $item->quantity }}"
                                                            class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
-                                                    <button class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">Update</button>
+                                                    <button class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">Обновить</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="hidden text-right md:table-cell">
                                 <span class="text-sm font-medium lg:text-base">
-                                    ${{ $item->price }}
+                                    {{ $item->price }} р.
                                 </span>
                                     </td>
                                     <td class="hidden text-right md:table-cell">
@@ -77,7 +77,7 @@
                         <div>
                             <form action="{{ route('cart.clear') }}" method="POST">
                                 @csrf
-                                <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-red-500">Clear Carts</button>
+                                <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-red-500">Очистить корзину</button>
                             </form>
                         </div>
 

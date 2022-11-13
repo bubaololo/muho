@@ -1866,6 +1866,11 @@ footer#footer {
 
 /*MY STYLES__________________*/
 
-.main-logo {
-    width: 5vw;
+/*.main-logo {*/
+/*    width: 5vw;*/
+/*}*/
+
+.main-logo__img{
+    width: 280px;
+    max-width: unsetgit;
 }
