@@ -31,14 +31,14 @@
       navMenu.classList.toggle("responsive");
   }
 
-  const navLink = document.querySelectorAll(".nav-link");
-
-  navLink.forEach(n => n.addEventListener("click", closeMenu));
-
-  function closeMenu() {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("responsive");
-  }
+  // const navLink = document.querySelectorAll(".nav-link");
+  //
+  // navLink.forEach(n => n.addEventListener("click", closeMenu));
+  //
+  // function closeMenu() {
+  //     hamburger.classList.remove("active");
+  //     navMenu.classList.remove("responsive");
+  // }
 
 
   // close when click off of container
@@ -86,7 +86,7 @@
         dots: true,
         prevArrow: $('.prev'),
         nextArrow: $('.next'),
-    }); 
+    });
 
     $('.product-grid').slick({
         slidesToShow: 4,

@@ -16,7 +16,7 @@
     <link href="{{ asset('css/icomoon.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    @vite(['resources/js/app.js'])
+
 
     <!-- Scripts -->
     {{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
@@ -26,88 +26,6 @@
 
 </head>
 <body>
-
-
-    <div id="header-wrap">
-
-        <div class="top-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="social-links">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="icon icon-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="icon icon-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="icon icon-youtube-play"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="icon icon-behance-square"></i></a>
-                                </li>
-                            </ul>
-                        </div><!--social-links-->
-                    </div>
-                    <div class="col-md-6">
-                        <div class="right-element">
-                            <a href="{{ route('home') }}" class="user-account for-buy"><i
-                                    class="icon icon-user"></i><span>Аккаунт</span></a>
-                            <a href="{{ route('cart.list') }}" class="cart for-buy"><i
-                                    class="icon icon-clipboard"></i><span>Корзина:({{ Cart::getTotalQuantity()}} товаров)</span></a>
-
-                            <div class="action-menu">
-
-                                <!-- Authentication Links -->
-                                @guest
-                                    @if (Route::has('login'))
-
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-
-                                    @endif
-
-                                    @if (Route::has('register'))
-
-                                        <a class="nav-link"
-                                           href="{{ route('register') }}">{{ __('Register') }}</a>
-
-                                    @endif
-                                @else
-                                    <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
-                                           role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                           aria-expanded="false" v-pre>
-                                            {{ Auth::user()->name }}
-                                        </a>
-
-                                        <div class="dropdown-menu dropdown-menu-end"
-                                             aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                  class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </li>
-                                @endguest
-                                <!--top-right-->
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div><!--top-content-->
 
         <header id="header">
             <div class="container">
@@ -154,6 +72,52 @@
 {{--                                    </li>--}}
                                     <li class="menu-item"><a href="#contact" class="nav-link"
                                                              data-effect="Contact">Контакты</a></li>
+                                    <a href="{{ route('home') }}" class="user-account for-buy"><i
+                                            class="icon icon-user"></i><span>Аккаунт</span></a>
+                                    <a href="{{ route('cart.list') }}" class="cart for-buy"><i
+                                            class="icon icon-clipboard"></i><span>Корзина:({{ Cart::getTotalQuantity()}} товаров)</span></a>
+                                    <div class="action-menu">
+
+                                        <!-- Authentication Links -->
+                                        @guest
+                                            @if (Route::has('login'))
+
+                                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+
+                                            @endif
+
+                                            @if (Route::has('register'))
+
+                                                <a class="nav-link"
+                                                   href="{{ route('register') }}">{{ __('Register') }}</a>
+
+                                            @endif
+                                        @else
+                                            <li class="nav-item dropdown">
+                                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+                                                   role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                   aria-expanded="false" v-pre>
+                                                    {{ Auth::user()->name }}
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end"
+                                                     aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                        {{ __('Logout') }}
+                                                    </a>
+
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                          class="d-none">
+                                                        @csrf
+                                                    </form>
+                                                </div>
+                                            </li>
+                                        @endguest
+                                        <!--top-right-->
+
+                                    </div>
                                 </ul>
 
                                 <div class="hamburger">
@@ -174,7 +138,7 @@
 
         @yield('content')
 
-
+        @vite(['resources/js/app.js']);
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script src="{{ asset('js/plugins.js') }}"></script>
 <script src="{{ asset('js/modernizr.js') }}"></script>

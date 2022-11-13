@@ -29,7 +29,7 @@
 {{--                        <img src="images/bird.png" alt="banner" class="banner-image">--}}
                         <picture>
                             <source type="image/avif" srcset="images/tmpimg/muhomor@1x.avif 1x, images/tmpimg/muhomor@2x.avif 2x">
-                            <img class="picture" src="images/tmpimg/muhomor_fallback.png" srcset="images/tmpimg/muhomor_fallback.png 2x" alt="Мухомор" width="500" height="500">
+                            <img class="picture" src="images/tmpimg/muhomor_fallback.png" srcset="images/tmpimg/muhomor_fallback.png 2x" alt="Мухомор" width="700" height="700">
                         </picture>
                     </div><!--slider-item-->
 
@@ -59,23 +59,9 @@
 
 </section>
 
-<section id="client-holder" data-aos="fade-up">
-    <div class="container">
-        <div class="row">
-            <div class="inner-content">
-                <div class="logo-wrap">
-                    <div class="grid">
-                        <a href="#"><img src="images/client-image1.png" alt="client"></a>
-                        <a href="#"><img src="images/client-image2.png" alt="client"></a>
-                        <a href="#"><img src="images/client-image3.png" alt="client"></a>
-                        <a href="#"><img src="images/client-image4.png" alt="client"></a>
-                        <a href="#"><img src="images/client-image5.png" alt="client"></a>
-                    </div>
-                </div><!--image-holder-->
-            </div>
-        </div>
-    </div>
-</section>
+{{--<section id="client-holder" data-aos="fade-up">--}}
+
+{{--</section>--}}
 
 <section id="featured-books">
     <div class="container">
@@ -84,67 +70,50 @@
 
                 <div class="section-header align-center">
                     <div class="title">
-                        <span>Some quality items</span>
+                        <span>товары в наличии</span>
                     </div>
-                    <h2 class="section-title">Featured Books</h2>
+                    <h2 class="section-title">Доступные фасовки</h2>
                 </div>
 
                 <div class="product-list" data-aos="fade-up">
                     <div class="row">
-
-                        <div class="col-md-3">
-                            <figure class="product-style">
-                                <img src="images/product-item1.jpg" alt="Books" class="product-item">
-                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart
-                                </button>
-                                <figcaption>
-                                    <h3>Simple way of piece life</h3>
-                                    <p>Armor Ramsey</p>
-                                    <div class="item-price">$ 40.00</div>
-                                </figcaption>
-                            </figure>
-                        </div>
-
-                        <div class="col-md-3">
-                            <figure class="product-style">
-                                <img src="images/product-item2.jpg" alt="Books" class="product-item">
-                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart
-                                </button>
-                                <figcaption>
-                                    <h3>Great travel at desert</h3>
-                                    <p>Sanchit Howdy</p>
-                                    <div class="item-price">$ 38.00</div>
-                                </figcaption>
-                            </figure>
-                        </div>
-
-                        <div class="col-md-3">
-                            <figure class="product-style">
-                                <img src="images/product-item3.jpg" alt="Books" class="product-item">
-                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart
-                                </button>
-                                <figcaption>
-                                    <h3>The lady beauty Scarlett</h3>
-                                    <p>Arthur Doyle</p>
-                                    <div class="item-price">$ 45.00</div>
-                                </figcaption>
-                            </figure>
-                        </div>
-
-                        <div class="col-md-3">
-                            <figure class="product-style">
-                                <img src="images/product-item4.jpg" alt="Books" class="product-item">
-                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart
-                                </button>
-                                <figcaption>
-                                    <h3>Once upon a time</h3>
-                                    <p>Klien Marry</p>
-                                    <div class="item-price">$ 35.00</div>
-                                </figcaption>
-                            </figure>
-                        </div>
+                        @foreach ($products as $product)
+                            <div class="col-md-3">
+                                <figure class="product-style">
+                                    <img src="images/tmpimg/{{ $product->image }}" alt="muhomor" class="product-item">
+                                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" value="{{ $product->id }}" name="id">
+                                        <input type="hidden" value="{{ $product->name }}" name="name">
+                                        <input type="hidden" value="{{ $product->price }}" name="price">
+                                        <input type="hidden" value="{{ $product->image }}"  name="image">
+                                        <input type="hidden" value="1" name="quantity">
+                                        <button class="add-to-cart" data-product-tile="add-to-cart">в корзину</button>
+                                    </form>
+                                    </button>
+                                    <figcaption>
+                                        <h3>{{ $product->name }}</h3>
+                                        <p>{{ $product->description }}</p>
+                                        <div class="item-price">{{ $product->price }}р.</div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        @endforeach
+{{--                        <div class="col-md-3">--}}
+{{--                            <figure class="product-style">--}}
+{{--                                <img src="images/tmpimg/20.jpg" alt="muhomor" class="product-item">--}}
+{{--                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart--}}
+{{--                                </button>--}}
+{{--                                <figcaption>--}}
+{{--                                    <h3>Simple way of piece life</h3>--}}
+{{--                                    <p>Armor Ramsey</p>--}}
+{{--                                    <div class="item-price">$ 40.00</div>--}}
+{{--                                </figcaption>--}}
+{{--                            </figure>--}}
+{{--                        </div>--}}
 
                     </div><!--ft-books-slider-->
+
                 </div><!--grid-->
 
 

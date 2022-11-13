@@ -1315,16 +1315,15 @@ img.post-image {
   padding: 40px 0;
 }
 #header .menu-list a {
-  text-transform: uppercase;
   font-weight: 500;
   letter-spacing: 0.12em;
 }
 
 /*----- Billboard
 --------------------------------------------------------------*/
-#billboard .main-slider {
-    padding: 120px 0;
-}
+/*#billboard .main-slider {*/
+/*    padding: 120px 0;*/
+/*}*/
 .main-slider .slider-item {
     display: flex;
     width: 100%;
@@ -1414,8 +1413,9 @@ img.post-image {
 /*----- Cient-holder Section
 --------------------------------------------------------------*/
 #client-holder {
-    background: #EDEBE4;
-    padding: 105px 0;
+    background-image: url("../images/tmpimg/muhomor_pattern.svg");
+    background-repeat: repeat-x;
+    height: 120px;
     margin-bottom: 180px;
 }
 #client-holder .logo-wrap {
