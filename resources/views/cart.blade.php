@@ -18,11 +18,12 @@
                                 <th class="hidden md:table-cell"></th>
                                 <th class="text-left">Название</th>
                                 <th class="pl-5 text-left lg:text-right lg:pl-0">
-                                    <span class="lg:hidden" title="Quantity">Qtd</span>
-                                    <span class="hidden lg:inline">Quantity</span>
+                                    <span class="lg:hidden" title="Quantity">Кол-во</span>
+                                    <span class="hidden lg:inline">Количество</span>
                                 </th>
                                 <th class="hidden text-right md:table-cell"> цена</th>
-                                <th class="hidden text-right md:table-cell"> Удалить </th>
+                                <th class="hidden text-right md:table-cell"> вес</th>
+                                <th class="hidden text-right md:table-cell"> Удалить</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -30,7 +31,8 @@
                                 <tr>
                                     <td class="hidden pb-4 md:table-cell">
                                         <a href="#">
-                                            <img src="{{ asset($item->attributes->image) }}" class="w-20 rounded" alt="Thumbnail">
+                                            <img src="{{ asset($item->attributes->image) }}" class="w-20 rounded"
+                                                 alt="Thumbnail">
                                         </a>
                                     </td>
                                     <td>
@@ -45,10 +47,13 @@
 
                                                 <form action="{{ route('cart.update') }}" method="POST">
                                                     @csrf
-                                                    <input type="hidden" name="id" value="{{ $item->id}}" >
+                                                    <input type="hidden" name="id" value="{{ $item->id}}">
                                                     <input type="text" name="quantity" value="{{ $item->quantity }}"
-                                                           class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
-                                                    <button class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">Обновить</button>
+                                                           class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600"/>
+                                                    <button
+                                                        class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">
+                                                        Обновить
+                                                    </button>
                                                 </form>
                                             </div>
                                         </div>
@@ -57,12 +62,17 @@
                                 <span class="text-sm font-medium lg:text-base">
                                     {{ $item->price }} р.
                                 </span>
+                                    </td>                                <td class="hidden text-right md:table-cell">
+                                <span class="text-sm font-medium lg:text-base">
+                                    {{ $item->attributes->weight }} г.
+                                </span>
                                     </td>
                                     <td class="hidden text-right md:table-cell">
                                         <form action="{{ route('cart.remove') }}" method="POST">
                                             @csrf
                                             <input type="hidden" value="{{ $item->id }}" name="id">
-                                            <button class="px-4 py-2 text-white bg-red-600 shadow rounded-full">x</button>
+                                            <button class="px-4 py-2 text-white bg-red-600 shadow rounded-full">x
+                                            </button>
                                         </form>
 
                                     </td>
@@ -77,35 +87,42 @@
                         <div>
                             <form action="{{ route('cart.clear') }}" method="POST">
                                 @csrf
-                                <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-red-500">Очистить корзину</button>
+                                <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-red-500">Очистить
+                                    корзину
+                                </button>
                             </form>
                         </div>
 
-
                     </div>
+                        <div class="adress">
+{{--                            <div id="map" style="width: 600px; height: 400px"></div>--}}
+                            <div id="header">
+                                <input type="text" id="suggest" class="input" placeholder="Введите адрес">
+                                <button type="submit" id="button">Проверить</button>
+                            </div>
+                            <p id="notice">Адрес не найден</p>
+                            <div id="map"></div>
+                            <div id="footer">
+                                <div id="messageHeader"></div>
+                                <div id="message"></div>
+                            </div>
+                        </div>
                 </div>
+                </div>
+
             </div>
-            <div id="header">
-                <input type="text" id="suggest" class="input" placeholder="Введите адрес">
-                <button type="submit" id="button">Проверить</button>
-            </div>
-            <p id="notice">Адрес не найден</p>
-            <div id="map"></div>
-            <div id="footer">
-                <div id="messageHeader"></div>
-                <div id="message"></div>
-            </div>
-        </div>
 
 
     </main>
     @push('scripts')
-        <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU" type="text/javascript"></script>
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU"
+                type="text/javascript"></script>
         <script type="text/javascript">
             // Функция ymaps.ready() будет вызвана, когда
             // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
             ymaps.ready(init);
-            function init(){
+
+            function init() {
                 // Создание карты.
                 var myMap = new ymaps.Map("map", {
                     // Координаты центра карты.
@@ -178,6 +195,7 @@
                     })
 
                 }
+
                 function showResult(obj) {
                     // Удаляем сообщение об ошибке, если найденный адрес совпадает с поисковым запросом.
                     $('#suggest').removeClass('input_error');
@@ -239,6 +257,7 @@
                 }
             }
         </script>
+        <script src="https://cdn.tailwindcss.com"></script>
     @endpush
 @endsection
 

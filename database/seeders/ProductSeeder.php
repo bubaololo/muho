@@ -16,28 +16,32 @@ class ProductSeeder extends Seeder
     {
         $products = [
             [
-                'name' => 'Fesh milk 250ml',
-                'price' => 250,
-                'description' => 'lorem ipsum',
-                'image' => 'https://cdn.pixabay.com/photo/2016/12/06/18/27/milk-1887234__340.jpg',
+                'name' => 'Шляпки',
+                'price' => 1000,
+                'weight' => 20,
+                'description' => 'Целые шляпки в вакуумной упаковке',
+                'image' => '20.jpg',
             ],
             [
-                'name' => '12 Egs',
-                'price' => 6,
-                'description' => 'lorem ipsum',
-                'image' => 'https://cdn.pixabay.com/photo/2016/07/23/15/24/egg-1536990__340.jpg',
+                'name' => 'Шляпки',
+                'price' => 1300,
+                'weight' => 30,
+                'description' => 'Целые шляпки в вакуумной упаковке',
+                'image' => '30.jpg',
             ],
             [
-                'name' => 'Wine 500ml',
-                'price' => 50,
-                'description' => 'lorem ipsum',
-                'image' => 'https://cdn.pixabay.com/photo/2015/11/07/12/00/alcohol-1031713__340.png',
+                'name' => 'Шляпки',
+                'price' => 2000,
+                'weight' => 50,
+                'description' => 'Целые шляпки в вакуумной упаковке',
+                'image' => '50.jpg',
             ],
             [
-                'name' => 'Homey 100ml',
-                'price' => 12,
-                'description' => 'lorem ipsum',
-                'image' => 'https://cdn.pixabay.com/photo/2017/01/06/17/49/honey-1958464__340.jpg',
+                'name' => 'Шляпки',
+                'price' => 3500,
+                'weight' => 100,
+                'description' => 'Целые шляпки в вакуумной упаковке',
+                'image' => '100.jpg',
             ],
         ];
         Product::insert($products);

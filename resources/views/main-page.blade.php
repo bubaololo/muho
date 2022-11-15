@@ -18,9 +18,7 @@
                     <div class="slider-item">
                         <div class="banner-content">
                             <h2 class="banner-title">Сибирские мухоморы</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero
-                                ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a
-                                eu.</p>
+                            <p>Грибы собраны в экологически чистой северной части Омской области, в конце сентября-начале октября 2022 года. Ценители знают что западная сибирь - одно из 2-х мест в мире, наряду с прибалтикой,  где растут самые сильные по содержанию мускарина мухоморы.</p>
                             <div class="btn-wrap">
                                 <a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i
                                         class="icon icon-ns-arrow-right"></i></a>
@@ -85,6 +83,7 @@
                                         @csrf
                                         <input type="hidden" value="{{ $product->id }}" name="id">
                                         <input type="hidden" value="{{ $product->name }}" name="name">
+                                        <input type="hidden" value="{{ $product->weight }}" name="weight">
                                         <input type="hidden" value="{{ $product->price }}" name="price">
                                         <input type="hidden" value="{{ $product->image }}"  name="image">
                                         <input type="hidden" value="1" name="quantity">
@@ -93,7 +92,7 @@
                                     </button>
                                     <figcaption>
                                         <h3>{{ $product->name }}</h3>
-                                        <p>{{ $product->description }}</p>
+                                        <p>{{ $product->weight }}</p>
                                         <div class="item-price">{{ $product->price }}р.</div>
                                     </figcaption>
                                 </figure>

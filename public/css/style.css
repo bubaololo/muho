@@ -13,6 +13,11 @@ Version: 1.1
 /*--------------------------------------------------------------
 /** 1. VARIABLES
 --------------------------------------------------------------*/
+/*font-family: 'Montserrat', sans-serif;*/
+
+/*font-family: 'Nunito', sans-serif;*/
+
+/*font-family: 'Poppins', sans-serif;*/
 :root {
     /* widths for rows and containers
      */
@@ -39,9 +44,9 @@ Version: 1.1
 }
 /* Fonts */
 :root {
-    --body-font           : "Raleway", sans-serif;
-    --heading-font        : "Prata", Georgia, serif;
-    --secondary-font      : "Playfair Display", Georgia, serif;
+    --body-font           : 'Nunito', sans-serif;;
+    --heading-font        : 'Montserrat', sans-serif;;
+    --secondary-font      : 'Poppins', sans-serif;;
 }
 
 
@@ -1909,6 +1914,9 @@ footer#footer {
          transform: scale(1.5);
      }
  }
+#suggest {
+    min-width: 60ch;
+}
 
 
 

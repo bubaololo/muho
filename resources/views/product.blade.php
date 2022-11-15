@@ -12,20 +12,13 @@
                 <div class="col-md-6 pl-5">
                     <div class="product-detail">
                         <h1>{{ $product->name }}</h1>
-                        <p>Fiction</p>
-                        <span class="price colored">$45.00</span>
+                        <p>Вес: {{ $product->weight }}</p>
+                        <span class="price colored">{{ $product->price }} р.</span>
 
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat.
+                            {{ $product->description }}
                         </p>
-                        <p>
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+
 
                         <!-- <button type="submit" name="add-to-cart" value="27545" class="button">Add to cart</button> -->
 
@@ -33,6 +26,7 @@
                                         @csrf
                                         <input type="hidden" value="{{ $product->id }}" name="id">
                                         <input type="hidden" value="{{ $product->name }}" name="name">
+                                        <input type="hidden" value="{{ $product->weight }}" name="weight">
                                         <input type="hidden" value="{{ $product->price }}" name="price">
                                         <input type="hidden" value="{{ $product->image }}"  name="image">
                                         <input type="hidden" value="1" name="quantity">

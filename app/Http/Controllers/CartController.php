@@ -22,6 +22,7 @@ class CartController extends Controller
             'quantity' => $request->quantity,
             'attributes' => [
                 'image' => $request->image,
+                'weight' => $request->weight,
             ],
         ]);
         session()->flash('success', 'Товар успешно добавлен в корзину !');
