@@ -27,7 +27,17 @@
                             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
 
-                        <button type="submit" name="add-to-cart" value="27545" class="button">Add to cart</button>
+                        <!-- <button type="submit" name="add-to-cart" value="27545" class="button">Add to cart</button> -->
+
+                                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" value="{{ $product->id }}" name="id">
+                                        <input type="hidden" value="{{ $product->name }}" name="name">
+                                        <input type="hidden" value="{{ $product->price }}" name="price">
+                                        <input type="hidden" value="{{ $product->image }}"  name="image">
+                                        <input type="hidden" value="1" name="quantity">
+                                        <button class="button" data-product-tile="add-to-cart">в корзину</button>
+                                    </form>
 
                     </div>
                 </div>

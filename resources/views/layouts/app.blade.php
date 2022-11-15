@@ -32,9 +32,17 @@
                 <div class="row">
 
                     <div class="col-md-2">
-                        <div class="main-logo">
-                            <a href="{{ route('index') }}"><img class="main-logo__img" src="{{ asset('images/tmpimg/full_logo_horizontal.svg') }}" alt="logo"></a>
-                        </div>
+                        <a href="{{ route('index') }}" class="main-logo">
+                            <img class="main-logo__part main-logo__part_base" src="{{ asset('images/tmpimg/logo_main_part.svg') }}" alt="logo">
+{{--                            <div class="main-logo__part main-logo__part_left-eye"></div>--}}
+                            <svg class="main-logo__part main-logo__part_left-eye" viewBox="0 0 12 12" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="6" cy="6" r="5" fill="#FA370F"/>
+                            </svg>                            <svg class="main-logo__part main-logo__part_right-eye" viewBox="0 0 12 12" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="6" cy="6" r="5" fill="#FA370F"/>
+                            </svg>
+                        </a>
 
                     </div>
 
