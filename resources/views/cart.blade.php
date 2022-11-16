@@ -92,21 +92,10 @@
                                 </button>
                             </form>
                         </div>
+                        <a href="{{ route('checkout') }}" class="px-4 py-1.5 text-white text-sm bg-blue-800 rounded">оформить заказ</a>
 
                     </div>
-                        <div class="adress">
-{{--                            <div id="map" style="width: 600px; height: 400px"></div>--}}
-                            <div id="header">
-                                <input type="text" id="suggest" class="input" placeholder="Введите адрес">
-                                <button type="submit" id="button">Проверить</button>
-                            </div>
-                            <p id="notice">Адрес не найден</p>
-                            <div id="map"></div>
-                            <div id="footer">
-                                <div id="messageHeader"></div>
-                                <div id="message"></div>
-                            </div>
-                        </div>
+
                 </div>
                 </div>
 

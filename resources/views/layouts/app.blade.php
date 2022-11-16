@@ -16,6 +16,7 @@
     <link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
     <link href="{{ asset('css/icomoon.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
+    @stack('styles')
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 
