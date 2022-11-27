@@ -10,6 +10,15 @@
                             <p class="text-green-800">{{ $message }}</p>
                         </div>
                     @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     <h3 class="text-3xl font-bold">Корзина</h3>
                     <div class="flex-1">
                         <table class="w-full text-sm lg:text-base" cellspacing="0">
@@ -82,17 +91,144 @@
                             </tbody>
                         </table>
                         <div>
-                            Total: ${{ Cart::getTotal() }}
+                            Total: {{ Cart::getTotal() }} руб.
                         </div>
                         <div>
                             <form action="{{ route('cart.clear') }}" method="POST">
                                 @csrf
-                                <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-red-500">Очистить
+                                <button class="btn">Очистить
                                     корзину
                                 </button>
                             </form>
                         </div>
-                        <a href="{{ route('checkout') }}" class="px-4 py-1.5 text-white text-sm bg-blue-800 rounded">оформить заказ</a>
+                        <form enctype="multipart/form-data" method="post" id="quest_form"
+                              class="quest__slides swiper-wrapper" action="/checkout">
+                            @csrf
+                                        <div class="quest__input">
+                                            <label for="name">Способ доставки</label>
+                                            <fieldset>
+                                                <legend>Выберите один из доступных способов доставки:</legend>
+
+                                                <div>
+                                                    <input type="radio" id="sdek" name="delivery" value="sdek"
+                                                           checked>
+                                                    <label for="sdek">Сдэк</label>
+                                                </div>
+
+                                                <div>
+                                                    <input type="radio" id="avito" name="delivery" value="avito">
+                                                    <label for="avito">Авито</label>
+                                                </div>
+
+                                                <div>
+                                                    <input type="radio" id="post" name="delivery" value="post">
+                                                    <label for="post">Почта</label>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                                    <div class="address">
+                                                        <div id="header">
+                                                            <input type="text" id="suggest" class="input" placeholder="Введите адрес">
+                                                            <button type="submit" class="btn btn-light" id="button">Проверить</button>
+                                                        </div>
+                                                        <p id="notice">Адрес не найден</p>
+                                                        <div id="map"></div>
+                                                        <div id="footer">
+                                                            <div id="messageHeader"></div>
+                                                            <div id="message"></div>
+                                                        </div>
+                                                    </div>
+
+
+
+                            <div class="quest__input">
+                                            <label for="apartment">Квартира</label>
+                                            <input type="text" id="apartment" name="apartment"
+                                                   class="quest__textarea"
+                                                   placeholder="56">
+                                        </div>
+
+                                        <div class="quest__input">
+                                            <label for="name">Фамилия</label>
+                                            <input type="text" id="name" name="name" class="quest__textarea"
+                                                   placeholder="Иванов">
+                                        </div>
+                                        <div class="quest__input">
+                                            <label for="surname">Имя</label>
+                                            <input type="text" id="surname" name="surname" class="quest__textarea"
+                                                   placeholder="Иван">
+
+                                        </div>
+                                        <div class="quest__input">
+                                            <label for="middle_name">Отчество</label>
+                                            <input type="text" id="middle_name" name="middle_name"
+                                                   class="quest__textarea"
+                                                   placeholder="Иванович">
+                                        </div>
+                                        <div class="quest__input">
+                                            <label for="middle_name">Телефон</label>
+                                            <input type="tel" id="tel" name="telephone"
+                                                   class="quest__textarea"
+                                                   placeholder="89000000000">
+                                        </div>
+
+                                        <div class="quest__input">
+                                            <label for="name">Способ оплаты</label>
+                                            <fieldset>
+                                                <legend>Выберите один из доступных способов оплаты:</legend>
+
+                                                <div>
+                                                    <input type="radio" id="p2p" name="pay" value="p2p"
+                                                           checked>
+                                                    <label for="p2p">перевод с карты на карту</label>
+                                                </div>
+
+                                                <div>
+                                                    <input type="radio" id="qiwi" name="pay" value="qiwi">
+                                                    <label for="qiwi">qiwi</label>
+                                                </div>
+
+                                                <div>
+                                                    <input type="radio" id="visa" name="pay" value="visa">
+                                                    <label for="visa">Visa</label>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+<button class="btn btn-primary" type="submit">оформить заказ</button>
+                        </form>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2">@example.com</span>
+                        </div>
+
+                        <label for="basic-url" class="form-label">Your vanity URL</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <span class="input-group-text">.00</span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+                            <span class="input-group-text">@</span>
+                            <input type="text" class="form-control" placeholder="Server" aria-label="Server">
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text">With textarea</span>
+                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+{{--                        <a href="{{ route('checkout') }}" class="px-4 py-1.5 text-white text-sm bg-blue-800 rounded">оформить заказ</a>--}}
 
                     </div>
 
@@ -136,6 +272,7 @@
 
                 // При клике по кнопке запускаем верификацию введёных данных.
                 $('#button').bind('click', function (e) {
+                    e.preventDefault();
                     geocode();
                 });
 
