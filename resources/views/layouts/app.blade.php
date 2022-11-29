@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -18,6 +18,7 @@
     <link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
     <link href="{{ asset('css/icomoon.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
+    @livewireStyles
     @stack('styles')
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
@@ -40,11 +41,13 @@
                     <img class="main-logo__part main-logo__part_base"
                          src="{{ asset('images/tmpimg/logo_main_part.svg') }}" alt="logo">
                     {{--                            <div class="main-logo__part main-logo__part_left-eye"></div>--}}
-                    <svg class="main-logo__part main-logo__part-eye  main-logo__part_left-eye" viewBox="0 0 12 12" version="1.1"
+                    <svg class="main-logo__part main-logo__part-eye  main-logo__part_left-eye" viewBox="0 0 12 12"
+                         version="1.1"
                          xmlns="http://www.w3.org/2000/svg">
                         <circle cx="6" cy="6" r="5" fill="#FA370F"/>
                     </svg>
-                    <svg class="main-logo__part main-logo__part-eye main-logo__part_right-eye" viewBox="0 0 12 12" version="1.1"
+                    <svg class="main-logo__part main-logo__part-eye main-logo__part_right-eye" viewBox="0 0 12 12"
+                         version="1.1"
                          xmlns="http://www.w3.org/2000/svg">
                         <circle cx="6" cy="6" r="5" fill="#FA370F"/>
                     </svg>
@@ -88,10 +91,8 @@
                                                      data-effect="Contact">Контакты</a></li>
                             <a href="{{ route('home') }}" class="user-account for-buy"><i
                                     class="icon icon-user"></i><span>Аккаунт</span></a>
-                            <a href="{{ route('cart.list') }}" class="cart for-buy"><i
-                                    class="icon icon-clipboard"></i><span>Корзина:({{ Cart::getTotalQuantity()}} товаров)</span></a>
+                            @livewire('cart-counter')
                             <div class="action-menu">
-
                                 <!-- Authentication Links -->
                                 @guest
                                     @if (Route::has('login'))
@@ -152,10 +153,165 @@
 
 @yield('content')
 
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <div class="footer-item">
+                    <div class="company-brand">
+                        <img src="{{ asset('images/tmpimg/logo_text.svg') }}" alt="logo" class="footer-logo">
+                        <p>Сами любим это дело) </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-2">
+
+                <div class="footer-menu">
+                    <h5>About Us</h5>
+                    <ul class="menu-list">
+                        <li class="menu-item">
+                            <a href="#">vision</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">articles </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">careers</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">service terms</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">donate</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-2">
+
+                <div class="footer-menu">
+                    <h5>Discover</h5>
+                    <ul class="menu-list">
+                        <li class="menu-item">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">Books</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">Authors</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">Subjects</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">Advanced Search</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-2">
+
+                <div class="footer-menu">
+                    <h5>My account</h5>
+                    <ul class="menu-list">
+                        <li class="menu-item">
+                            <a href="#">Sign In</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">View Cart</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">My Wishtlist</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">Track My Order</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-2">
+
+                <div class="footer-menu">
+                    <h5>Help</h5>
+                    <ul class="menu-list">
+                        <li class="menu-item">
+                            <a href="#">Help center</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">Report a problem</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">Suggesting edits</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">Contact us</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- / row -->
+
+    </div>
+</footer>
+
+<div id="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="copyright">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <p>© {{ date("Y") }} All rights reserved. Muho.store</p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="social-links align-right">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="icon icon-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon icon-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon icon-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon icon-behance-square"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!--grid-->
+
+            </div><!--footer-bottom-content-->
+        </div>
+    </div>
+</div>
+
+
+
 @vite(['resources/js/app.js']);
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script src="{{ asset('js/plugins.js') }}"></script>
 <script src="{{ asset('js/modernizr.js') }}"></script>
+@livewireScripts
 @stack('scripts')
 <script src="{{ asset('js/script.js') }}"></script>
 </body>

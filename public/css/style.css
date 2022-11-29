@@ -34,8 +34,8 @@ Version: 1.1
 }
 /* Theme Colors */
 :root {
-    --accent-color       : #C5A992;
-    --secondary-color    : #C5A992;
+    --accent-color       : #f3160c;
+    --secondary-color    : #f46b3e;
     --dark-color         : #2f2f2f;
     --light-color        : #F3F2EC;
     --body-text-color    : #757575;
@@ -1016,7 +1016,7 @@ button {
     font-weight: 600;
 }
 .btn-wrap a:hover {
-    color: #74642F;
+    color: var(--secondary-color);
 }
 .btn-normal {
     color: #fff;
@@ -1029,7 +1029,7 @@ button {
     color: #2f2f2f;
 }
 .btn-submit:hover {
-    background-color: #c5a992;
+    background-color: var(--secondary-color);
     color: #fff;
 }
 .btn-accent-arrow {
@@ -1124,7 +1124,7 @@ button {
 }
 .section-title.divider:after {
     content: "";
-    border-bottom: 3px solid #74642F;
+    border-bottom: 3px solid var(--secondary-color);
     position: absolute;
     right: 0;
     bottom: -16px;
@@ -1199,8 +1199,8 @@ img.post-image {
     border-radius: 50%;
 }
 .slick-dots .slick-active {
-    color: #74642F;
-    background: #74642F;
+    color: var(--secondary-color);
+    background: var(--secondary-color);
     border: 1px solid #D7D5CC;
     outline: 1px solid #D7d5cc;
 }
@@ -1342,7 +1342,12 @@ img.post-image {
 .banner-content h2.banner-title {
     font-size: 4.5em;
     font-weight: 500;
-    color: #222;
+    -webkit-text-fill-color: transparent;
+    background: -webkit-linear-gradient(-70deg, #db469f, #2188ff);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-box-decoration-break: clone;
 }
 .banner-content p {
     margin: 0 0 60px 0;
@@ -1366,7 +1371,7 @@ img.post-image {
     cursor: pointer;
 }
 #billboard button.slick-arrow:hover{
-    border: 1px solid #74642F;
+    border: 1px solid var(--secondary-color);
     background-color: #E5E3DA;
 }
 #billboard button.prev.slick-arrow {
@@ -1443,7 +1448,7 @@ img.post-image {
 /*----- Best Selling Section Section
 --------------------------------------------------------------*/
 #best-selling {
-    background: #EDEBE4;
+    /*background: #EDEBE4;*/
     padding: 140px 0;
     margin-bottom: 180px;
 }
@@ -1466,7 +1471,7 @@ img.post-image {
 }
 #best-selling .product-entry .item-price {
     font-size: 1.5em;
-    color: #74642F;
+    color: var(--secondary-color);
     margin-bottom: 40px;
 }
 @media screen and (max-width: 768px) {
@@ -1663,7 +1668,7 @@ span.prev-price {
 }
 #latest-blog .meta-date {
     font-family: "Prata", Georgia, serif;
-    color: #74642F;
+    color: var(--secondary-color);
     padding-bottom: 20px;
 }
 #latest-blog h3 {
@@ -1808,14 +1813,44 @@ footer#footer {
     width: 33.33%;
 }
 .product-style img.product-item {
-    background: #EFEEE8;
+    /*background: #EFEEE8;*/
+    border-radius: 16px;
     border: 1px solid #EAE8DF;
     padding: 15%;
     cursor: pointer;
     width: 100%;
+    --borderWidth: 2px;
 }
+/* .product-style img.product-item:after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    background-size: auto;
+    border-radius: 30px;
+    z-index: -1;
+    -webkit-animation: animatedgradient 7s ease alternate infinite;
+    animation: animatedgradient 7s ease alternate infinite;
+    background-size: 300% 300%;
+} */
+@-webkit-keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
 .product-style button.add-to-cart {
-    background: #000;
+    background: transparent;
     color: #fff;
     width: 70%;
     text-transform: uppercase;
@@ -1827,7 +1862,27 @@ footer#footer {
     z-index: 9;
     opacity: 0;
     transition: 0.5s ease-out;
+    --borderWidth: 2px;
 }
+
+.product-style button.add-to-cart:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  background-size: auto;
+  border-radius: 30px;
+  z-index: -1;
+  -webkit-animation: animatedgradient 7s ease alternate infinite;
+  animation: animatedgradient 7s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+
+
 .product-style:hover button.add-to-cart {
     bottom: 380px;
     opacity: 1;
@@ -1840,11 +1895,11 @@ footer#footer {
 .product-style figcaption>h3 {
     font-size: 1.4em;
     font-weight: 500;
-    color: #74642F;
+    color: var(--secondary-color);
     margin: 0;
 }
 .product-style .item-price {
-    color: #74642F;
+    color: var(--secondary-color);
     font-size: 1.3em;
 }
 

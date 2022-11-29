@@ -15,7 +15,6 @@ class ProductController extends Controller
     public function singleProduct($id)
     {
         $product = Product::find($id);
-//    dd($product);
         return view('product', compact('product'));
     }
 
