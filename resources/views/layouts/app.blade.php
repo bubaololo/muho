@@ -64,7 +64,7 @@
                             {{--                                                                    data-effect="Home">Главная</a>--}}
                             {{--                                    </li>--}}
                             <li class="menu-item"><a href="{{ route('products.list') }}" class="nav-link"
-                                                     data-effect="About">Товары</a>
+                                                     data-effect="About">Фасовки</a>
                             </li>
                             {{--                                    <li class="menu-item has-sub">--}}
                             {{--                                        <a href="#pages" class="nav-link" data-effect="Pages">Pages</a>--}}
@@ -89,22 +89,25 @@
                             {{--                                    </li>--}}
                             <li class="menu-item"><a href="#contact" class="nav-link"
                                                      data-effect="Contact">Контакты</a></li>
-                            <a href="{{ route('home') }}" class="user-account for-buy"><i
-                                    class="icon icon-user"></i><span>Аккаунт</span></a>
+                            @auth
+                                <a href="{{ route('home') }}" class="user-account for-buy"><i
+                                        class="icon icon-user"></i><span>Профиль</span></a>
+                            @endauth
+
                             @livewire('cart-counter')
                             <div class="action-menu">
                                 <!-- Authentication Links -->
                                 @guest
                                     @if (Route::has('login'))
 
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Войти') }}</a>
 
                                     @endif
 
                                     @if (Route::has('register'))
 
                                         <a class="nav-link"
-                                           href="{{ route('register') }}">{{ __('Register') }}</a>
+                                           href="{{ route('register') }}">{{ __('Зарегистрироваться') }}</a>
 
                                     @endif
                                 @else
@@ -172,93 +175,93 @@
             <div class="col-md-2">
 
                 <div class="footer-menu">
-                    <h5>About Us</h5>
+                    <h5>Контакты</h5>
                     <ul class="menu-list">
                         <li class="menu-item">
-                            <a href="#">vision</a>
+                            <a href="#">Telegram</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#">articles </a>
+                            <a href="#">Whatsapp </a>
                         </li>
                         <li class="menu-item">
-                            <a href="#">careers</a>
+                            <a href="#">Viber</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#">service terms</a>
+                            <a href="#">E-mail</a>
                         </li>
-                        <li class="menu-item">
-                            <a href="#">donate</a>
-                        </li>
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">donate</a>--}}
+{{--                        </li>--}}
                     </ul>
                 </div>
 
             </div>
-            <div class="col-md-2">
+{{--            <div class="col-md-2">--}}
 
-                <div class="footer-menu">
-                    <h5>Discover</h5>
-                    <ul class="menu-list">
-                        <li class="menu-item">
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Books</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Authors</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Subjects</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Advanced Search</a>
-                        </li>
-                    </ul>
-                </div>
+{{--                <div class="footer-menu">--}}
+{{--                    <h5>Discover</h5>--}}
+{{--                    <ul class="menu-list">--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Home</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Books</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Authors</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Subjects</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Advanced Search</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
 
-            </div>
-            <div class="col-md-2">
+{{--            </div>--}}
+{{--            <div class="col-md-2">--}}
 
-                <div class="footer-menu">
-                    <h5>My account</h5>
-                    <ul class="menu-list">
-                        <li class="menu-item">
-                            <a href="#">Sign In</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">View Cart</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">My Wishtlist</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Track My Order</a>
-                        </li>
-                    </ul>
-                </div>
+{{--                <div class="footer-menu">--}}
+{{--                    <h5>My account</h5>--}}
+{{--                    <ul class="menu-list">--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Sign In</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">View Cart</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">My Wishtlist</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Track My Order</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
 
-            </div>
-            <div class="col-md-2">
+{{--            </div>--}}
+{{--            <div class="col-md-2">--}}
 
-                <div class="footer-menu">
-                    <h5>Help</h5>
-                    <ul class="menu-list">
-                        <li class="menu-item">
-                            <a href="#">Help center</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Report a problem</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Suggesting edits</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Contact us</a>
-                        </li>
-                    </ul>
-                </div>
+{{--                <div class="footer-menu">--}}
+{{--                    <h5>Help</h5>--}}
+{{--                    <ul class="menu-list">--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Help center</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Report a problem</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Suggesting edits</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="#">Contact us</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
 
-            </div>
+{{--            </div>--}}
 
         </div>
         <!-- / row -->
