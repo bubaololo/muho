@@ -61,7 +61,7 @@
 
 {{--</section>--}}
 
-<section id="featured-books">
+<section class="packaging">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -76,25 +76,24 @@
                 <div class="product-list" data-aos="fade-up">
                     <div class="row">
                         @foreach ($products as $product)
-                            <a href="/product/{{ $product->id }}" class="col-md-3">
+                            <a href="/product/{{ $product->id }}" class="col-md-3 product__card">
                                 <figure class="product-style">
                                     <img src="{{ asset($product->image) }}" alt="muhomor" class="product-item">
-                                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" value="{{ $product->id }}" name="id">
                                         <input type="hidden" value="{{ $product->name }}" name="name">
+                                    <input type="hidden" value="{{ $product->id }}" name="id">
+                                    <figcaption>
+                                        <h3>{{ $product->name }}</h3>
+                                        <p>{{ $product->weight }}</p>
+                                        <div class="item-price">{{ $product->price }}р.</div>
+                                    </figcaption>
+                                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" value="{{ $product->weight }}" name="weight">
                                         <input type="hidden" value="{{ $product->price }}" name="price">
                                         <input type="hidden" value="{{ $product->image }}"  name="image">
                                         <input type="hidden" value="1" name="quantity">
                                         <button class="add-to-cart" data-product-tile="add-to-cart">в корзину</button>
                                     </form>
-                                    </button>
-                                    <figcaption>
-                                        <h3>{{ $product->name }}</h3>
-                                        <p>{{ $product->weight }}</p>
-                                        <div class="item-price">{{ $product->price }}р.</div>
-                                    </figcaption>
                                 </figure>
                             </a>
                         @endforeach
@@ -122,9 +121,9 @@
         <div class="row">
             <div class="col-md-12">
 
-                <div class="btn-wrap align-right">
-                    <a href="#" class="btn-accent-arrow">View all products <i class="icon icon-ns-arrow-right"></i></a>
-                </div>
+{{--                <div class="btn-wrap align-right ">--}}
+{{--                    <a href="#" class="btn-accent-arrow">View all products <i class="icon icon-ns-arrow-right"></i></a>--}}
+{{--                </div>--}}
 
             </div>
         </div>
@@ -156,7 +155,7 @@
                                 <p>Правильно высушенные целые шляпки октябрьских мухоморов. Вы сами можете увидеть какого качества используются грибы. Оставляют выбор того, как именно вы будете их употреблять.</p>
                                 <div class="item-price">2500 р.</div>
                                 <div class="btn-wrap">
-                                    <a href="#" class="btn-accent-arrow">купить сейчас <i
+                                    <a href="#" class="btn-accent-arrow gradient">купить сейчас <i
                                             class="icon icon-ns-arrow-right"></i></a>
                                 </div>
                             </div>

@@ -460,40 +460,40 @@ hr {
 /*--------------------------------------------------------------
 /** 2.10 Buttons
 --------------------------------------------------------------*/
-a.btn,
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
-input[type="file"],
-button {
-  background-image: none;
-  background: var(--accent-color);
-  text-decoration: none !important;
-  display: inline-block;
-  position: relative;
-  border: 1px solid transparent;
-  border-radius: 0;
-  padding: 0.75em 1.5em;
-  margin-top: 15px;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: normal;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  z-index: 1;
-  cursor: pointer;
-  white-space: nowrap;
-  vertical-align: middle;
-  -webkit-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+/*a.btn,*/
+/*input[type="button"],*/
+/*input[type="submit"],*/
+/*input[type="reset"],*/
+/*input[type="file"],*/
+/*button {*/
+/*  background-image: none;*/
+/*  background: var(--accent-color);*/
+/*  text-decoration: none !important;*/
+/*  display: inline-block;*/
+/*  position: relative;*/
+/*  border: 1px solid transparent;*/
+/*  border-radius: 0;*/
+/*  padding: 0.75em 1.5em;*/
+/*  margin-top: 15px;*/
+/*  font-size: 15px;*/
+/*  font-weight: bold;*/
+/*  line-height: normal;*/
+/*  text-align: center;*/
+/*  text-transform: uppercase;*/
+/*  color: #fff;*/
+/*  z-index: 1;*/
+/*  cursor: pointer;*/
+/*  white-space: nowrap;*/
+/*  vertical-align: middle;*/
+/*  -webkit-transition: all 0.3s ease-in;*/
+/*  transition: all 0.3s ease-in;*/
+/*  -ms-touch-action: manipulation;*/
+/*  touch-action: manipulation;*/
+/*  -webkit-user-select: none;*/
+/*  -moz-user-select: none;*/
+/*  -ms-user-select: none;*/
+/*  user-select: none;*/
+/*}*/
 .btn:hover,
 .btn:focus,
 input[type="button"]:focus,
@@ -1010,6 +1010,38 @@ button {
 }
 .btn-wrap {
     text-transform: capitalize;
+}
+
+.gradient {
+    background: transparent;
+    position: relative;
+    --borderWidth: 2px;
+    padding: 0.5ch 1ch;
+    color: #FFFFFF !important;
+}
+
+.gradient:after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    background-size: auto;
+    border-radius: 30px;
+    z-index: -1;
+    -webkit-animation: animatedgradient 7s ease alternate infinite;
+    animation: animatedgradient 7s ease alternate infinite;
+    background-size: 300% 300%;
+}
+.packaging {
+    margin-top: 7vh;
+}
+.product__card  {
+    color: inherit;
+    text-decoration: none;
+
 }
 .btn-wrap a {
     text-decoration: none;
@@ -1881,8 +1913,6 @@ footer#footer {
   background-size: 300% 300%;
 }
 
-
-
 .product-style:hover button.add-to-cart {
     bottom: 380px;
     opacity: 1;
@@ -1902,7 +1932,41 @@ footer#footer {
     color: var(--secondary-color);
     font-size: 1.3em;
 }
+@media screen and (max-width: 1100px) {
+    .product-style button.add-to-cart {
+        opacity: 1;
+        position: relative;
+        width: unset;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: unset;
+        line-height: unset;
+    }
+    button {
+        height: 42px;
+    }
+    .product-style:hover button.add-to-cart {
+        bottom: unset;
+    }
+    .product-style figcaption p {
+        margin-bottom: 0;
+    }
+    .main-slider .banner-content {
+        margin-bottom: 0;
+    }
+    .banner-content p {
+        margin: 0;
+    }
+    #header .menu-list a {
+        text-align: right;
+    }
+    #best-selling {
+        margin-bottom: 0;
+        padding: 0;
+        padding-top: 15vh;
+    }
 
+}
 @media screen and (max-width: 768px) {
   .products-grid .product-style {
     width: 45%;
@@ -1978,6 +2042,15 @@ footer#footer {
 
 #suggest {
     min-width: 60ch;
+}
+
+.del-button {
+    width: inherit;
+    height: inherit;
+    background: transparent;
+}
+.del__form {
+    margin-bottom: 0;
 }
 
 
