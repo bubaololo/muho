@@ -19,8 +19,8 @@
         </button>
 
         <div class="form-outline">
-            <input id="form1" min="0" name="quantity" value="{{ $quantity }}" type="number" class="form-control"/>
-            <label class="form-label" for="form1">Quantity</label>
+            <input id="form1" min="0" name="quantity" value="{{ $CartItem->quantity }}" type="number" class="form-control"/>
+            <label class="form-label" for="form1">Количество</label>
         </div>
 
         <button class="btn btn-primary px-3 ms-2"

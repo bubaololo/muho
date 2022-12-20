@@ -403,7 +403,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            @livewire('quantity-handler', ['quantity' => $item->quantity])
+                                                            @livewire('quantity-handler', ['CartItem' => $item])
 
                                                             <div class="d-flex flex-row align-items-center">
 {{--                                                                <div >--}}
