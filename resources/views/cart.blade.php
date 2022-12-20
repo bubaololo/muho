@@ -402,22 +402,14 @@
                                                                     <p class="small mb-0">{{ $item->attributes->weight }}</p>
                                                                 </div>
                                                             </div>
+
+                                                            @livewire('quantity-handler', ['quantity' => $item->quantity])
+
                                                             <div class="d-flex flex-row align-items-center">
 {{--                                                                <div >--}}
 {{--                                                                    <h5 class="fw-normal mb-0 mx-3">{{ $item->quantity }} шт.</h5>--}}
 {{--                                                                </div>--}}
-                                                                <form action="{{ route('cart.update') }}" method="POST">
-                                                                    @csrf
-                                                                    <input type="hidden" name="id"
-                                                                           value="{{ $item->id}}">
-                                                                    <input type="text" name="quantity"
-                                                                           value="{{ $item->quantity }}"
-                                                                           class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600"/>
-                                                                    <button
-                                                                        class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">
-                                                                        Обновить
-                                                                    </button>
-                                                                </form>
+
                                                                 <div style="width: 80px;">
                                                                     <h5 class="mb-0 ">{{ $item->price }} руб.</h5>
                                                                 </div>
