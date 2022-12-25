@@ -13,20 +13,23 @@
 {{--    </form>--}}
 <!-- Quantity -->
     <div class="d-flex" style="max-width: 60px" type="text">
-        <button class="btn btn-primary px-3 me-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-            -
-        </button>
-
+        <form wire:submit.prevent="decrement()">
+            @csrf
+            <button class="btn btn-primary px-3 me-2">
+                -
+            </button>
+        </form>
         <div class="form-outline">
-            <input id="form1" min="0" name="quantity" value="{{ $CartItem->quantity }}" type="number" class="form-control"/>
+            <div id="form1">{{ $quantity }}</div>
             <label class="form-label" for="form1">Количество</label>
         </div>
 
-        <button class="btn btn-primary px-3 ms-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-            +
-        </button>
+        <form wire:submit.prevent="increment()">
+            @csrf
+            <button class="btn btn-primary px-3 me-2">
+                +
+            </button>
+        </form>
     </div>
     <!-- Quantity -->
 </div>

@@ -36,6 +36,5 @@ class ProductsTable extends Component
             ],
         ]);
         $this->emit('cart_updated');
-    info( print_r($product, true));
     }
 }
