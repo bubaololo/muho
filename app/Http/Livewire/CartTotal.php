@@ -14,14 +14,18 @@ class CartTotal extends Component
     public function render()
     {
 
-       $subtotal= \Cart::getSubTotal();
-       info($subtotal);
-       $delivery= \Cart::getConditionsByType('shipping');
-        info(print_r($delivery, true));
-       $total= \Cart::getTotal();
-        info($total);
+        $subtotal = \Cart::getSubTotal();
+        $rawDelivery = (string)\Cart::getConditionsByType('shipping');
+        preg_match('/\d+/', $rawDelivery, $deliveryEntries);
+        if ($deliveryEntries) {
+            $delivery = $deliveryEntries[0];
+        } else {
+            $delivery = 150;
+        }
+        info($rawDelivery);
+        $total = \Cart::getTotal();
 
 
-        return view('livewire.cart-total', compact('subtotal','delivery','total'));
+        return view('livewire.cart-total', compact('subtotal', 'delivery', 'total'));
     }
 }

@@ -16,7 +16,6 @@ class QuantityHandler extends Component
     }
 
     public function mount($CartItem) {
-//        info(print_r($this->CartItem->id, true));
         $this->CartItem = $CartItem;
     }
 
@@ -35,7 +34,7 @@ class QuantityHandler extends Component
     }
     public function decrement() {
         if($this->CartItem['quantity'] > 1) {
-            info('decr');
+
             $this->CartItem['quantity'] = $this->CartItem['quantity'] - 1;
             \Cart::update(
                 $this->CartItem['id'],
