@@ -34,16 +34,19 @@ class QuantityHandler extends Component
         $this->emit('quantity_updated');
     }
     public function decrement() {
-        $this->CartItem['quantity'] = $this->CartItem['quantity'] - 1;
-        \Cart::update(
-            $this->CartItem['id'],
-            [
-                'quantity' => [
-                    'relative' => false,
-                    'value' => $this->CartItem['quantity'],
-                ],
-            ]
-        );
-        $this->emit('quantity_updated');
+        if($this->CartItem['quantity'] > 1) {
+            info('decr');
+            $this->CartItem['quantity'] = $this->CartItem['quantity'] - 1;
+            \Cart::update(
+                $this->CartItem['id'],
+                [
+                    'quantity' => [
+                        'relative' => false,
+                        'value' => $this->CartItem['quantity'],
+                    ],
+                ]
+            );
+            $this->emit('quantity_updated');
+        }
     }
 }
