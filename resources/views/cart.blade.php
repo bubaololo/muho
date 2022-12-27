@@ -3,22 +3,21 @@
 @section('content')
     <main class="my-8">
         <div class="container">
-            <div class="">
-                <div class="">
-                    @if ($message = Session::get('success'))
-                        <div class="p-4 mb-3 bg-green-400 rounded">
-                            <p class="text-green-800">{{ $message }}</p>
-                        </div>
-                    @endif
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+
+            @if ($message = Session::get('success'))
+                <div class="p-4 mb-3 bg-green-400 rounded">
+                    <p class="text-green-800">{{ $message }}</p>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <section class="h-100 h-custom" style="background-color: #eee;">
                 <div class="container py-5 h-100">
@@ -50,7 +49,8 @@
                                                                 <div>
                                                                     <img
                                                                         src="{{ asset($item->attributes->image) }}"
-                                                                        class="img-fluid rounded-3" alt="Shopping item"
+                                                                        class="img-fluid rounded-3"
+                                                                        alt="Shopping item"
                                                                         style="width: 65px;">
                                                                 </div>
                                                                 <div class="ms-3">
@@ -62,15 +62,18 @@
                                                             @livewire('quantity-handler', ['CartItem' => $item])
 
                                                             <div class="d-flex flex-row align-items-center">
-                                                                                                                                <div >
-                                                                                                                                    <h5 class="fw-normal mb-0 mx-3">{{ $item->quantity }} шт.</h5>
-                                                                                                                                </div>
+                                                                <div>
+                                                                    <h5 class="fw-normal mb-0 mx-3">{{ $item->quantity }}
+                                                                        шт.</h5>
+                                                                </div>
 
                                                                 <div style="width: 80px;">
-                                                                    <h5 class="mb-0 ">{{ $item->price }} руб.</h5>
+                                                                    <h5 class="mb-0 ">{{ $item->price }}
+                                                                        руб.</h5>
                                                                 </div>
                                                                 <form class="del__form"
-                                                                      action="{{ route('cart.remove') }}" method="POST">
+                                                                      action="{{ route('cart.remove') }}"
+                                                                      method="POST">
                                                                     @csrf
                                                                     <input type="hidden" value="{{ $item->id }}"
                                                                            name="id">
@@ -90,7 +93,8 @@
 
                                             <div class="card bg-primary text-white rounded-3">
                                                 <div class="card-body">
-                                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                                    <div
+                                                        class="d-flex justify-content-between align-items-center mb-4">
                                                         <h5 class="mb-0">Детали заказа</h5>
                                                         <img
                                                             src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
@@ -98,56 +102,56 @@
                                                             alt="Avatar">
                                                     </div>
                                                     @livewire('delivery-selector')
-{{--                                                    <p class="small mb-2">Card type</p>--}}
-{{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
-{{--                                                            class="fab fa-cc-mastercard fa-2x me-2"></i></a>--}}
-{{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
-{{--                                                            class="fab fa-cc-visa fa-2x me-2"></i></a>--}}
-{{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
-{{--                                                            class="fab fa-cc-amex fa-2x me-2"></i></a>--}}
-{{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
-{{--                                                            class="fab fa-cc-paypal fa-2x"></i></a>--}}
+                                                    {{--                                                    <p class="small mb-2">Card type</p>--}}
+                                                    {{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
+                                                    {{--                                                            class="fab fa-cc-mastercard fa-2x me-2"></i></a>--}}
+                                                    {{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
+                                                    {{--                                                            class="fab fa-cc-visa fa-2x me-2"></i></a>--}}
+                                                    {{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
+                                                    {{--                                                            class="fab fa-cc-amex fa-2x me-2"></i></a>--}}
+                                                    {{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
+                                                    {{--                                                            class="fab fa-cc-paypal fa-2x"></i></a>--}}
 
-{{--                                                    <form class="mt-4">--}}
-{{--                                                        <div class="form-outline form-white mb-4">--}}
-{{--                                                            <input type="text" id="typeName"--}}
-{{--                                                                   class="form-control form-control-lg" siez="17"--}}
-{{--                                                                   placeholder="Cardholder's Name"/>--}}
-{{--                                                            <label class="form-label" for="typeName">Cardholder's--}}
-{{--                                                                Name</label>--}}
-{{--                                                        </div>--}}
+                                                    {{--                                                    <form class="mt-4">--}}
+                                                    {{--                                                        <div class="form-outline form-white mb-4">--}}
+                                                    {{--                                                            <input type="text" id="typeName"--}}
+                                                    {{--                                                                   class="form-control form-control-lg" siez="17"--}}
+                                                    {{--                                                                   placeholder="Cardholder's Name"/>--}}
+                                                    {{--                                                            <label class="form-label" for="typeName">Cardholder's--}}
+                                                    {{--                                                                Name</label>--}}
+                                                    {{--                                                        </div>--}}
 
-{{--                                                        <div class="form-outline form-white mb-4">--}}
-{{--                                                            <input type="text" id="typeText"--}}
-{{--                                                                   class="form-control form-control-lg" siez="17"--}}
-{{--                                                                   placeholder="1234 5678 9012 3457" minlength="19"--}}
-{{--                                                                   maxlength="19"/>--}}
-{{--                                                            <label class="form-label" for="typeText">Card Number</label>--}}
-{{--                                                        </div>--}}
+                                                    {{--                                                        <div class="form-outline form-white mb-4">--}}
+                                                    {{--                                                            <input type="text" id="typeText"--}}
+                                                    {{--                                                                   class="form-control form-control-lg" siez="17"--}}
+                                                    {{--                                                                   placeholder="1234 5678 9012 3457" minlength="19"--}}
+                                                    {{--                                                                   maxlength="19"/>--}}
+                                                    {{--                                                            <label class="form-label" for="typeText">Card Number</label>--}}
+                                                    {{--                                                        </div>--}}
 
-{{--                                                        <div class="row mb-4">--}}
-{{--                                                            <div class="col-md-6">--}}
-{{--                                                                <div class="form-outline form-white">--}}
-{{--                                                                    <input type="text" id="typeExp"--}}
-{{--                                                                           class="form-control form-control-lg"--}}
-{{--                                                                           placeholder="MM/YYYY" size="7" id="exp"--}}
-{{--                                                                           minlength="7" maxlength="7"/>--}}
-{{--                                                                    <label class="form-label"--}}
-{{--                                                                           for="typeExp">Expiration</label>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="col-md-6">--}}
-{{--                                                                <div class="form-outline form-white">--}}
-{{--                                                                    <input type="password" id="typeText"--}}
-{{--                                                                           class="form-control form-control-lg"--}}
-{{--                                                                           placeholder="&#9679;&#9679;&#9679;" size="1"--}}
-{{--                                                                           minlength="3" maxlength="3"/>--}}
-{{--                                                                    <label class="form-label" for="typeText">Cvv</label>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
+                                                    {{--                                                        <div class="row mb-4">--}}
+                                                    {{--                                                            <div class="col-md-6">--}}
+                                                    {{--                                                                <div class="form-outline form-white">--}}
+                                                    {{--                                                                    <input type="text" id="typeExp"--}}
+                                                    {{--                                                                           class="form-control form-control-lg"--}}
+                                                    {{--                                                                           placeholder="MM/YYYY" size="7" id="exp"--}}
+                                                    {{--                                                                           minlength="7" maxlength="7"/>--}}
+                                                    {{--                                                                    <label class="form-label"--}}
+                                                    {{--                                                                           for="typeExp">Expiration</label>--}}
+                                                    {{--                                                                </div>--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                            <div class="col-md-6">--}}
+                                                    {{--                                                                <div class="form-outline form-white">--}}
+                                                    {{--                                                                    <input type="password" id="typeText"--}}
+                                                    {{--                                                                           class="form-control form-control-lg"--}}
+                                                    {{--                                                                           placeholder="&#9679;&#9679;&#9679;" size="1"--}}
+                                                    {{--                                                                           minlength="3" maxlength="3"/>--}}
+                                                    {{--                                                                    <label class="form-label" for="typeText">Cvv</label>--}}
+                                                    {{--                                                                </div>--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                        </div>--}}
 
-{{--                                                    </form>--}}
+                                                    {{--                                                    </form>--}}
 
                                                     <hr class="my-4">
 
@@ -155,7 +159,7 @@
 
                                                     <button type="button" class="btn btn-info btn-block btn-lg">
                                                         <div class="d-flex justify-content-between">
-{{--                                                            <span>$4818.00</span>--}}
+                                                            {{--                                                            <span>$4818.00</span>--}}
                                                             <span>Оформить заказ <i
                                                                     class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                         </div>

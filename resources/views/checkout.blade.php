@@ -69,18 +69,7 @@
                     8 вопросов
                 </div>
             </div>
-                        <div class="address">
-                            <div id="header">
-                                <input type="text" id="suggest" class="input" placeholder="Введите адрес">
-                                <button type="submit" id="button">Проверить</button>
-                            </div>
-                            <p id="notice">Адрес не найден</p>
-                            <div id="map"></div>
-                            <div id="footer">
-                                <div id="messageHeader"></div>
-                                <div id="message"></div>
-                            </div>
-                        </div>
+
         </div>
 
         <section class="quest__slider">
@@ -116,31 +105,24 @@
                             <div class="quest__slide">
                                 <div class="quest__slide_title_wrapper">
                                     <div class="quest__slide_title">
-                                        Доставка
+                                        Адрес
                                     </div>
                                 </div>
                                 <div class="quest__slide_forms_wrapper">
                                     <div class="quest__input">
-                                        <label for="name">Способ доставки</label>
-                                        <fieldset>
-                                            <legend>Выберите один из доступных способов доставки:</legend>
-
-                                            <div>
-                                                <input type="radio" id="sdek" name="delivery" value="sdek"
-                                                       checked>
-                                                <label for="sdek">Сдэк</label>
+                                        <label for="name">Куда отправить ваши грибы</label>
+                                        <div class="address">
+                                            <div id="header">
+                                                <input type="text" id="suggest" class="input" placeholder="Введите адрес">
+                                                <button type="submit" id="button">Проверить</button>
                                             </div>
-
-                                            <div>
-                                                <input type="radio" id="avito" name="delivery" value="avito">
-                                                <label for="avito">Авито</label>
+                                            <p id="notice">Адрес не найден</p>
+                                            <div id="map"></div>
+                                            <div id="footer">
+                                                <div id="messageHeader"></div>
+                                                <div id="message"></div>
                                             </div>
-
-                                            <div>
-                                                <input type="radio" id="post" name="delivery" value="post">
-                                                <label for="post">Почта</label>
-                                            </div>
-                                        </fieldset>
+                                        </div>
                                     </div>
                                     <div class="quest__input">
                                         <label for="street">Город, улица, дом</label>

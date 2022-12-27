@@ -129,7 +129,9 @@ var swiper = new Swiper(".mySwiper", {
     currentClass: "quest__slider_dot",
     progressbarFillClass: ".swiper-pagination-bullet-active",
   },
-
+    preventClicks: false,
+    preventClicksPropagation: false,
+    simulateTouch: false,
   navigation: {
     nextEl: ".quest__next",
     prevEl: ".quest__prev",
