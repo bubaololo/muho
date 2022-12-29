@@ -1889,7 +1889,8 @@ footer#footer {
     text-align: center;
     line-height: 3;
     position: absolute;
-    bottom: 300px;
+    bottom: 380px;
+    transform: translateY(80px) scale(1);
     left: 40px;
     z-index: 9;
     opacity: 0;
@@ -1914,8 +1915,12 @@ footer#footer {
 }
 
 .product-style:hover button.add-to-cart {
-    bottom: 380px;
+    transform: translateY(0px) scale(1);
     opacity: 1;
+    filter: drop-shadow(0 16px 20px #fc8080) ;
+}
+.product-style:hover button.add-to-cart:active {
+    transform: translateY(0px) scale(.7);
 }
 .product-style figcaption {
     margin-top: 30px;
@@ -2052,6 +2057,56 @@ footer#footer {
 .del__form {
     margin-bottom: 0;
 }
+.hero-img {
+    /*transform: scale(0%);*/
+    /* animation: rotate linear infinite 120s;*/
+    /*animation: glow linear infinite 12s;*/
+    animation-name: rotate, glow, appear;
+    animation-duration: 120s, 3s, 2s;
+    animation-delay: 5s, 2s, 0s;
+    animation-timing-function: linear, ease-in-out, ease-in-out ;
+    animation-direction: normal, alternate, normal;
+    animation-iteration-count: infinite, 1, 1;
+
+
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glow {
+    0% {
+        filter: drop-shadow(0 0 0 #F57946);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 10vmin #F57946);
+    }
+    100% {
+        filter: drop-shadow(0 0 0 #F57946);
+    }
+}
+
+@keyframes appear {
+
+    0% {
+        transform: scale(0%);
+    }
+
+    100% {
+        transform: scale(100%);
+    }
+
+}
+
 
 
 

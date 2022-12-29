@@ -10,9 +10,9 @@
         <div class="row">
             <div class="col-md-12">
 
-                <button class="prev slick-arrow">
-                    <i class="icon icon-arrow-left"></i>
-                </button>
+{{--                <button class="prev slick-arrow">--}}
+{{--                    <i class="icon icon-arrow-left"></i>--}}
+{{--                </button>--}}
 
                 <div class="main-slider pattern-overlay">
                     <div class="slider-item">
@@ -25,7 +25,7 @@
 {{--                            </div>--}}
                         </div><!--banner-content-->
 {{--                        <img src="images/bird.png" alt="banner" class="banner-image">--}}
-                        <picture>
+                        <picture class="hero-img">
                             <source type="image/avif" srcset="images/tmpimg/muhomor@1x.avif 1x, images/tmpimg/muhomor@2x.avif 2x">
                             <img class="picture" src="images/tmpimg/muhomor_fallback.png" srcset="images/tmpimg/muhomor_fallback.png 2x" alt="Мухомор" width="700" height="700">
                         </picture>
@@ -73,47 +73,7 @@
                     <h2 class="section-title">Доступные фасовки</h2>
                 </div>
 
-                <div class="product-list" data-aos="fade-up">
-                    <div class="row">
-                        @foreach ($products as $product)
-                            <a href="/product/{{ $product->id }}" class="col-md-3 product__card">
-                                <figure class="product-style">
-                                    <img src="{{ asset($product->image) }}" alt="muhomor" class="product-item">
-                                        @csrf
-                                        <input type="hidden" value="{{ $product->name }}" name="name">
-                                    <input type="hidden" value="{{ $product->id }}" name="id">
-                                    <figcaption>
-                                        <h3>{{ $product->name }}</h3>
-                                        <p>{{ $product->weight }}</p>
-                                        <div class="item-price">{{ $product->price }}р.</div>
-                                    </figcaption>
-                                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
-                                        <input type="hidden" value="{{ $product->weight }}" name="weight">
-                                        <input type="hidden" value="{{ $product->price }}" name="price">
-                                        <input type="hidden" value="{{ $product->image }}"  name="image">
-                                        <input type="hidden" value="1" name="quantity">
-                                        <button class="add-to-cart" data-product-tile="add-to-cart">в корзину</button>
-                                    </form>
-                                </figure>
-                            </a>
-                        @endforeach
-{{--                        <div class="col-md-3">--}}
-{{--                            <figure class="product-style">--}}
-{{--                                <img src="images/tmpimg/20.jpg" alt="muhomor" class="product-item">--}}
-{{--                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart--}}
-{{--                                </button>--}}
-{{--                                <figcaption>--}}
-{{--                                    <h3>Simple way of piece life</h3>--}}
-{{--                                    <p>Armor Ramsey</p>--}}
-{{--                                    <div class="item-price">$ 40.00</div>--}}
-{{--                                </figcaption>--}}
-{{--                            </figure>--}}
-{{--                        </div>--}}
-
-                    </div><!--ft-books-slider-->
-
-                </div><!--grid-->
-
+                @livewire('main-page-goods')
 
             </div><!--inner-content-->
         </div>

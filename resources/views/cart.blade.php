@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @push('styles')
+        <link rel="stylesheet" href={{ asset('css/swiper-bundle.min.css') }}/>
+        <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/checkout-media.css') }}" rel="stylesheet">
+    @endpush
     <main class="my-8">
         <div class="container">
 
@@ -19,7 +24,7 @@
                 </div>
             @endif
 
-            <section class="h-100 h-custom" style="background-color: #eee;">
+            <section class="h-100 h-custom"">
                 <div class="container py-5 h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col">
@@ -102,56 +107,6 @@
                                                             alt="Avatar">
                                                     </div>
                                                     @livewire('delivery-selector')
-                                                    {{--                                                    <p class="small mb-2">Card type</p>--}}
-                                                    {{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
-                                                    {{--                                                            class="fab fa-cc-mastercard fa-2x me-2"></i></a>--}}
-                                                    {{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
-                                                    {{--                                                            class="fab fa-cc-visa fa-2x me-2"></i></a>--}}
-                                                    {{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
-                                                    {{--                                                            class="fab fa-cc-amex fa-2x me-2"></i></a>--}}
-                                                    {{--                                                    <a href="#!" type="submit" class="text-white"><i--}}
-                                                    {{--                                                            class="fab fa-cc-paypal fa-2x"></i></a>--}}
-
-                                                    {{--                                                    <form class="mt-4">--}}
-                                                    {{--                                                        <div class="form-outline form-white mb-4">--}}
-                                                    {{--                                                            <input type="text" id="typeName"--}}
-                                                    {{--                                                                   class="form-control form-control-lg" siez="17"--}}
-                                                    {{--                                                                   placeholder="Cardholder's Name"/>--}}
-                                                    {{--                                                            <label class="form-label" for="typeName">Cardholder's--}}
-                                                    {{--                                                                Name</label>--}}
-                                                    {{--                                                        </div>--}}
-
-                                                    {{--                                                        <div class="form-outline form-white mb-4">--}}
-                                                    {{--                                                            <input type="text" id="typeText"--}}
-                                                    {{--                                                                   class="form-control form-control-lg" siez="17"--}}
-                                                    {{--                                                                   placeholder="1234 5678 9012 3457" minlength="19"--}}
-                                                    {{--                                                                   maxlength="19"/>--}}
-                                                    {{--                                                            <label class="form-label" for="typeText">Card Number</label>--}}
-                                                    {{--                                                        </div>--}}
-
-                                                    {{--                                                        <div class="row mb-4">--}}
-                                                    {{--                                                            <div class="col-md-6">--}}
-                                                    {{--                                                                <div class="form-outline form-white">--}}
-                                                    {{--                                                                    <input type="text" id="typeExp"--}}
-                                                    {{--                                                                           class="form-control form-control-lg"--}}
-                                                    {{--                                                                           placeholder="MM/YYYY" size="7" id="exp"--}}
-                                                    {{--                                                                           minlength="7" maxlength="7"/>--}}
-                                                    {{--                                                                    <label class="form-label"--}}
-                                                    {{--                                                                           for="typeExp">Expiration</label>--}}
-                                                    {{--                                                                </div>--}}
-                                                    {{--                                                            </div>--}}
-                                                    {{--                                                            <div class="col-md-6">--}}
-                                                    {{--                                                                <div class="form-outline form-white">--}}
-                                                    {{--                                                                    <input type="password" id="typeText"--}}
-                                                    {{--                                                                           class="form-control form-control-lg"--}}
-                                                    {{--                                                                           placeholder="&#9679;&#9679;&#9679;" size="1"--}}
-                                                    {{--                                                                           minlength="3" maxlength="3"/>--}}
-                                                    {{--                                                                    <label class="form-label" for="typeText">Cvv</label>--}}
-                                                    {{--                                                                </div>--}}
-                                                    {{--                                                            </div>--}}
-                                                    {{--                                                        </div>--}}
-
-                                                    {{--                                                    </form>--}}
 
                                                     <hr class="my-4">
 
@@ -178,155 +133,201 @@
                     </div>
                 </div>
             </section>
+            <section class="checkout__slider">
+                <div class="quest">
+                    <div class="container">
+                        <div class="quest__header">
+                            <div class="quest__header_title_wrapper">
+                                <div class="quest__header_title">
+                                    <div class="quest__header_title-text">
+                                        Вопросник по потребностям
+                                    </div>
+                                    <div class="quest__header_title-tag">
+                                        СОКРАЩЁННЫЙ
+                                    </div>
+                                    <div class="quest__header_subtitle">
+                                        Сокращённый (для первичного знакомства с потребностью)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quest__header-question">
+                                8 вопросов
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <section class="quest__slider">
+                        <div class="success">
+                            <img src="img/quest_success.svg" alt="icon" class="quest__success">
+                            <div class="sucess_text">
+                                Ваш заказ оформлен!
+                            </div>
+                        </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="quest__slider_bar">
+                            <div class="container">
+
+                                <div class="quest__slider_bar_wrapper">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="quest__slider_wrapper mySwiper">
+                                <form enctype="multipart/form-data" method="post" id="quest_form"
+                                      class="quest__slides swiper-wrapper" action="/checkout">
+                                @csrf
+                                <!-- ________SLIDE -->
+                                    <div class="swiper-slide">
+                                        <div class="quest__slide">
+                                            <div class="quest__slide_title_wrapper">
+                                                <div class="quest__slide_title">
+                                                    Адрес
+                                                </div>
+                                            </div>
+                                            <div class="quest__slide_forms_wrapper">
+                                                <div class="quest__input">
+                                                    <label for="name">Куда отправить ваши грибы</label>
+                                                    <div class="address">
+                                                        <div id="header">
+                                                            <input type="text" id="suggest" class="input" placeholder="Введите адрес">
+                                                            <button class="btn btn-gray" id="address-check">Проверить</button>
+                                                        </div>
+                                                        <p id="notice">Адрес не найден</p>
+                                                        <div id="map"></div>
+                                                        <div id="footer">
+                                                            <div id="messageHeader"></div>
+                                                            <div id="message"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="quest__input">
+                                                    <label for="street">Город, улица, дом</label>
+                                                    <input type="text" id="street" name="address"  class="quest__textarea"
+                                                           placeholder="г.Москва, ул. Пушкина, д.Колотушкина">
+                                                </div>
+
+                                                <div class="quest__input">
+                                                    <label for="apartment">Квартира</label>
+                                                    <input type="text" id="apartment" name="apartment"
+                                                           class="quest__textarea"
+                                                           placeholder="56">
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="quest__slider_buttons_wrapper">
+                                            <div class="quest__next quest__button">Вперёд</div>
+                                        </div>
+                                    </div>
+                                    <!-- ________SLIDE -->
+                                    <div class="swiper-slide">
+                                        <div class="quest__slide">
+                                            <div class="quest__slide_title_wrapper">
+                                                <div class="quest__slide_title">
+                                                    Персональные данные
+                                                </div>
+                                                <div class="quest__slide_subtitle">
+                                                    Данные необходимые для доставки
+                                                </div>
+                                                <div class="redline"></div>
+                                            </div>
+                                            <div class="quest__slide_forms_wrapper">
+                                                <div class="quest__input">
+                                                    <label for="name">Фамилия</label>
+                                                    <input type="text" id="name" name="name" class="quest__textarea"
+                                                           placeholder="Иванов">
+                                                </div>
+                                                <div class="quest__input">
+                                                    <label for="surname">Имя</label>
+                                                    <input type="text" id="surname" name="surname" class="quest__textarea"
+                                                           placeholder="Иван">
+
+                                                </div>
+                                                <div class="quest__input">
+                                                    <label for="middle_name">Отчество</label>
+                                                    <input type="text" id="middle_name" name="middle_name"
+                                                           class="quest__textarea"
+                                                           placeholder="Иванович">
+                                                </div>
+                                                <div class="quest__input">
+                                                    <label for="middle_name">Телефон</label>
+                                                    <input type="tel" id="tel" name="telephone"
+                                                           class="quest__textarea"
+                                                           placeholder="89000000000">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="quest__slider_buttons_wrapper">
+                                            <div class="quest__next quest__button">Далее</div>
+                                            <div class="quest__prev quest__button">Назад</div>
+                                        </div>
+                                    </div>
+                                    <!-- ________SLIDE -->
+                                    <div class="swiper-slide">
+                                        <div class="quest__slide">
+                                            <div class="quest__slide_title_wrapper">
+                                                <div class="quest__slide_title">
+                                                    Оплата
+                                                </div>
+                                                <div class="redline"></div>
+                                            </div>
+                                            <div class="quest__slide_forms_wrapper">
+
+                                                <div class="quest__input">
+                                                    <label for="name">Способ оплаты</label>
+                                                    <fieldset>
+                                                        <legend>Выберите один из доступных способов оплаты:</legend>
+
+                                                        <div>
+                                                            <input type="radio" id="p2p" name="pay" value="p2p"
+                                                                   checked>
+                                                            <label for="p2p">перевод с карты на карту</label>
+                                                        </div>
+
+                                                        <div>
+                                                            <input type="radio" id="qiwi" name="pay" value="qiwi">
+                                                            <label for="qiwi">qiwi</label>
+                                                        </div>
+
+                                                        <div>
+                                                            <input type="radio" id="visa" name="pay" value="visa">
+                                                            <label for="visa">Visa</label>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="quest__slider_buttons_wrapper">
+                                            <input class="quest__button quest__submit_button" type="submit">
+                                            <div class="quest__prev quest__button">Назад</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+            </section>
         </div>
 
 
     </main>
     @push('scripts')
+        <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
         <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU"
                 type="text/javascript"></script>
-        <script type="text/javascript">
-            // Функция ymaps.ready() будет вызвана, когда
-            // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
-            ymaps.ready(init);
-
-            function init() {
-                // Создание карты.
-                var myMap = new ymaps.Map("map", {
-                    // Координаты центра карты.
-                    // Порядок по умолчанию: «широта, долгота».
-                    // Чтобы не определять координаты центра карты вручную,
-                    // воспользуйтесь инструментом Определение координат.
-                    center: [55.76, 37.64],
-                    // Уровень масштабирования. Допустимые значения:
-                    // от 0 (весь мир) до 19.
-                    zoom: 7
-                });
-            }
-        </script>
-        <script>
-            ymaps.ready(init);
-
-            function init() {
-                // Подключаем поисковые подсказки к полю ввода.
-                var suggestView = new ymaps.SuggestView('suggest'),
-                    map,
-                    placemark;
-
-                // При клике по кнопке запускаем верификацию введёных данных.
-                $('#button').bind('click', function (e) {
-                    e.preventDefault();
-                    geocode();
-                });
-
-                function geocode() {
-                    // Забираем запрос из поля ввода.
-                    var request = $('#suggest').val();
-                    // Геокодируем введённые данные.
-                    ymaps.geocode(request).then(function (res) {
-                        var obj = res.geoObjects.get(0),
-                            error, hint;
-
-                        if (obj) {
-                            // Об оценке точности ответа геокодера можно прочитать тут: https://tech.yandex.ru/maps/doc/geocoder/desc/reference/precision-docpage/
-                            switch (obj.properties.get('metaDataProperty.GeocoderMetaData.precision')) {
-                                case 'exact':
-                                    break;
-                                case 'number':
-                                case 'near':
-                                case 'range':
-                                    error = 'Неточный адрес, требуется уточнение';
-                                    hint = 'Уточните номер дома';
-                                    break;
-                                case 'street':
-                                    error = 'Неполный адрес, требуется уточнение';
-                                    hint = 'Уточните номер дома';
-                                    break;
-                                case 'other':
-                                default:
-                                    error = 'Неточный адрес, требуется уточнение';
-                                    hint = 'Уточните адрес';
-                            }
-                        } else {
-                            error = 'Адрес не найден';
-                            hint = 'Уточните адрес';
-                        }
-
-                        // Если геокодер возвращает пустой массив или неточный результат, то показываем ошибку.
-                        if (error) {
-                            showError(error);
-                            showMessage(hint);
-                        } else {
-                            showResult(obj);
-                        }
-                    }, function (e) {
-                        console.log(e)
-                    })
-
-                }
-
-                function showResult(obj) {
-                    // Удаляем сообщение об ошибке, если найденный адрес совпадает с поисковым запросом.
-                    $('#suggest').removeClass('input_error');
-                    $('#notice').css('display', 'none');
-
-                    var mapContainer = $('#map'),
-                        bounds = obj.properties.get('boundedBy'),
-                        // Рассчитываем видимую область для текущего положения пользователя.
-                        mapState = ymaps.util.bounds.getCenterAndZoom(
-                            bounds,
-                            [mapContainer.width(), mapContainer.height()]
-                        ),
-                        // Сохраняем полный адрес для сообщения под картой.
-                        address = [obj.getCountry(), obj.getAddressLine()].join(', '),
-                        // Сохраняем укороченный адрес для подписи метки.
-                        shortAddress = [obj.getThoroughfare(), obj.getPremiseNumber(), obj.getPremise()].join(' ');
-                    // Убираем контролы с карты.
-                    mapState.controls = [];
-                    // Создаём карту.
-                    createMap(mapState, shortAddress);
-                    // Выводим сообщение под картой.
-                    showMessage(address);
-                }
-
-                function showError(message) {
-                    $('#notice').text(message);
-                    $('#suggest').addClass('input_error');
-                    $('#notice').css('display', 'block');
-                    // Удаляем карту.
-                    if (map) {
-                        map.destroy();
-                        map = null;
-                    }
-                }
-
-                function createMap(state, caption) {
-                    // Если карта еще не была создана, то создадим ее и добавим метку с адресом.
-                    if (!map) {
-                        map = new ymaps.Map('map', state);
-                        placemark = new ymaps.Placemark(
-                            map.getCenter(), {
-                                iconCaption: caption,
-                                balloonContent: caption
-                            }, {
-                                preset: 'islands#redDotIconWithCaption'
-                            });
-                        map.geoObjects.add(placemark);
-                        // Если карта есть, то выставляем новый центр карты и меняем данные и позицию метки в соответствии с найденным адресом.
-                    } else {
-                        map.setCenter(state.center, state.zoom);
-                        placemark.geometry.setCoordinates(state.center);
-                        placemark.properties.set({iconCaption: caption, balloonContent: caption});
-                    }
-                }
-
-                function showMessage(message) {
-                    $('#messageHeader').text('Данные получены:');
-                    $('#message').text(message);
-                }
-            }
-        </script>
-
+        <script src="{{ asset('js/checkout.js') }}"></script>
     @endpush
 @endsection
 

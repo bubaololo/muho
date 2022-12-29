@@ -1,3 +1,5 @@
+
+
 ymaps.ready(init);
 
 function init() {
@@ -7,7 +9,8 @@ function init() {
         placemark;
 
     // При клике по кнопке запускаем верификацию введёных данных.
-    $('#button').bind('click', function (e) {
+    $('#address-check').bind('click', function (e) {
+        e.preventDefault();
         geocode();
     });
 

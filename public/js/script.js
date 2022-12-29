@@ -72,21 +72,21 @@
 
 
     // close when click off of container
-    $(document).on('click touchstart', function (e){
-      if (!$(e.target).is('.search-toggle, .search-toggle *, #header-wrap, #header-wrap *')) {
-        $('.search-toggle').removeClass('active');
-        $('#header-wrap').removeClass('show');
-      }
-    });
+    // $(document).on('click touchstart', function (e){
+    //   if (!$(e.target).is('.search-toggle, .search-toggle *, #header-wrap, #header-wrap *')) {
+    //     $('.search-toggle').removeClass('active');
+    //     $('#header-wrap').removeClass('show');
+    //   }
+    // });
 
-    $('.main-slider').slick({
-        autoplay: false,
-        autoplaySpeed: 4000,
-        fade: true,
-        dots: true,
-        prevArrow: $('.prev'),
-        nextArrow: $('.next'),
-    });
+    // $('.main-slider').slick({
+    //     autoplay: false,
+    //     autoplaySpeed: 4000,
+    //     fade: true,
+    //     dots: true,
+    //     prevArrow: $('.prev'),
+    //     nextArrow: $('.next'),
+    // });
 
     $('.product-grid').slick({
         slidesToShow: 4,

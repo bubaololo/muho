@@ -2,53 +2,11 @@
 
 @section('content')
     @push('styles')
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+        <link rel="stylesheet" href={{ asset('css/swiper-bundle.min.css') }}/>
         <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
         <link href="{{ asset('css/checkout-media.css') }}" rel="stylesheet">
     @endpush
-    {{--<div class="container">--}}
-    {{--    <div class="row justify-content-center">--}}
-    {{--        <div class="col-md-8">--}}
-    {{--            <div class="card">--}}
-    {{--                <div class="card-header">{{ __('Dashboard') }}</div>--}}
 
-    {{--                <div class="card-body">--}}
-    {{--                    @if (session('status'))--}}
-    {{--                        <div class="alert alert-success" role="alert">--}}
-    {{--                            {{ session('status') }}--}}
-    {{--                        </div>--}}
-    {{--                    @endif--}}
-
-    {{--                        <div class="form-group {{$errors->has('region_id')}}">--}}
-    {{--                            <label>Region:</label>--}}
-    {{--                            {{app('form')->select('region_id', $regions, null, ['class' => 'form-control', 'id' => 'region_id'])}}--}}
-    {{--                            {{$errors->first('region_id')}}--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-group {{$errors->has('province_id')}}">--}}
-    {{--                            <label>Province:</label>--}}
-    {{--                            {{app('form')->select('province_id', [], null, ['class' => 'form-control', 'id' => 'province_id'])}}--}}
-    {{--                            {{$errors->first('province_id')}}--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-group {{$errors->has('city_id')}}">--}}
-    {{--                            <label>City:</label>--}}
-    {{--                            {{app('form')->select('city_id', [], null, ['class' => 'form-control', 'id' => 'city_id'])}}--}}
-    {{--                            {{$errors->first('city_id')}}--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-group {{$errors->has('barangay_id')}}">--}}
-    {{--                            <label>Barangay:</label>--}}
-    {{--                            {{app('form')->select('barangay_id', [], null, ['class' => 'form-control', 'id' => 'barangay_id'])}}--}}
-    {{--                            {{$errors->first('barangay_id')}}--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-group {{$errors->has('street')}}">--}}
-    {{--                            <label>Street:</label>--}}
-    {{--                            {{app('form')->text('street', null, ['class' => 'form-control'])}}--}}
-    {{--                            {{$errors->first('street')}}--}}
-    {{--                        </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-    {{--</div>--}}
     <div class="quest">
         <div class="container">
             <div class="quest__header">
@@ -188,42 +146,6 @@
                                 <div class="quest__prev quest__button">Назад</div>
                             </div>
                         </div>
-                        {{--                        <!-- ________SLIDE -->--}}
-                        {{--                        <div class="swiper-slide">--}}
-                        {{--                            <div class="quest__slide">--}}
-                        {{--                                <div class="quest__slide_title_wrapper">--}}
-                        {{--                                    <div class="quest__slide_title">--}}
-                        {{--                                        Известные аналоги--}}
-                        {{--                                    </div>--}}
-                        {{--                                    <div class="redline"></div>--}}
-                        {{--                                </div>--}}
-                        {{--                                <div class="quest__slide_forms_wrapper">--}}
-                        {{--                                    <div class="quest__input">--}}
-                        {{--                                        <label for="story">Российские</label>--}}
-                        {{--                                        <textarea id="quest7" name="quest7" class="quest__textarea"--}}
-                        {{--                                                  placeholder="Мой ответ">--}}
-                        {{--          </textarea>--}}
-                        {{--                                    </div>--}}
-                        {{--                                    <div class="quest__input">--}}
-                        {{--                                        <label for="story">Зарубежные</label>--}}
-                        {{--                                        <textarea id="quest8" name="quest8" class="quest__textarea"--}}
-                        {{--                                                  placeholder="Мой ответ">--}}
-                        {{--          </textarea>--}}
-                        {{--                                    </div>--}}
-                        {{--                                    <div class="quest__input">--}}
-                        {{--                                        <label for="story">Сравнение требуемого решения с аналогами</label>--}}
-                        {{--                                        <textarea id="quest9" name="quest9" class="quest__textarea"--}}
-                        {{--                                                  placeholder="Мой ответ">--}}
-                        {{--          </textarea>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="quest__slider_buttons_wrapper">--}}
-                        {{--                                <div class="quest__next quest__button">Далее</div>--}}
-                        {{--                                <div class="quest__prev quest__button">Назад</div>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
-
                         <!-- ________SLIDE -->
                         <div class="swiper-slide">
                             <div class="quest__slide">
@@ -276,7 +198,7 @@
     @push('scripts')
         <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU"
                 type="text/javascript"></script>
-        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+        <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
         <script src="{{ asset('js/checkout.js') }}"></script>
     @endpush
 @endsection
