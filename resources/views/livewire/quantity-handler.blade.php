@@ -13,20 +13,20 @@
 {{--    </form>--}}
 <!-- Quantity -->
     <div class="d-flex" style="max-width: 60px" type="text">
-        <form wire:submit.prevent="decrement()">
+        <form wire:submit.prevent="decrement()" class="qty-btn">
             @csrf
-            <button class="btn btn-primary px-3 me-2">
+            <button class="btn btn-light px-3 ">
                 -
             </button>
         </form>
         <div class="form-outline">
             <div id="form1">{{ $quantity }}</div>
-            <label class="form-label" for="form1">Количество</label>
+            <label class="form-label mb-0"  for="form1">шт.</label>
         </div>
 
-        <form wire:submit.prevent="increment()">
+        <form wire:submit.prevent="increment()" class="qty-btn">
             @csrf
-            <button class="btn btn-primary px-3 me-2">
+            <button class="btn btn-light px-3 me-2 ">
                 +
             </button>
         </form>

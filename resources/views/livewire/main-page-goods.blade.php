@@ -13,7 +13,7 @@
                         <div class="item-price">{{ $product->price }}р.</div>
                     </figcaption>
 
-                    <form wire:submit.prevent="addToCart({{ $product }})" action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                    <form wire:submit.prevent.defer="addToCart({{ $product }})" action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" value="{{ $product->name }}" name="name">
                         <input type="hidden" value="{{ $product->price }}" name="price">

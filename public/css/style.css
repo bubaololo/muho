@@ -49,6 +49,10 @@ Version: 1.1
     --secondary-font      : 'Poppins', sans-serif;;
 }
 
+/*BOOTSTRAP COLOR REDEFINES*/
+
+
+
 
 /* 2.1 General Styles
 /*----------------------------------------------*/
@@ -1917,7 +1921,7 @@ footer#footer {
 .product-style:hover button.add-to-cart {
     transform: translateY(0px) scale(1);
     opacity: 1;
-    filter: drop-shadow(0 16px 20px #fc8080) ;
+    filter: drop-shadow(0 16px 20px #fc8080);
 }
 .product-style:hover button.add-to-cart:active {
     transform: translateY(0px) scale(.7);
@@ -2045,9 +2049,7 @@ footer#footer {
      }
  }
 
-#suggest {
-    min-width: 60ch;
-}
+
 
 .del-button {
     width: inherit;
@@ -2107,7 +2109,16 @@ footer#footer {
 
 }
 
+.delivery__type {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 
 
-
+.del__form{
+  background-image: url('/images/icons/red-delete-10437.svg');
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+}

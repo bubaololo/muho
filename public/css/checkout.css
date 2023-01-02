@@ -504,7 +504,6 @@ body {
 }
 
 .quest__slider_bar {
-    background-color: #f7f9fa;
     display: inline-block;
     width: 100%;
 }
@@ -514,15 +513,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 32px;
-    height: 80px;
-    margin: 40px auto;
+    padding: 0 20px;
+    height: 66px;
+    margin: 15px auto;
     background-color: #fff;
     background-image: url(/images/tmpimg/quest_line.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 90%;
-    box-shadow: 20px 20px 100px rgba(124, 142, 139, 0.15);
+    box-shadow: 0 10px 44px rgba(124, 142, 139, 0.6);
     border-radius: 12px;
 }
 
@@ -564,13 +563,13 @@ body {
     border-bottom: 1px dashed #d1d9dd;
 }
 
-.quest__slider_wrapper {
-    min-height: 1024px;
-}
+/*.quest__slider_wrapper {*/
+/*    min-height: 1024px;*/
+/*}*/
 
-.quest__slides {
-    margin-top: 60px;
-}
+/*.quest__slides {*/
+/*    margin-top: 60px;*/
+/*}*/
 
 .quest__slide_title {
     font-weight: 500;
@@ -677,7 +676,7 @@ body {
 }
 
 .quest__next {
-    background-color: #e04e39;
+    background-color: var(--secondary-color);
     color: #738d9a;
     color: #fff;
     padding-right: 40px;
@@ -707,7 +706,7 @@ body {
 
 .quest__submit_button {
     border: none;
-    background-color: #e04e39;
+    background-color: var(--secondary-color);
     color: #fff;
     font-family: inherit;
 }
@@ -807,7 +806,7 @@ body {
     padding: 0 50px;
     background-color: #fff;
     border-radius: 5px;
-    color: #e04e39;
+    color: var(--secondary-color);
     text-decoration: none;
 }
 
@@ -1080,7 +1079,7 @@ body {
 
 .manufacture__load_button {
     display: inline-block;
-    background-color: #e04e39;
+    background-color: var(--secondary-color);
     color: #fff;
     border-radius: 5px;
     text-align: center;
@@ -1132,7 +1131,7 @@ body {
     border-radius: 30px;
     font-weight: 500;
     padding: 0 17px;
-    background-color: #e04e39;
+    background-color: var(--secondary-color);
     margin-bottom: 20px;
 }
 
@@ -1341,7 +1340,7 @@ body {
 }
 
 .paginate__item.paginate_active {
-    background-color: #E04E39;
+    background-color: var(--secondary-color);
     color: #fff;
     font-weight: 500;
 }
@@ -1499,9 +1498,20 @@ body {
 }
 
 .projects__bot_slider_paginate .swiper-pagination-bullet-active {
-    background: #E04E39;
+    background: var(--secondary-color);
 }
 
 .projects__bot_slider, .projects__top_slider {
     overflow-x: hidden;
+}
+.form-outline {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1ch;
+}
+.qty-btn {
+    margin: 0;
 }
