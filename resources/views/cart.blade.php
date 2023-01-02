@@ -35,7 +35,7 @@
 
                                         <div class="col-lg-7">
                                             <h5 class="mb-3"><a href="#!" class="text-body"><i
-                                                        class="fas fa-long-arrow-alt-left me-2"></i>Continue
+                                                            class="fas fa-long-arrow-alt-left me-2"></i>Continue
                                                     shopping</a></h5>
                                             <hr>
 
@@ -53,14 +53,14 @@
                                                             <div class="d-flex flex-row align-items-center">
                                                                 <div>
                                                                     <img
-                                                                        src="{{ asset($item->attributes->image) }}"
-                                                                        class="img-fluid rounded-3"
-                                                                        alt="Shopping item"
-                                                                        style="width: 65px;">
+                                                                            src="{{ asset($item->attributes->image) }}"
+                                                                            class="img-fluid rounded-3"
+                                                                            alt="Shopping item"
+                                                                            style="width: 65px;">
                                                                 </div>
                                                                 <div class="ms-3">
                                                                     <h5>{{ $item->name }}</h5>
-                                                                    <p class="small mb-0">{{ $item->attributes->weight }}</p>
+                                                                    <p class="small mb-0">{{ $item->attributes->weight }} гр.</p>
                                                                 </div>
                                                             </div>
                                                             <div style="width: 80px;">
@@ -72,11 +72,11 @@
                                                             <div class="d-flex flex-row align-items-center">
 
                                                                 <form class="del__form"
-                                                                      action="{{ route('cart.remove') }}"
-                                                                      method="POST">
+                                                                        action="{{ route('cart.remove') }}"
+                                                                        method="POST">
                                                                     @csrf
                                                                     <input type="hidden" value="{{ $item->id }}"
-                                                                           name="id">
+                                                                            name="id">
                                                                     <button class="del-button">
 
                                                                     </button>
@@ -87,32 +87,38 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+                                            <form
+                                                    action="{{ route('cart.clear') }}"
+                                                    method="POST">
+                                                @csrf
+                                                <input type=submit class="btn btn-outline-secondary btn-sm" value="очистить корзину">
+                                            </form>
 
                                         </div>
                                         <div class="col-lg-5">
                                             <section class="checkout__slider">
                                                 <div class="quest">
-{{--                                                    <div class="container">--}}
-{{--                                                        <div class="quest__header">--}}
-{{--                                                            <div class="quest__header_title_wrapper">--}}
-{{--                                                                <div class="quest__header_title">--}}
-{{--                                                                    <div class="quest__header_title-text">--}}
-{{--                                                                        Вопросник по потребностям--}}
-{{--                                                                    </div>--}}
-{{--                                                                    <div class="quest__header_title-tag">--}}
-{{--                                                                        СОКРАЩЁННЫЙ--}}
-{{--                                                                    </div>--}}
-{{--                                                                    <div class="quest__header_subtitle">--}}
-{{--                                                                        Сокращённый (для первичного знакомства с потребностью)--}}
-{{--                                                                    </div>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="quest__header-question">--}}
-{{--                                                                8 вопросов--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
+                                                    {{--                                                    <div class="container">--}}
+                                                    {{--                                                        <div class="quest__header">--}}
+                                                    {{--                                                            <div class="quest__header_title_wrapper">--}}
+                                                    {{--                                                                <div class="quest__header_title">--}}
+                                                    {{--                                                                    <div class="quest__header_title-text">--}}
+                                                    {{--                                                                        Вопросник по потребностям--}}
+                                                    {{--                                                                    </div>--}}
+                                                    {{--                                                                    <div class="quest__header_title-tag">--}}
+                                                    {{--                                                                        СОКРАЩЁННЫЙ--}}
+                                                    {{--                                                                    </div>--}}
+                                                    {{--                                                                    <div class="quest__header_subtitle">--}}
+                                                    {{--                                                                        Сокращённый (для первичного знакомства с потребностью)--}}
+                                                    {{--                                                                    </div>--}}
+                                                    {{--                                                                </div>--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                            <div class="quest__header-question">--}}
+                                                    {{--                                                                8 вопросов--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                        </div>--}}
 
-{{--                                                    </div>--}}
+                                                    {{--                                                    </div>--}}
 
                                                     <section class="quest__slider">
                                                         <div class="success">
@@ -140,7 +146,7 @@
                                                         <div class="container">
                                                             <div class="quest__slider_wrapper mySwiper">
                                                                 <form enctype="multipart/form-data" method="post" id="quest_form"
-                                                                      class="quest__slides swiper-wrapper" action="/checkout">
+                                                                        class="quest__slides swiper-wrapper" action="/checkout">
                                                                 @csrf
                                                                 <!-- ________SLIDE -->
                                                                     <div class="swiper-slide">
@@ -151,17 +157,11 @@
                                                                                 </div>
                                                                             </div>
 
+                                                                            @livewire('delivery-selector')
 
+                                                                            <hr class="my-4">
 
-                                                                                    @livewire('delivery-selector')
-
-                                                                                    <hr class="my-4">
-
-                                                                                    @livewire('cart-total')
-
-
-
-
+                                                                            @livewire('cart-total')
 
                                                                         </div>
                                                                         <div class="quest__slider_buttons_wrapper">
@@ -194,17 +194,16 @@
                                                                                 </div>
                                                                                 <div class="quest__input">
                                                                                     <label for="street">Город, улица, дом</label>
-                                                                                    <input type="text" id="street" name="address"  class="quest__textarea"
-                                                                                           placeholder="г.Москва, ул. Пушкина, д.Колотушкина">
+                                                                                    <input type="text" id="street" name="address" class="quest__textarea"
+                                                                                            placeholder="г.Москва, ул. Пушкина, д.Колотушкина">
                                                                                 </div>
 
                                                                                 <div class="quest__input">
                                                                                     <label for="apartment">Квартира</label>
                                                                                     <input type="text" id="apartment" name="apartment"
-                                                                                           class="quest__textarea"
-                                                                                           placeholder="56">
+                                                                                            class="quest__textarea"
+                                                                                            placeholder="56">
                                                                                 </div>
-
 
                                                                             </div>
                                                                         </div>
@@ -229,25 +228,25 @@
                                                                                 <div class="quest__input">
                                                                                     <label for="name">Фамилия</label>
                                                                                     <input type="text" id="name" name="name" class="quest__textarea"
-                                                                                           placeholder="Иванов">
+                                                                                            placeholder="Иванов">
                                                                                 </div>
                                                                                 <div class="quest__input">
                                                                                     <label for="surname">Имя</label>
                                                                                     <input type="text" id="surname" name="surname" class="quest__textarea"
-                                                                                           placeholder="Иван">
+                                                                                            placeholder="Иван">
 
                                                                                 </div>
                                                                                 <div class="quest__input">
                                                                                     <label for="middle_name">Отчество</label>
                                                                                     <input type="text" id="middle_name" name="middle_name"
-                                                                                           class="quest__textarea"
-                                                                                           placeholder="Иванович">
+                                                                                            class="quest__textarea"
+                                                                                            placeholder="Иванович">
                                                                                 </div>
                                                                                 <div class="quest__input">
                                                                                     <label for="middle_name">Телефон</label>
                                                                                     <input type="tel" id="tel" name="telephone"
-                                                                                           class="quest__textarea"
-                                                                                           placeholder="89000000000">
+                                                                                            class="quest__textarea"
+                                                                                            placeholder="89000000000">
                                                                                 </div>
 
                                                                             </div>
@@ -275,7 +274,7 @@
 
                                                                                         <div>
                                                                                             <input type="radio" id="p2p" name="pay" value="p2p"
-                                                                                                   checked>
+                                                                                                    checked>
                                                                                             <label for="p2p">перевод с карты на карту</label>
                                                                                         </div>
 
@@ -304,7 +303,6 @@
                                                     </section>
                                             </section>
 
-
                                         </div>
 
                                     </div>
@@ -317,7 +315,6 @@
             </section>
 
         </div>
-
 
     </main>
     @push('scripts')

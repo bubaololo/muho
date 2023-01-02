@@ -1,4 +1,4 @@
-<div class="product-list" data-aos="fade-up">
+<div class="product-list" >
     <div class="row">
         @foreach ($products as $product)
             <a href="/product/{{ $product->id }}" class="col-md-3 product__card">

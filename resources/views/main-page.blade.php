@@ -16,7 +16,7 @@
 
                 <div class="main-slider pattern-overlay">
                     <div class="slider-item">
-                        <div class="banner-content">
+                        <div class="banner-content" data-aos="fade-right">
                             <h2 class="banner-title">Сибирские мухоморы</h2>
                             <p>Грибы собраны в экологически чистой северной части Омской области, в конце сентября-начале октября 2022 года. Ценители знают что западная сибирь - одно из 2-х мест в мире, наряду с прибалтикой,  где растут самые сильные по содержанию мускарина мухоморы.</p>
 {{--                            <div class="btn-wrap">--}}
@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <div class="section-header align-center">
+                <div class="section-header align-center" data-aos="fade-up">
                     <div class="title">
                         <span>товары в наличии</span>
                     </div>
@@ -100,14 +100,14 @@
                 <div class="row">
 
                     <div class="col-md-6">
-                        <figure class="products-thumb">
+                        <figure class="products-thumb" data-aos="fade-right">
                             <img src="images/dry1.png" alt="amanita" class="single-image">
                         </figure>
                     </div>
 
                     <div class="col-md-6">
-                        <div class="product-entry">
-                            <h2 class="section-title divider">Для тех кто хочет попробовать в первый раз</h2>
+                        <div class="product-entry" data-aos="fade-left">
+                            <h2 class="section-title divider" >Для тех кто хочет попробовать в первый раз</h2>
 
                             <div class="products-content">
                                 <div class="author-name">Шляпки целые, в вакууме</div>

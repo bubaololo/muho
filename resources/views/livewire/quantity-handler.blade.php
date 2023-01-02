@@ -19,7 +19,7 @@
                 -
             </button>
         </form>
-        <div class="form-outline">
+        <div class="form-outline" >
             <div id="form1">{{ $quantity }}</div>
             <label class="form-label mb-0"  for="form1">шт.</label>
         </div>

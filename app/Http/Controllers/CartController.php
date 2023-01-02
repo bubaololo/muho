@@ -12,7 +12,7 @@ class CartController extends Controller
         // dd($cartItems);
         return view('cart', compact('cartItems'));
     }
-
+    
     public function addToCart(Request $request)
     {
         \Cart::add([
@@ -25,11 +25,11 @@ class CartController extends Controller
                 'weight' => $request->weight,
             ],
         ]);
-        session()->flash('success', 'Товар успешно добавлен в корзину !');
-
+        session()->flash('success', 'Товар успешно добавлен в корзину!');
+        
         return redirect()->route('cart.list');
     }
-
+    
     public function updateCart(Request $request)
     {
         \Cart::update(
@@ -41,26 +41,26 @@ class CartController extends Controller
                 ],
             ]
         );
-
-        session()->flash('success', 'Товар успешно обновлён !');
-
+        
+        session()->flash('success', 'Товар успешно обновлён!');
+        
         return redirect()->route('cart.list');
     }
-
+    
     public function removeCart(Request $request)
     {
         \Cart::remove($request->id);
-        session()->flash('success', 'Товар успешно удалён !');
-
+        session()->flash('success', 'Товар успешно удалён!');
+        
         return redirect()->route('cart.list');
     }
-
+    
     public function clearAllCart()
     {
         \Cart::clear();
-
-        session()->flash('success', 'Корзина успешно очищена !');
-
+        
+        session()->flash('success', 'Корзина успешно очищена!');
+        
         return redirect()->route('cart.list');
     }
 }
