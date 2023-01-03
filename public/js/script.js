@@ -31,18 +31,18 @@
       navMenu.classList.toggle("responsive");
   }
 
-  // const navLink = document.querySelectorAll(".nav-link");
-  //
-  // navLink.forEach(n => n.addEventListener("click", closeMenu));
-  //
-  // function closeMenu() {
-  //     hamburger.classList.remove("active");
-  //     navMenu.classList.remove("responsive");
-  // }
+  const navLink = document.querySelectorAll(".nav-link");
+
+  navLink.forEach(n => n.addEventListener("click", closeMenu));
+
+  function closeMenu() {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("responsive");
+  }
 
 
   // close when click off of container
-  /*$(document).on('click touchstart', function (e){
+  $(document).on('click touchstart', function (e){
 
     var x = document.getElementById("navigation");
     if (x.className === "top-menu") {
@@ -51,7 +51,7 @@
       x.className = "top-menu";
     }
 
-  });*/
+  });
 
   $(document).ready(function(){
 
@@ -61,14 +61,14 @@
     })
 
 
-    $('#header-wrap').on('click', '.search-toggle', function(e) {
-      var selector = $(this).data('selector');
-
-      $(selector).toggleClass('show').find('.search-input').focus();
-      $(this).toggleClass('active');
-
-      e.preventDefault();
-    });
+    // $('#header-wrap').on('click', '.search-toggle', function(e) {
+    //   var selector = $(this).data('selector');
+    //
+    //   $(selector).toggleClass('show').find('.search-input').focus();
+    //   $(this).toggleClass('active');
+    //
+    //   e.preventDefault();
+    // });
 
 
     // close when click off of container
@@ -88,40 +88,40 @@
     //     nextArrow: $('.next'),
     // });
 
-    $('.product-grid').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        autoplay: false,
-        autoplaySpeed: 2000,
-        dots: true,
-        arrows: false,
-        responsive: [
-          {
-            breakpoint: 1400,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 999,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 660,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-          // You can unslick at a given breakpoint now by adding:
-          // settings: "unslick"
-          // instead of a settings object
-        ]
-    });
+    // $('.product-grid').slick({
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1,
+    //     autoplay: false,
+    //     autoplaySpeed: 2000,
+    //     dots: true,
+    //     arrows: false,
+    //     responsive: [
+    //       {
+    //         breakpoint: 1400,
+    //         settings: {
+    //           slidesToShow: 3,
+    //           slidesToScroll: 1
+    //         }
+    //       },
+    //       {
+    //         breakpoint: 999,
+    //         settings: {
+    //           slidesToShow: 2,
+    //           slidesToScroll: 1
+    //         }
+    //       },
+    //       {
+    //         breakpoint: 660,
+    //         settings: {
+    //           slidesToShow: 1,
+    //           slidesToScroll: 1
+    //         }
+    //       }
+    //       // You can unslick at a given breakpoint now by adding:
+    //       // settings: "unslick"
+    //       // instead of a settings object
+    //     ]
+    // });
 
     AOS.init({
       duration: 1200,

@@ -1910,9 +1910,9 @@ body.chocolat-open > .chocolat-image-wrapper {
     display: inline-block
 }
 
-.stellarnav > ul > li > a {
-    padding: 10px 40px
-}
+/*.stellarnav > ul > li > a {*/
+/*    padding: 10px 40px*/
+/*}*/
 
 .stellarnav ul ul {
     top: auto;
@@ -2039,10 +2039,9 @@ body.stellarnav-noscroll-x {
 
 .stellarnav svg {
     fill: currentColor;
-    width: 1em;
-    height: 1em;
+    width: 1.5em;
+    height: 1.5em;
     position: relative;
-    top: 2px
 }
 
 .stellarnav a.dd-toggle .icon-plus {

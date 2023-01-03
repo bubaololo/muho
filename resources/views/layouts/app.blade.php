@@ -13,15 +13,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:wght@400;600&family=Poppins:ital@1&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:wght@400;600&family=Poppins:ital@1&display=swap"
+            rel="stylesheet">
     <link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
     <link href="{{ asset('css/icomoon.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     @livewireStyles
     @stack('styles')
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
 
     <!-- Scripts -->
     {{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
@@ -39,16 +38,16 @@
             <div class="col-md-2">
                 <a href="{{ route('index') }}" class="main-logo">
                     <img class="main-logo__part main-logo__part_base"
-                         src="{{ asset('images/tmpimg/logo_main_part.svg') }}" alt="logo">
+                            src="{{ asset('images/tmpimg/logo_main_part.svg') }}" alt="logo">
                     {{--                            <div class="main-logo__part main-logo__part_left-eye"></div>--}}
                     <svg class="main-logo__part main-logo__part-eye  main-logo__part_left-eye" viewBox="0 0 12 12"
-                         version="1.1"
-                         xmlns="http://www.w3.org/2000/svg">
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg">
                         <circle cx="6" cy="6" r="5" fill="#FA370F"/>
                     </svg>
                     <svg class="main-logo__part main-logo__part-eye main-logo__part_right-eye" viewBox="0 0 12 12"
-                         version="1.1"
-                         xmlns="http://www.w3.org/2000/svg">
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg">
                         <circle cx="6" cy="6" r="5" fill="#FA370F"/>
                     </svg>
                 </a>
@@ -64,8 +63,9 @@
                             {{--                                                                    data-effect="Home">Главная</a>--}}
                             {{--                                    </li>--}}
                             <li class="menu-item"><a href="{{ route('products.list') }}" class="nav-link"
-                                                     data-effect="About">Фасовки</a>
+                                        data-effect="About">Фасовки</a>
                             </li>
+
                             {{--                                    <li class="menu-item has-sub">--}}
                             {{--                                        <a href="#pages" class="nav-link" data-effect="Pages">Pages</a>--}}
 
@@ -87,55 +87,61 @@
                             {{--                                    <li class="menu-item"><a href="#latest-blog" class="nav-link"--}}
                             {{--                                                             data-effect="Articles">Articles</a>--}}
                             {{--                                    </li>--}}
-                            <li class="menu-item"><a href="#contact" class="nav-link"
-                                                     data-effect="Contact">Контакты</a></li>
+                            <li class="menu-item"><a class="nav-link"
+                                        data-effect="Contact">Контакты</a></li>
                             @auth
                                 <a href="{{ route('home') }}" class="user-account for-buy"><i
-                                        class="icon icon-user"></i><span>Профиль</span></a>
+                                            class="icon icon-user"></i><span>Профиль</span></a>
                             @endauth
+                            <li>
+                                <a href="{{ route('cart.list') }}" class="cart for-buy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                                    </svg>
+                                    <span>Корзина:(@livewire('cart-counter') товаров)</span></a>
+                            </li>
+                            @guest
+                                <li class="menu-item has-sub">
+                                    <a href="#pages" class="nav-link" data-effect="Pages">Аккаунт</a>
 
-                            @livewire('cart-counter')
-                            <div class="action-menu">
-                                <!-- Authentication Links -->
-                                @guest
-                                    @if (Route::has('register'))
+                                    <ul>
+                                        @if (Route::has('register'))
 
-                                        <a class="nav-link"
-                                           href="{{ route('register') }}">{{ __('Зарегистрироваться') }}</a>
+                                            <li><a class="nav-link"
+                                                        href="{{ route('register') }}">{{ __('Зарегистрироваться') }}</a></li>
 
-                                    @endif
-                                    @if (Route::has('login'))
+                                        @endif
+                                        @if (Route::has('login'))
 
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Войти') }}</a>
+                                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Войти') }}</a></li>
 
-                                    @endif
+                                        @endif
+                                    </ul>
+                                </li>
 
-                                @else
-                                    <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
-                                           role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                           aria-expanded="false" v-pre>
-                                            {{ Auth::user()->name }}
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-end"
+                                            aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
                                         </a>
 
-                                        <div class="dropdown-menu dropdown-menu-end"
-                                             aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                  class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
                             @endguest
-                            <!--top-right-->
-
-                            </div>
                         </ul>
 
                         <div class="hamburger">
@@ -155,7 +161,6 @@
 </div><!--header-wrap-->
 
 @yield('content')
-
 
 <footer id="footer">
     <div class="container">
@@ -307,7 +312,6 @@
         </div>
     </div>
 </div>
-
 
 @vite(['resources/js/app.js']);
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>

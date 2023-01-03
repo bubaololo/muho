@@ -143,10 +143,10 @@ a {
     transition: 0.3s all;
 }
 
-svg,
-img {
-    display: block;
-}
+/*svg,*/
+/*img {*/
+/*    display: block;*/
+/*}*/
 
 .icon-svg {
     height: 1rem;

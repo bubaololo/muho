@@ -2000,7 +2000,7 @@ footer#footer {
 /*MY STYLES__________________*/
 
 .main-logo{
-    width: 280px;
+    width: 250px;
     min-height: 50px;
     max-width: unset;
     position: relative;
@@ -2122,3 +2122,4 @@ footer#footer {
   width: 20px;
   height: 20px;
 }
+
