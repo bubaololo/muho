@@ -41,7 +41,7 @@
 
                                             <div class="d-flex justify-content-between align-items-center mb-4">
                                                 <div>
-                                                  Всего товаров: @livewire('cart-counter')
+                                                    @livewire('cart-counter')
                                                 </div>
 
                                             </div>
