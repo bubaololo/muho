@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuyNowController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\MainPageController;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('products', [ProductController::class, 'productList'])->name('products.list');
 Route::get('product/{id}', [ProductController::class, 'singleProduct'])->name('single.product');
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
+Route::get('cart/{id}', [BuyNowController::class, 'buySpecificProduct'])->name('cart.now');
 Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
