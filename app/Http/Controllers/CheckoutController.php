@@ -23,7 +23,7 @@ class CheckoutController extends Controller
             ]);
 
         info(print_r($request->all(),true));
-        info(print_r($request->ip(),true));
+//        info(print_r($request->ip(),true));
         info(print_r($validated,true));
         info(print_r($cartItems = \Cart::getContent(),true));
         return redirect(route('cart.list'))->with(['success' => 'заказ успешно оформлен, номер вашего заказа: ']);

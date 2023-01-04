@@ -152,7 +152,7 @@
                                                                         <div class="quest__slide">
                                                                             <div class="quest__slide_title_wrapper">
                                                                                 <div class="quest__slide_title">
-                                                                                    Адрес
+                                                                                    Оформить заказ
                                                                                 </div>
                                                                             </div>
 
@@ -180,7 +180,8 @@
                                                                                     <label for="name">Куда отправить ваши грибы</label>
                                                                                     <div class="address">
                                                                                         <div id="header">
-                                                                                            <input type="text" id="suggest" class="input" placeholder="Введите адрес">
+                                                                                            <label for="suggest">Город, улица, дом</label>
+                                                                                            <input type="text" id="suggest" class="input" name="address" placeholder="Введите адрес">
                                                                                             <button class="btn btn-gray" id="address-check">Проверить</button>
                                                                                         </div>
                                                                                         <p id="notice">Адрес не найден</p>
@@ -191,11 +192,6 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="quest__input">
-                                                                                    <label for="street">Город, улица, дом</label>
-                                                                                    <input type="text" id="street" name="address" class="quest__textarea"
-                                                                                            placeholder="г.Москва, ул. Пушкина, д.Колотушкина">
-                                                                                </div>
 
                                                                                 <div class="quest__input">
                                                                                     <label for="apartment">Квартира</label>
@@ -203,6 +199,13 @@
                                                                                             class="quest__textarea"
                                                                                             placeholder="56">
                                                                                 </div>
+
+                                                                                <div class="quest__input">
+                                                                                    <label for="street">Комментарий</label>
+                                                                                    <input type="text" id="comment" name="comment" class="quest__textarea"
+                                                                                            placeholder="любые уточнения">
+                                                                                </div>
+
 
                                                                             </div>
                                                                         </div>
@@ -301,11 +304,8 @@
                                                         </div>
                                                     </section>
                                             </section>
-
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
