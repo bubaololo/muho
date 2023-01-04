@@ -9,7 +9,7 @@
                     <input type="hidden" value="{{ $product->id }}" name="id">
                     <figcaption>
                         <h3>{{ $product->name }}</h3>
-                        <p>{{ $product->weight }}</p>
+                        <p>{{ $product->weight }} грамм</p>
                         <div class="item-price">{{ $product->price }}р.</div>
                     </figcaption>
 

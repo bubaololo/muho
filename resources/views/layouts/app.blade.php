@@ -157,7 +157,7 @@
 
 @yield('content')
 
-<footer id="footer">
+<footer class="footer">
     <div class="container">
         <div class="row">
 
@@ -281,24 +281,24 @@
                             <p>© {{ date("Y") }} All rights reserved. Muho.store</p>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="social-links align-right">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="icon icon-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="icon icon-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="icon icon-youtube-play"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="icon icon-behance-square"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        {{--<div class="col-md-6">--}}
+                        {{--    <div class="social-links align-right">--}}
+                        {{--        <ul>--}}
+                        {{--            <li>--}}
+                        {{--                <a href="#"><i class="icon icon-facebook"></i></a>--}}
+                        {{--            </li>--}}
+                        {{--            <li>--}}
+                        {{--                <a href="#"><i class="icon icon-twitter"></i></a>--}}
+                        {{--            </li>--}}
+                        {{--            <li>--}}
+                        {{--                <a href="#"><i class="icon icon-youtube-play"></i></a>--}}
+                        {{--            </li>--}}
+                        {{--            <li>--}}
+                        {{--                <a href="#"><i class="icon icon-behance-square"></i></a>--}}
+                        {{--            </li>--}}
+                        {{--        </ul>--}}
+                        {{--    </div>--}}
+                        {{--</div>--}}
 
                     </div>
                 </div><!--grid-->

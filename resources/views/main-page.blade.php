@@ -15,9 +15,9 @@
 {{--                </button>--}}
 
                 <div class="hero">
-                    <div class="slider-item">
-                        <div class="banner-content" data-aos="fade-right">
-                            <h2 class="banner-title">Сибирские мухоморы</h2>
+
+                        <div class="hero-content" data-aos="fade-right">
+                            <h2 class="hero-title">Сибирские мухоморы</h2>
                             <p>Грибы собраны в экологически чистой северной части Омской области, в конце сентября-начале октября 2022 года. Ценители знают что западная сибирь - одно из 2-х мест в мире, наряду с прибалтикой,  где растут самые сильные по содержанию мускарина мухоморы.</p>
 {{--                            <div class="btn-wrap">--}}
 {{--                                <a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i--}}
@@ -29,7 +29,7 @@
                             <source type="image/avif" srcset="images/tmpimg/muhomor@1x.avif 1x, images/tmpimg/muhomor@2x.avif 2x">
                             <img class="picture" src="images/tmpimg/muhomor_fallback.png" srcset="images/tmpimg/muhomor_fallback.png 2x" alt="Мухомор" width="700" height="700">
                         </picture>
-                    </div><!--slider-item-->
+
 
 {{--                    <div class="slider-item">--}}
 {{--                        <div class="banner-content">--}}
