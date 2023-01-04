@@ -2016,7 +2016,7 @@ body.stellarnav-noscroll-x {
 .stellarnav .dd-toggle {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 20px;
     padding: 0;
     width: 48px;
     height: 48px;
@@ -2204,7 +2204,8 @@ body.stellarnav-noscroll-x {
     position: relative;
     display: none;
     text-align: left;
-    background: rgba(221, 221, 221, 1)
+    background-color: rgba(255,255,255, .5);
+    backdrop-filter: blur(25px);
 }
 
 .stellarnav.mobile.active > ul, .stellarnav.mobile > ul > li {

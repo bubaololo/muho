@@ -14,7 +14,7 @@
 {{--                    <i class="icon icon-arrow-left"></i>--}}
 {{--                </button>--}}
 
-                <div class="main-slider pattern-overlay">
+                <div class="hero">
                     <div class="slider-item">
                         <div class="banner-content" data-aos="fade-right">
                             <h2 class="banner-title">Сибирские мухоморы</h2>
@@ -90,13 +90,11 @@
     </div>
 </section>
 
-<section id="best-selling" class="leaf-pattern-overlay">
-    <div class="corner-pattern-overlay"></div>
+<section id="best-selling">
+
     <div class="container">
         <div class="row">
-
             <div class="col-md-8 col-md-offset-2">
-
                 <div class="row">
 
                     <div class="col-md-6">

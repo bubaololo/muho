@@ -31,11 +31,11 @@
 </head>
 <body>
 
-<header id="header">
+<header class="header">
     <div class="container">
-        <div class="row">
+        <div class="header__inner">
 
-            <div class="col-md-2">
+
                 <a href="{{ route('index') }}" class="main-logo">
                     <img class="main-logo__part main-logo__part_base"
                             src="{{ asset('images/tmpimg/logo_main_part.svg') }}" alt="logo">
@@ -52,11 +52,7 @@
                     </svg>
                 </a>
 
-            </div>
 
-            <div class="col-md-10">
-
-                <nav id="navbar">
                     <div class="main-menu stellarnav">
                         <ul class="menu-list">
                             {{--                                    <li class="menu-item active"><a href="{{ route('index') }}"--}}
@@ -151,9 +147,8 @@
                         </div>
 
                     </div>
-                </nav>
 
-            </div>
+
 
         </div>
     </div>
