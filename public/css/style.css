@@ -1676,8 +1676,10 @@ img.post-image {
 /*----- Best Selling Section Section
 --------------------------------------------------------------*/
 #best-selling {
+    overflow: hidden;
     /*background: #EDEBE4;*/
-    padding: 140px 0;
+    padding-top: 140px;
+    padding-bottom: 16px;
     margin-bottom: 180px;
 }
 
@@ -2403,6 +2405,10 @@ span.prev-price {
 .del__form {
     margin-bottom: 0;
 }
+#billboard {
+    overflow: hidden;
+}
+
 
 .hero-img {
     /*transform: scale(0%);*/
