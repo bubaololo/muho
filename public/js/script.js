@@ -42,16 +42,16 @@
 
 
   // close when click off of container
-  $(document).on('click touchstart', function (e){
-
-    var x = document.getElementById("navigation");
-    if (x.className === "top-menu") {
-      x.className += " menu-bar";
-    } else {
-      x.className = "top-menu";
-    }
-
-  });
+  // $(document).on('click touchstart', function (e){
+  //
+  //   var x = document.getElementById("navigation");
+  //   if (x.className === "top-menu") {
+  //     x.className += " menu-bar";
+  //   } else {
+  //     x.className = "top-menu";
+  //   }
+  //
+  // });
 
   $(document).ready(function(){
 
