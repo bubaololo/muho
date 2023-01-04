@@ -2,8 +2,12 @@
 /public/build
 /public/hot
 /public/storage
+/public/vendor/telescope
 /storage/*.key
 /vendor
+config/telescope.php
+/storage/logs
+/app/Providers/TelescopeServiceProvider.php
 .env
 .env.backup
 .env.production
