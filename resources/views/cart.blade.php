@@ -48,40 +48,35 @@
                                             @foreach ($cartItems as $item)
                                                 <div class="card mb-3">
                                                     <div class="card-body">
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                            <div class="d-flex flex-row align-items-center">
-                                                                <div>
-                                                                    <img
-                                                                            src="{{ asset($item->attributes->image) }}"
-                                                                            class="img-fluid rounded-3"
-                                                                            alt="Shopping item"
-                                                                            style="width: 65px;">
-                                                                </div>
-                                                                <div class="ms-3">
-                                                                    <h5>{{ $item->name }}</h5>
-                                                                    <p class="small mb-0">{{ $item->attributes->weight }} гр.</p>
-                                                                </div>
-                                                            </div>
-                                                            <div style="width: 80px;">
-                                                                <h5 class="mb-0 ">{{ $item->price }}
+                                                        <div class="cart-item__inner">
+
+                                                            <a href="/product/{{ $item->id }}" class="cart-item__img">
+                                                                <img src="{{ asset($item->attributes->image) }}"
+                                                                        class="rounded-3"
+                                                                        alt="Мухомор">
+                                                            </a>
+                                                            <a href="/product/{{ $item->id }}" class="cart-item__info">
+                                                                <h5>{{ $item->name }}</h5>
+                                                                <p class="mb-0">{{ $item->attributes->weight }} гр.</p>
+                                                            </a>
+
+
+                                                                <h5 class="mb-0 cart-item__price">{{ $item->price }}
                                                                     руб.</h5>
-                                                            </div>
+
                                                             @livewire('quantity-handler', ['CartItem' => $item])
 
-                                                            <div class="d-flex flex-row align-items-center">
+                                                            <form class="cart-item__del"
+                                                                    action="{{ route('cart.remove') }}"
+                                                                    method="POST">
+                                                                @csrf
+                                                                <input type="hidden" value="{{ $item->id }}"
+                                                                        name="id">
+                                                                <button class="del-button">
 
-                                                                <form class="del__form"
-                                                                        action="{{ route('cart.remove') }}"
-                                                                        method="POST">
-                                                                    @csrf
-                                                                    <input type="hidden" value="{{ $item->id }}"
-                                                                            name="id">
-                                                                    <button class="del-button">
+                                                                </button>
+                                                            </form>
 
-                                                                    </button>
-                                                                </form>
-
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -136,13 +131,13 @@
                                                             </div>
                                                         @endif
                                                         <div class="quest__slider_bar">
-                                                            <div class="container">
+
 
                                                                 <div class="quest__slider_bar_wrapper">
                                                                 </div>
-                                                            </div>
+
                                                         </div>
-                                                        <div class="container">
+
                                                             <div class="quest__slider_wrapper mySwiper">
                                                                 <form enctype="multipart/form-data" method="post" id="quest_form"
                                                                         class="quest__slides swiper-wrapper" action="/checkout">
@@ -299,7 +294,7 @@
                                                                     </div>
                                                                 </form>
                                                             </div>
-                                                        </div>
+
                                                     </section>
                                             </section>
                                         </div>

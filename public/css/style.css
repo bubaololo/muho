@@ -187,9 +187,9 @@ h1, h2, h3 {
 
 }
 
-h5, h6 {
-    letter-spacing: 1px;
-}
+/*h5, h6 {*/
+/*    letter-spacing: 1px;*/
+/*}*/
 
 h1, .h1 {
     font-size: 2.5em;
@@ -2463,16 +2463,71 @@ span.prev-price {
     justify-content: space-evenly;
 }
 
-.del__form {
+.cart-item__del {
     background-image: url('/images/icons/red-delete-10437.svg');
     background-size: cover;
     width: 20px;
     height: 20px;
+    margin-bottom: 0;
 }
 
 .cart-accent {
     color: var(--secondary-color);
     font-size: 20px;
     line-height: 10px;
+}
+.cart-item__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart-item__img img {
+    max-height: 85px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .cart-item__img img {
+        max-height: unset;
+        max-width: 100%;
+    }
+    .cart-item__inner {
+        display: grid;
+        row-gap: 3ch;
+    grid-template-areas: 'img img'
+    'price info''del quantity';
+    }
+    .cart-item__img {
+        grid-area: img;
+    }
+    .cart-item__info {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1ch;
+        align-items: center;
+        grid-area: info;
+        text-decoration: none;
+    }
+    .cart-item__info h5 {
+        margin-bottom: 0;
+    }
+    .cart-item__price {
+        grid-area: price;
+        white-space: nowrap;
+    }
+    .cart-item__quantity {
+        grid-area: quantity;
+    }
+    .cart-item__del {
+        grid-area: del;
+        margin-bottom: 0;
+    }
+    .quest .swiper-slide {
+        padding: 0;
+    }
+    #button {
+        margin-top: 8px;
+    }
 }
 
