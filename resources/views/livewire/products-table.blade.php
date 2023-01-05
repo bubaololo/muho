@@ -85,9 +85,9 @@
                                                         <input type="hidden" value="{{ $product->weight }}" name="weight">
                                                         <input type="hidden" value="{{ $product->image }}" name="image">
                                                         <input type="hidden" value="1" name="quantity">
-                                                        <button class="btn btn-outline-primary btn-sm mt-2" type="button">
-                                                            добавить в корзину
-                                                        </button>
+                                                        <input type="submit" class="btn btn-outline-primary btn-sm mt-2" value="добавить в корзину">
+
+
                                                     </form>
 
                                                 </div>

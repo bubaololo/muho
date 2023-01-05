@@ -12,6 +12,7 @@ class MainPageController extends Controller
 //        $products = Product::all();
 
 //        return view('main-page', compact('products'));
+
         return view('main-page');
     }
 }
