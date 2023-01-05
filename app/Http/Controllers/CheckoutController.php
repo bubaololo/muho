@@ -22,12 +22,17 @@ class CheckoutController extends Controller
             'telephone' => 'integer'
             ]);
 
-        info(print_r($request->all(),true));
+//        info(print_r($request->all(),true));
 //        info(print_r($request->ip(),true));
-        info(print_r($validated,true));
-        info(print_r($cartItems = \Cart::getContent(),true));
-        return redirect(route('cart.list'))->with(['success' => 'заказ успешно оформлен, номер вашего заказа: ']);
-
+//        info(print_r($validated,true));
+//        info(print_r($cartItems = \Cart::getContent(),true));
+//        return redirect(route('cart.list'))->with(['success' => 'заказ успешно оформлен, номер вашего заказа: ']);
+        $cartItems = \Cart::getContent();
+        $deliveryInfo = $request->all();
+//        foreach($cartItems as $item) {
+//            echo $item['name'];
+//        }
+        return view('order', compact('cartItems','deliveryInfo'));
     }
 }
 //'user_id',
