@@ -22,7 +22,7 @@ class CartTotal extends Component
         } else {
             $delivery = 150;
         }
-        info($rawDelivery);
+        
         $total = \Cart::getTotal();
 
 

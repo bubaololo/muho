@@ -21,8 +21,16 @@ class CheckoutController extends Controller
             'address' => 'required',
             'telephone' => 'integer'
             ]);
-
-//        info(print_r($request->all(),true));
+            $orderNum = rand(10000,99999);
+        $total = \Cart::getTotal();
+        $subtotal = \Cart::getSubTotal();
+        $rawDelivery = (string)\Cart::getConditionsByType('shipping');
+        preg_match('/\d+/', $rawDelivery, $deliveryPrice);
+        $deliveryPrice = $deliveryPrice[0];
+        preg_match('/(?<={")[^"]*/', $rawDelivery, $deliveryType);
+        $deliveryType = $deliveryType[0];
+    
+        info(print_r($request->all(),true));
 //        info(print_r($request->ip(),true));
 //        info(print_r($validated,true));
 //        info(print_r($cartItems = \Cart::getContent(),true));
@@ -32,7 +40,8 @@ class CheckoutController extends Controller
 //        foreach($cartItems as $item) {
 //            echo $item['name'];
 //        }
-        return view('order', compact('cartItems','deliveryInfo'));
+        \Cart::clear();
+        return view('order', compact('cartItems','deliveryInfo', 'orderNum', 'subtotal', 'deliveryPrice', 'deliveryType', 'total'));
     }
 }
 //'user_id',
