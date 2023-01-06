@@ -2,7 +2,7 @@
 
 @section('content')
     @push('styles')
-        <link rel="stylesheet" href={{ asset('css/swiper-bundle.min.css') }}/>
+        <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}"/>
         <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
         <link href="{{ asset('css/checkout-media.css') }}" rel="stylesheet">
     @endpush
