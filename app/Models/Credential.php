@@ -8,15 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Credential extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'user_id',
-        'name',
-        'surname',
-        'middle_name',
-        'address',
-        'apartment',
-        'last_ip',
-        'comment'];
+    
+    protected $guarded = [];
 
 }

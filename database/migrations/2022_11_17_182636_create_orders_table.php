@@ -25,10 +25,13 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->unsignedDecimal('cost', $precision = 8, $scale = 2)->default(0);
+            $table->unsignedDecimal('total', $precision = 8, $scale = 2)->default(0);
+            $table->unsignedDecimal('subtotal', $precision = 8, $scale = 2)->default(0);
+            $table->unsignedDecimal('delivery_cost', $precision = 8, $scale = 2)->default(0);
             $table->boolean('paid')->default(0);
             $table->enum('delivery',['post','avito','courier']);
             $table->text('comment')->nullable();
+            $table->text('track')->nullable();
             $table->timestamps();
         });
     }

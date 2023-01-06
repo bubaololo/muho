@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Order;
+use App\Models\Credential;
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -38,6 +40,7 @@ class CheckoutController extends Controller
         $cartItems = \Cart::getContent();
         $deliveryInfo = $request->all();
 
+//        preparing data to send via bot
         
         $cartItemsString = '';
         $itemCounter = 0;
@@ -56,14 +59,49 @@ class CheckoutController extends Controller
             'телефон: '.$deliveryInfo['telephone'] . "\r\n" .
             'способ оплаты: '.$deliveryInfo['pay'];
             
-        $tg = app()->make('App\Services\TelegramService');
-        $tg->sendMessage('новый заказ!, номер заказа: ' . $orderNum . "\r\n" . "\r\n" .
-            'Товары:' . "\r\n" .
-            $cartItemsString . "\r\n" . "\r\n" .
-            'Инфа для доставки: ' . "\r\n" .
-            $deliveryDataString
-        );
-        \Cart::clear();
+//        $tg = app()->make('App\Services\TelegramService');
+//        $tg->sendMessage('новый заказ!, номер заказа: ' . $orderNum . "\r\n" . "\r\n" .
+//            'Товары:' . "\r\n" .
+//            $cartItemsString . "\r\n" . "\r\n" .
+//            'Инфа для доставки: ' . "\r\n" .
+//            $deliveryDataString
+//        );
+        
+//        store data
+        
+        $credential = Credential::create([
+            'name' => $deliveryInfo['name'],
+            'surname' => $deliveryInfo['surname'],
+            'middle_name' => $deliveryInfo['middle_name'],
+            'address' => $deliveryInfo['address'],
+            'apartment' => $deliveryInfo['apartment'],
+            'comment' => $deliveryInfo['comment'],
+            'tel' => $deliveryInfo['telephone'],
+
+        ]);
+        
+        $order = Order::create([
+            'order_num' => $orderNum,
+            'credential_id' => $credential->id,
+            'total' => $total,
+            'subtotal' => $subtotal,
+            'delivery'=> $deliveryType,
+            'delivery_cost'=> $deliveryPrice,
+            'comment'=> $deliveryInfo['comment'],
+        ]);
+        
+        
+        foreach ($cartItems as $item) {
+            $products = new OrderProduct;
+            $products->order_id = $order->id;
+            $products->product_id = $item['id'];
+            $products->quantity = $item['quantity'];
+            $products->save();
+        }
+        
+        
+        
+//        \Cart::clear();
         return view('order', compact('cartItems', 'deliveryInfo', 'orderNum', 'subtotal', 'deliveryPrice', 'deliveryType', 'total'));
     }
 }

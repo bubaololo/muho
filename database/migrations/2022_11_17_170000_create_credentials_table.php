@@ -25,6 +25,9 @@ return new class extends Migration {
             $table->text('apartment')->nullable();
             $table->text('last_ip')->nullable();
             $table->text('comment')->nullable();
+            $table->tinyText('tel')->nullable();
+            $table->tinyText('whatsapp')->nullable();
+            $table->tinyText('telegram')->nullable();
             $table->timestamps();
         });
     }
