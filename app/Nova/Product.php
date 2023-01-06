@@ -49,17 +49,17 @@ class Product extends Resource
             Text::make('Price')->sortable(),
             Text::make('Weight')->sortable(),
             Text::make('Description')->sortable(),
-//            Image::make('Image')->disk('public'),
+            Image::make('Image')->disk('public'),
 //            Text::make('Image'),
-            Image::make('Image')
-                ->disk('public')
-                ->thumbnail(function ($value) {
-                    info($value);
-                    return $value
+//            Image::make('Image')
+//                ->disk('public')
+//                ->thumbnail(function ($value, $disk) {
+//                    info($value);
+//                    return $value
 //                        ? Storage::disk($disk)->url($value)
-                        ? Storage::get('file.jpg')
-                        : null;
-                }),
+////                        ? Storage::get('file.jpg')
+//                        : null;
+//                }),
         ];
     }
 
