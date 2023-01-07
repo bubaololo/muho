@@ -77,6 +77,7 @@ body {
 body.no-scroll {
     overflow: hidden;
 }
+
 .content-wrapper {
     padding-top: 72px;
 }
@@ -2513,6 +2514,9 @@ span.prev-price {
 
 
 @media screen and (max-width: 768px) {
+    .content-wrapper {
+        padding-top: 0;
+    }
     .cart-item__img img {
         max-height: unset;
         max-width: 100%;
