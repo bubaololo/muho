@@ -77,7 +77,6 @@ body {
 body.no-scroll {
     overflow: hidden;
 }
-
 .content-wrapper {
     padding-top: 72px;
 }
@@ -2309,7 +2308,9 @@ span.prev-price {
     position: relative;
     display: inline-block;
 }
-
+.mobile-cart {
+    display: none;
+}
 @media screen and (max-width: 768px) {
 
     /* HIDING__HEADER____________________________________ */
@@ -2350,6 +2351,26 @@ span.prev-price {
         position: fixed;
         z-index: 100;
         transition: all 300ms ease-in-out;
+    }
+    .mobile-cart {
+        position: fixed;
+        top: 50vh;
+        right: 0px;
+        display: flex;
+        flex-direction: column-reverse;
+        /*justify-content: flex-end;*/
+        align-items: end;
+        text-decoration: none;
+        color: inherit;
+        padding: 1ch;
+        background-color: rgba(255,255,255 .5);
+        backdrop-filter: blur(15px);
+        /*filter: drop-shadow(0px 0px 6px #fff);*/
+        box-shadow: 0px 0px 6px #fff;
+        border-radius: 10px 0 0 10px;
+    }
+    .mobile-cart .cart__text {
+        display: none;
     }
 }
 

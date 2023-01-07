@@ -1899,7 +1899,8 @@ body.chocolat-open > .chocolat-image-wrapper {
     box-sizing: border-box;
     -webkit-transition: all .3s ease-out;
     -moz-transition: all .3s ease-out;
-    transition: all .3s ease-out
+    transition: all .3s ease-out;
+
 }
 
 .stellarnav.light a, .stellarnav.light li a {
@@ -2404,13 +2405,16 @@ body.stellarnav-noscroll-x {
 
 @media only screen and (max-width: 768px) {
     .stellarnav {
-        overflow: hidden;
+        /*overflow: hidden;*/
         display: block
     }
 
     .stellarnav ul {
         position: relative;
         display: none
+    }
+    .menu-list {
+        backdrop-filter: blur(10px);
     }
 }
 
