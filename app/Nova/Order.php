@@ -3,26 +3,24 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use App\Models\Credential;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Currency;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Image;
-use Illuminate\Support\Facades\Storage;
-use Laravel\Nova\Fields\File;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Product extends Resource
+class Order extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Product::class;
-    
-    public static function label() {
-        return 'Товары';
-    }
-    
+    public static $model = \App\Models\Order::class;
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
@@ -36,7 +34,7 @@ class Product extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'order_num','user_id'
     ];
 
     /**
@@ -47,13 +45,19 @@ class Product extends Resource
      */
     public function fields(NovaRequest $request)
     {
+        
         return [
-            ID::make()->sortable(),
-            Text::make('Название','name')->sortable(),
-            Text::make('Цена','price')->sortable(),
-            Text::make('Вес','weight')->sortable(),
-            Text::make('Описание','description')->sortable(),
-            Image::make('Картинка','image')->disk('public'),
+            ID::make()->sortable()->hideFromIndex(),
+            Text::make('номер заказа','order_num')->sortable(),
+            Currency::make('только грибы','subtotal')->currency('RUB')->hideFromIndex(),
+            Currency::make('цена доставки','delivery_cost')->currency('RUB')->hideFromIndex(),
+            Currency::make('итог','total')->currency('RUB')->sortable(),
+            Boolean::make('оплачен','paid')->sortable(),
+            Text::make('коммент юзера','comment')->hideFromIndex(),
+            Text::make('номер отслеживания','track'),
+            DateTime::make('дата оформления','created_at'),
+            HasOne::make('User'),
+            HasOne::make('Credential'),
         ];
     }
 
@@ -99,5 +103,9 @@ class Product extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
+    }
+    
+    public static function label() {
+        return 'Заказы';
     }
 }

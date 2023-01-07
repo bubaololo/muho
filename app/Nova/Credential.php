@@ -3,25 +3,25 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Image;
-use Illuminate\Support\Facades\Storage;
-use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Product extends Resource
+class Credential extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Product::class;
+    public static $model = \App\Models\Credential::class;
     
     public static function label() {
-        return 'Товары';
+        return 'Данные доставки';
     }
+    public static $displayInNavigation = false;
     
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -48,12 +48,15 @@ class Product extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
-            Text::make('Название','name')->sortable(),
-            Text::make('Цена','price')->sortable(),
-            Text::make('Вес','weight')->sortable(),
-            Text::make('Описание','description')->sortable(),
-            Image::make('Картинка','image')->disk('public'),
+            ID::make()->sortable()->hideFromIndex(),
+            Text::make('имя','name')->sortable(),
+            Text::make('адрес','address'),
+            Text::make('хата','apartment'),
+            Text::make('comment')->hideFromIndex(),
+            Text::make('tel')->hideFromIndex(),
+            Text::make('whatsapp')->hideFromIndex(),
+            Text::make('telegram')->hideFromIndex(),
+            DateTime::make('дата создания','created_at')->hideFromIndex(),
         ];
     }
 
@@ -100,4 +103,5 @@ class Product extends Resource
     {
         return [];
     }
+
 }
