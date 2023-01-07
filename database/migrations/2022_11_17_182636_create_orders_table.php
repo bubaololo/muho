@@ -29,7 +29,7 @@ return new class extends Migration
             $table->unsignedDecimal('subtotal', $precision = 8, $scale = 2)->default(0);
             $table->unsignedDecimal('delivery_cost', $precision = 8, $scale = 2)->default(0);
             $table->boolean('paid')->default(0);
-            $table->enum('delivery',['post','avito','courier']);
+            $table->enum('delivery',['post','avito','sdek']);
             $table->text('comment')->nullable();
             $table->text('track')->nullable();
             $table->timestamps();
@@ -46,6 +46,5 @@ return new class extends Migration
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::dropIfExists('orders');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
     }
 };

@@ -78,6 +78,10 @@ body.no-scroll {
     overflow: hidden;
 }
 
+.content-wrapper {
+    padding-top: 72px;
+}
+
 a {
     color: var(--accent-color);
     transition: 0.3s color ease-out;
