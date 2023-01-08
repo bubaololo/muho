@@ -22,10 +22,12 @@ return new class extends Migration {
             $table->tinyText('surname');
             $table->tinyText('middle_name');
             $table->text('address');
-            $table->text('apartment')->nullable();
+            $table->text('email')->nullable();
+            $table->text('apartment');
             $table->text('last_ip')->nullable();
             $table->text('comment')->nullable();
             $table->tinyText('tel')->nullable();
+            $table->tinyText('index')->nullable();
             $table->tinyText('whatsapp')->nullable();
             $table->tinyText('telegram')->nullable();
             $table->timestamps();

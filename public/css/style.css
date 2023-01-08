@@ -2558,5 +2558,11 @@ span.prev-price {
     #button {
         margin-top: 8px;
     }
+    .user-account {
+        padding: 15px;
+    }
+    .user-account span {
+        margin-left: 8px;
+    }
 }
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $credentialsCheck = $user->credential()->first();
+        if($credentialsCheck) {
+            $credentials = $credentialsCheck;
+            return view('home', compact('credentials'));
+    
+        }
+        
+//        foreach($credentials as $item) {
+//            info(print_r($item, true));
+//        }
+//        info(print_r($credentials->get()->name, true));
         return view('home');
     }
 }
