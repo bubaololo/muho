@@ -29,7 +29,6 @@ class HomeController extends Controller
         if($credentialsCheck) {
             $credentials = $credentialsCheck;
             return view('home', compact('credentials'));
-    
         }
         
 //        foreach($credentials as $item) {

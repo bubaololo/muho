@@ -320,5 +320,7 @@
 @livewireScripts
 @stack('scripts')
 <script src="{{ asset('js/script.js') }}"></script>
+<script src="//code.jivo.ru/widget/vbhOoVu4P2" async></script>
+
 </body>
 </html>

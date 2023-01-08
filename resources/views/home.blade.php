@@ -2,8 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -13,9 +12,14 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                            @if (session('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
 
                         <section>
-                            <div class="container py-5">
+
                                 <div class="row">
                                     <div class="col">
                                         <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
@@ -48,49 +52,48 @@
                                                 <ul class="list-group list-group-flush rounded-3">
                                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                                         <i class="fas fa-globe fa-lg text-warning"></i>
-                                                        <p class="mb-0">https://mdbootstrap.com</p>
+                                                        <p class="mb-0">lorem</p>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                                         <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                                        <p class="mb-0">mdbootstrap</p>
+                                                        <p class="mb-0">lorem</p>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                                         <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                                        <p class="mb-0">@mdbootstrap</p>
+                                                        <p class="mb-0">lorem</p>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                                         <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                                        <p class="mb-0">mdbootstrap</p>
+                                                        <p class="mb-0">lorem</p>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                                         <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                                        <p class="mb-0">mdbootstrap</p>
+                                                        <p class="mb-0">lorem</p>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     @if(empty($credentials))
-                                        <div class="container rounded bg-white mt-5 mb-5">
-                                            <div class="row">
 
-                                                <div class="col-md-5 border-right">
-                                                    <div class="p-3 py-5">
+                                        <div class="col-lg-8">
+                                            <div class="card mb-4">
+                                                <div class="card-body">
                                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                                             <h4 class="text-right">Данные для доставки</h4>
                                                         </div>
-                                                        <form enctype="multipart/form-data" method="post" id="quest_form"
-                                                                class="quest__slides swiper-wrapper" action="/credentials">
+                                                        <form enctype="multipart/form-data" method="post" id="profile-credentials"
+                                                                 action="/credentials">
                                                             @csrf
                                                         <div class="row mt-2">
                                                             <div class="col-md-6">
-                                                                <label class="labels">Имя</label><input type="text"  name="name" class="form-control" placeholder="Иван" value="">
+                                                                <label class="labels">Имя</label><input type="text" required name="name" class="form-control" placeholder="Иван" value="">
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <label class="labels">Фамилия</label><input type="text" name="surname" class="form-control" value="" placeholder="Иванов">
+                                                                <label class="labels">Фамилия</label><input type="text" required name="surname" class="form-control" value="" placeholder="Иванов">
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <label class="labels">Отчество</label><input type="text" name="second_name" class="form-control" value="" placeholder="Иванович">
+                                                                <label class="labels">Отчество</label><input type="text" required name="middle_name" class="form-control" value="" placeholder="Иванович">
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label class="labels">Телефон</label><input type="text" name="tel" class="form-control" value="" placeholder="890000000">
@@ -104,16 +107,16 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-12">
-                                                                <label class="labels">Город, улица, дом</label><input type="text" class="form-control" placeholder="Москва, ул. Пушкина, д. Колотушкина" value="">
+                                                                <label class="labels">Город, улица, дом</label><input type="text" name="address" required class="form-control" placeholder="Москва, ул. Пушкина, д. Колотушкина" value="">
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <label class="labels">Квартира</label><input type="text" class="form-control" placeholder="22" value="">
+                                                                <label class="labels">Квартира</label><input type="text" name="apartment" class="form-control" placeholder="22" value="">
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <label class="labels">Комментарий к адресу</label><input type="text" class="form-control" placeholder="любые уточнения" value="">
+                                                                <label class="labels">Комментарий к адресу</label><input type="text" name="comment" class="form-control" placeholder="любые уточнения" value="">
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <label class="labels">Индекс</label><input type="text" class="form-control" placeholder="000000" value="">
+                                                                <label class="labels">Индекс</label><input type="text" name="index" class="form-control" placeholder="000000" value="">
                                                             </div>
                                                             {{--<div class="col-md-12">--}}
                                                             {{--    <label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value="">--}}
@@ -158,9 +161,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+
                                 </div>
-                            </div>
+
                             <style>
                                 body {
                                     background: rgb(99, 39, 120)
@@ -323,24 +326,18 @@
                     </div>
                 </div>
                 </section>
-            </div>
-        </div>
+
     </div>
     </div>
     </div>
     <script>
-       let inputs =  document.querySelectorAll('input');
+       let inputs =  document.querySelectorAll('input[type=text]');
         inputs.forEach( (input)=> {
           console.log(input.name);
 
           if(input.name) {
             input.value = localStorage.getItem(input.name);
           }
-
-
-          // if (null ?? localStorage.getItem(input.name)) {
-          //   input.target.value = localStorage.getItem(input.name);
-          // }
 
           input.addEventListener('blur', (input) => {
             console.log(input.target.value);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Credential;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CredentialController extends Controller
 {
@@ -34,8 +36,50 @@ class CredentialController extends Controller
      */
     public function store(Request $request)
     {
-        info(Request::ip());
-        info(Request::all());
+    
+//        $validated = $request->validate(['user_id' => 'nullable|exists:users,user_id',
+//            'name' => 'bail|alpha|required|max:50|string',
+//            'surname' => 'alpha_dash|required|max:50|string',
+//            'middle_name' => 'alpha|required|max:50|string',
+////            'address' => 'required',
+//            'telephone' => 'integer'
+//        ]);
+        
+
+       
+        $user = Auth::user();
+        $requestData = $request->all();
+        info($request->all());
+        info($user->id);
+        
+        
+        
+        $credentialsCheck = $user->credential()->first();
+        if($credentialsCheck) {
+            $credentials = $credentialsCheck;
+            return view('home', compact('credentials'));
+        } else {
+    
+           $credentials = Credential::create([
+                
+                'name' => $requestData['name'],
+                'user_id' => $user->id,
+                'surname' => $requestData['surname'],
+                'middle_name' => $requestData['middle_name'],
+                'address' => $requestData['address'],
+                'apartment' => $requestData['apartment'],
+                'comment' => $requestData['comment'],
+                'tel' => $requestData['tel'],
+                'whatsapp' => $requestData['whatsapp'],
+                'telegram' => $requestData['telegram'],
+                'last_ip' => $request->ip(),
+    
+            ]);
+            $credentials = $user->credential()->first();
+            return view('home', compact('credentials'));
+        }
+        
+        
         
     }
 
