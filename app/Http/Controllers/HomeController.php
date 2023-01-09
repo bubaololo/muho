@@ -31,10 +31,6 @@ class HomeController extends Controller
             return view('home', compact('credentials'));
         }
         
-//        foreach($credentials as $item) {
-//            info(print_r($item, true));
-//        }
-//        info(print_r($credentials->get()->name, true));
         return view('home');
     }
 }

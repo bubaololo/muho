@@ -16,14 +16,15 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')
                 ->nullable()
+                ->unique()
                 ->constrained()
                 ->onUpdate('cascade');
-            $table->tinyText('name');
-            $table->tinyText('surname');
-            $table->tinyText('middle_name');
-            $table->text('address');
+            $table->tinyText('name')->nullable();
+            $table->tinyText('surname')->nullable();
+            $table->tinyText('middle_name')->nullable();
+            $table->text('address')->nullable();
             $table->text('email')->nullable();
-            $table->text('apartment');
+            $table->text('apartment')->nullable();
             $table->text('last_ip')->nullable();
             $table->text('comment')->nullable();
             $table->tinyText('tel')->nullable();

@@ -175,15 +175,18 @@
                                                                                     <label for="name">Куда отправить ваши грибы</label>
                                                                                     <div class="address">
                                                                                         <div id="header">
-                                                                                            <input type="text" id="suggest" name="address" class="input" placeholder="Введите адрес">
-                                                                                            <div class="btn btn-gray" id="button">Проверить</div>
+                                                                                            <input type="text" id="suggest" name="address" class="input" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес">
                                                                                         </div>
+                                                                                        @if( empty($credentials['address']) )
+                                                                                            <div class="btn btn-gray" id="button">Проверить</div>
                                                                                         <p id="notice">Адрес не найден</p>
                                                                                         <div id="map"></div>
                                                                                         <div id="footer">
                                                                                             <div id="messageHeader"></div>
                                                                                             <div id="message"></div>
                                                                                         </div>
+
+                                                                                        @endif
                                                                                     </div>
                                                                                 </div>
 
@@ -311,6 +314,7 @@
     </main>
     @push('scripts')
         <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+        @if( empty($credentials['address']) )
         <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU" type="text/javascript"></script>
         <script type="text/javascript">
           // Функция ymaps.ready() будет вызвана, когда
@@ -451,6 +455,7 @@
               $('#message').text(message);
             }
           }
+          @endif
         </script>
         <script src="{{ asset('js/checkout.js') }}"></script>
     @endpush

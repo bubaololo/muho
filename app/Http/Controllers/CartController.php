@@ -3,13 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     public function cartList()
     {
         $cartItems = \Cart::getContent();
-        // dd($cartItems);
+    
+        $user = Auth::user();
+        $credentialsCheck = $user->credential()->first();
+        
+        if($credentialsCheck) {
+            $credentials = $credentialsCheck;
+            return view('cart', compact('cartItems','credentials'));
+        }
+        
         return view('cart', compact('cartItems'));
     }
     

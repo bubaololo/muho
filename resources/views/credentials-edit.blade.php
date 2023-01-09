@@ -24,8 +24,8 @@
                         <div class="col">
                             <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                                 <ol class="breadcrumb mb-0">
-                                    <li class="/home"><a href="#">Кабинет</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">Данные для доставки</a></li>
+                                    <li class="breadcrumb-item"><a href="/home">Кабинет</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Данные для доставки</li>
                                     {{--<li class="breadcrumb-item active" aria-current="page">User Profile</li>--}}
                                 </ol>
                             </nav>
@@ -102,21 +102,21 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="p-3 py-5">
-                                <div class="d-flex justify-content-between align-items-center experience">
-                                    <span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span>
-                                </div>
-                                <br>
-                                <div class="col-md-12">
-                                    <label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value="">
-                                </div>
-                                <br>
-                                <div class="col-md-12">
-                                    <label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value="">
-                                </div>
-                            </div>
-                        </div>
+                        {{--<div class="col-md-4">--}}
+                        {{--    <div class="p-3 py-5">--}}
+                        {{--        <div class="d-flex justify-content-between align-items-center experience">--}}
+                        {{--            <span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span>--}}
+                        {{--        </div>--}}
+                        {{--        <br>--}}
+                        {{--        <div class="col-md-12">--}}
+                        {{--            <label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value="">--}}
+                        {{--        </div>--}}
+                        {{--        <br>--}}
+                        {{--        <div class="col-md-12">--}}
+                        {{--            <label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value="">--}}
+                        {{--        </div>--}}
+                        {{--    </div>--}}
+                        {{--</div>--}}
                     </div>
 
                 </section>
