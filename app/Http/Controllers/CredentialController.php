@@ -15,7 +15,10 @@ class CredentialController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $credentials = $user->credential()->first();
+        return view('credentials-edit', compact('credentials'));
+        
     }
 
     /**
@@ -49,8 +52,7 @@ class CredentialController extends Controller
        
         $user = Auth::user();
         $requestData = $request->all();
-        info($request->all());
-        info($user->id);
+
         
         
         
@@ -114,7 +116,26 @@ class CredentialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    info('update');
+        $user = Auth::user();
+        $requestData = $request->all();
+        $credentials = $user->credential()->first();
+        $credentials->query()->update([
+        
+            'name' => $requestData['name'],
+            'user_id' => $user->id,
+            'surname' => $requestData['surname'],
+            'middle_name' => $requestData['middle_name'],
+            'address' => $requestData['address'],
+            'apartment' => $requestData['apartment'],
+            'comment' => $requestData['comment'],
+            'tel' => $requestData['tel'],
+            'whatsapp' => $requestData['whatsapp'],
+            'telegram' => $requestData['telegram'],
+            'last_ip' => $request->ip(),
+        ]);
+        $credentials = $user->credential()->first();
+        return view('home', compact('credentials'));
     }
 
     /**

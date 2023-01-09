@@ -215,6 +215,9 @@
                                     <div class="card mb-4">
                                         <div class="card-body">
                                             <div class="row">
+                                                <a href="/credentials" class="btn btn-gray">редактировать</a>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-sm-3">
                                                     <p class="mb-0">ФИО</p>
                                                 </div>
