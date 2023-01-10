@@ -39,14 +39,15 @@ class CredentialController extends Controller
      */
     public function store(Request $request)
     {
-    
-//        $validated = $request->validate(['user_id' => 'nullable|exists:users,user_id',
-//            'name' => 'bail|alpha|required|max:50|string',
-//            'surname' => 'alpha_dash|required|max:50|string',
-//            'middle_name' => 'alpha|required|max:50|string',
-////            'address' => 'required',
-//            'telephone' => 'integer'
-//        ]);
+    info($request->all());
+        $validated = $request->validate(['user_id' => 'nullable|exists:users,user_id|unique:credentials,user_id',
+            'name' => 'bail|alpha|required|max:50|string',
+            'surname' => 'alpha_dash|required|max:50|string',
+            'middle_name' => 'alpha|required|max:50|string',
+//            'address' => 'required',
+            'tel' => 'regex:/^[\d\-\+]+$/',
+            'index' => 'integer'
+        ]);
         
 
        
@@ -116,14 +117,23 @@ class CredentialController extends Controller
      */
     public function update(Request $request, $id)
     {
-    info('update');
+        
+        $validated = $request->validate([
+            'name' => 'bail|alpha|required|max:50|string',
+            'surname' => 'alpha_dash|required|max:50|string',
+            'middle_name' => 'alpha|required|max:50|string',
+//            'address' => 'required',
+            'tel' => 'regex:/^[\d\-\+]+$/',
+            'index' => 'integer'
+        ]);
+        
+        
         $user = Auth::user();
         $requestData = $request->all();
         $credentials = $user->credential()->first();
         $credentials->query()->update([
         
             'name' => $requestData['name'],
-            'user_id' => $user->id,
             'surname' => $requestData['surname'],
             'middle_name' => $requestData['middle_name'],
             'address' => $requestData['address'],
@@ -132,6 +142,7 @@ class CredentialController extends Controller
             'tel' => $requestData['tel'],
             'whatsapp' => $requestData['whatsapp'],
             'telegram' => $requestData['telegram'],
+            'index' => $requestData['index'],
             'last_ip' => $request->ip(),
         ]);
         $credentials = $user->credential()->first();

@@ -12,13 +12,16 @@ class CartController extends Controller
         $cartItems = \Cart::getContent();
     
         $user = Auth::user();
-        $credentialsCheck = $user->credential()->first();
         
-        if($credentialsCheck) {
-            $credentials = $credentialsCheck;
-            return view('cart', compact('cartItems','credentials'));
+        if($user) {
+            $credentialsCheck = $user->credential()->first();
+    
+            if ($credentialsCheck) {
+                $credentials = $credentialsCheck;
+                info($credentials);
+                return view('cart', compact('cartItems', 'credentials'));
+            }
         }
-        
         return view('cart', compact('cartItems'));
     }
     

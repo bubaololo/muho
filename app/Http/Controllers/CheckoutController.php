@@ -5,13 +5,23 @@ use App\Models\Order;
 use App\Models\Credential;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
     public function index()
     {
-//        dd(session()->all());
-        return view('checkout');
+//        info('yo');
+//        if (Auth::check()) {
+//            $user = Auth::user();
+//            $credentialsCheck = $user->credential()->first();
+//            info($credentialsCheck);
+//            if($credentialsCheck) {
+//                $credentials = $credentialsCheck;
+//                return view('checkout', compact('credentials'));
+//            }
+//        }
+//        return view('checkout');
     }
     
     public function store(Request $request)
@@ -89,7 +99,19 @@ class CheckoutController extends Controller
             'delivery_cost'=> $deliveryPrice,
             'comment'=> $deliveryInfo['comment'],
         ]);
-        
+    
+        if (Auth::check())
+        {
+            $user_id = Auth::user()->id;
+            $order->user_id = $user_id;
+            $order->save();
+            
+            $currentUserCredentials = Credential::where('user_id', $user_id)->first();
+            if(!$currentUserCredentials){
+            $credential->user_id = $user_id;
+            $credential->save();
+            }
+        }
         
         foreach ($cartItems as $item) {
             $products = new OrderProduct;
@@ -101,7 +123,7 @@ class CheckoutController extends Controller
         
         
         
-//        \Cart::clear();
+        \Cart::clear();
         return view('order', compact('cartItems', 'deliveryInfo', 'orderNum', 'subtotal', 'deliveryPrice', 'deliveryType', 'total'));
     }
 }

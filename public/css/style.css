@@ -80,6 +80,7 @@ body.no-scroll {
 
 .content-wrapper {
     padding-top: 72px;
+    min-height: 80vh;
 }
 
 a {
@@ -565,6 +566,9 @@ hr {
 /*--------------------------------------------------------------
 /** 2.10 Buttons
 --------------------------------------------------------------*/
+button {
+    border: 1px solid transparent;
+}
 /*a.btn,*/
 /*input[type="button"],*/
 /*input[type="submit"],*/
@@ -1180,18 +1184,9 @@ This is main CSS file that contains custom style rules used in this template
 /* - Button
 ------------------------------------------------------------- */
 
-button {
-    font-size: 1em;
-    font-weight: 600;
-    border: none;
-    height: 65px;
-    cursor: pointer;
-    text-transform: uppercase;
-}
 
-.btn-wrap {
-    text-transform: capitalize;
-}
+
+
 
 .gradient {
     background: transparent;
@@ -2355,6 +2350,7 @@ span.prev-price {
     }
     .mobile-cart {
         position: fixed;
+        z-index: 100;
         top: 50vh;
         right: 0px;
         display: flex;

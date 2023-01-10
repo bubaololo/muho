@@ -524,6 +524,18 @@ body {
     box-shadow: 0 10px 44px rgba(124, 142, 139, 0.6);
     border-radius: 12px;
 }
+@media screen and (max-width: 768px) {
+    .quest__slider_bar_wrapper {
+        box-shadow: none;
+        border: 1px solid grey;
+    }
+    .quest .swiper-slide {
+        box-shadow: none !important;
+    }
+    .card {
+        border: none !important;
+    }
+}
 
 .quest .swiper-pagination-bullet {
     display: inline-block;
@@ -604,7 +616,7 @@ body {
 }
 
 .quest__slide_forms_wrapper {
-    margin-top: 60px;
+    margin-top: 30px;
     text-align: left;
 }
 
@@ -647,6 +659,8 @@ body {
     display: block;
     visibility: hidden;
     padding: 24px;
+    box-shadow: 0 10px 44px rgba(124, 142, 139, 0.6);
+    border-radius: 12px;
 }
 
 .quest .swiper-slide.swiper-slide-visible {
@@ -1514,4 +1528,14 @@ body {
 }
 .qty-btn {
     margin: 0;
+}
+
+.cart-badge {
+    color: white;
+    background-color: #7d7d7d;
+    font-size: 10px!important;
+
+}
+.cart-badge a {
+    color: white;
 }

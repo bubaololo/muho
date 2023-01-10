@@ -29,7 +29,7 @@
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col">
                             <div class="card">
-                                <div class="card-body p-4">
+
 
                                     <div class="row">
 
@@ -168,17 +168,19 @@
                                                                             <div class="quest__slide_title_wrapper">
                                                                                 <div class="quest__slide_title">
                                                                                     Адрес
+                                                                                    @isset($credentials) <span class="badge badge-info cart-badge">данные взяты из <a href="/home">профиля</a> </span>@endisset
                                                                                 </div>
+
                                                                             </div>
                                                                             <div class="quest__slide_forms_wrapper">
                                                                                 <div class="quest__input">
                                                                                     <label for="name">Куда отправить ваши грибы</label>
                                                                                     <div class="address">
                                                                                         <div id="header">
-                                                                                            <input type="text" id="suggest" name="address" class="input" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес">
+                                                                                            <input type="text" id="suggest" name="address" class="w-100" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес">
                                                                                         </div>
                                                                                         @if( empty($credentials['address']) )
-                                                                                            <div class="btn btn-gray" id="button">Проверить</div>
+                                                                                            <div class="btn btn-gray mt-3" id="button">Проверить</div>
                                                                                         <p id="notice">Адрес не найден</p>
                                                                                         <div id="map"></div>
                                                                                         <div id="footer">
@@ -193,14 +195,14 @@
                                                                                 <div class="quest__input">
                                                                                     <label for="apartment">Квартира</label>
                                                                                     <input type="text" id="apartment" name="apartment"
-                                                                                            class="quest__textarea"
+                                                                                            class="quest__textarea" value="@isset($credentials['apartment']) {{ $credentials['apartment'] }} @endisset"
                                                                                             placeholder="56">
                                                                                 </div>
 
                                                                                 <div class="quest__input">
                                                                                     <label for="street">Комментарий</label>
                                                                                     <input type="text" id="comment" name="comment" class="quest__textarea"
-                                                                                            placeholder="любые уточнения">
+                                                                                            value="@isset($credentials['comment']) {{ $credentials['comment'] }} @endisset"   placeholder="любые уточнения">
                                                                                 </div>
 
                                                                             </div>
@@ -224,27 +226,27 @@
                                                                             </div>
                                                                             <div class="quest__slide_forms_wrapper">
                                                                                 <div class="quest__input">
-                                                                                    <label for="name">Фамилия</label>
+                                                                                    <label for="name">Имя</label>
                                                                                     <input type="text" id="name" name="name" class="quest__textarea"
-                                                                                            placeholder="Иванов">
+                                                                                            value="@isset($credentials['name']) {{ $credentials['name'] }} @endisset"    placeholder="Иван">
                                                                                 </div>
                                                                                 <div class="quest__input">
-                                                                                    <label for="surname">Имя</label>
+                                                                                    <label for="surname">Фамилия</label>
                                                                                     <input type="text" id="surname" name="surname" class="quest__textarea"
-                                                                                            placeholder="Иван">
+                                                                                            value="@isset($credentials['surname']) {{ $credentials['surname'] }} @endisset"    placeholder="Иванов">
 
                                                                                 </div>
                                                                                 <div class="quest__input">
                                                                                     <label for="middle_name">Отчество</label>
                                                                                     <input type="text" id="middle_name" name="middle_name"
                                                                                             class="quest__textarea"
-                                                                                            placeholder="Иванович">
+                                                                                            value="@isset($credentials['middle_name']) {{ $credentials['middle_name'] }} @endisset"   placeholder="Иванович">
                                                                                 </div>
                                                                                 <div class="quest__input">
                                                                                     <label for="middle_name">Телефон</label>
                                                                                     <input type="tel" id="tel" name="telephone"
                                                                                             class="quest__textarea"
-                                                                                            placeholder="89000000000">
+                                                                                            value="@isset($credentials['tel']) {{ $credentials['tel'] }} @endisset"   placeholder="89000000000">
                                                                                 </div>
 
                                                                             </div>
@@ -302,7 +304,7 @@
                                             </section>
                                         </div>
                                     </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -455,9 +457,27 @@
               $('#message').text(message);
             }
           }
-          @endif
         </script>
+          @endif
         <script src="{{ asset('js/checkout.js') }}"></script>
+{{--        @if( empty($credentials) )--}}
+        <script>
+          let inputs = document.querySelectorAll('input[type=text]');
+          inputs.forEach((input) => {
+
+            if (input.name) {
+              if(localStorage.getItem(input.name)) {
+                input.value = localStorage.getItem(input.name);
+              }
+            }
+
+            input.addEventListener('blur', (input) => {
+
+              localStorage.setItem(input.target.name, input.target.value);
+            })
+          })
+        </script>
+{{--        @endif--}}
     @endpush
 @endsection
 
