@@ -2562,3 +2562,20 @@ span.prev-price {
     }
 }
 
+.footer-icon {
+    width: 24px;
+    margin-right: 7px;
+    margin-bottom: 8px;
+}
+.footer-icon_whatsapp {
+
+    height: 24px;
+
+    transform: scale(1.6);
+}
+.footer-icon_email {
+
+    height: 22px;
+
+
+}
