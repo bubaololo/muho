@@ -13,18 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_orders', function (Blueprint $table) {
-            $table->foreignId('user_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+        Schema::create('order_product', function (Blueprint $table) {
             $table->foreignId('order_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->unique(['user_id', 'order_id']);
+            $table->foreignId('product_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->tinyInteger('quantity')->default(1);
+            $table->unique(['order_id', 'product_id']);
         });
-
     }
 
     /**
@@ -35,8 +35,7 @@ return new class extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('user_orders');
+        Schema::dropIfExists('order_product');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
     }
 };

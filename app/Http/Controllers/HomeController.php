@@ -24,13 +24,32 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $dataToView = [];
         $user = Auth::user();
         $credentialsCheck = $user->credential()->first();
         if($credentialsCheck) {
             $credentials = $credentialsCheck;
-            return view('home', compact('credentials'));
+            $dataToView['credentials'] = $credentials;
+        }
+        $ordersCheck = $user->order()->get();
+        
+        if($ordersCheck) {
+            $dataToView['orders'] = $ordersCheck;
+        }
+        foreach ($ordersCheck as $order) {
+            info(print_r($order->product()->get(), true));
         }
         
-        return view('home');
+        
+        return view('home', $dataToView);
+    }
+    
+    public function order($id) {
+        $user = Auth::user();
+        $order = $user->order()->find($id);
+       
+        $products = $order->product()->get();
+        info($products);
+        return view('order', compact('order', 'products'));
     }
 }

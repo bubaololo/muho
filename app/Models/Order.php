@@ -11,6 +11,21 @@ class Order extends Model
     
     protected $guarded = [];
     
+    
+//    public function products() {
+//        return $this->hasManyThrough(Product::class, OrderProduct::class,
+//        );
+//    }
+
+//    public function products() {
+//        return $this->hasMany(OrderProduct::class);
+//    }
+    
+    public function product()
+    {
+        return $this->belongsToMany(Product::class)->withPivot(['quantity']);
+    }
+    
     public function credential()
     {
         return $this->belongsTo(Credential::class);

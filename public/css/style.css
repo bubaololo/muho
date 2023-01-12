@@ -569,6 +569,7 @@ hr {
 button {
     border: 1px solid transparent;
 }
+
 /*a.btn,*/
 /*input[type="button"],*/
 /*input[type="submit"],*/
@@ -1184,10 +1185,6 @@ This is main CSS file that contains custom style rules used in this template
 /* - Button
 ------------------------------------------------------------- */
 
-
-
-
-
 .gradient {
     background: transparent;
     position: relative;
@@ -1643,8 +1640,6 @@ img.post-image {
 
 /*MOBILE_______________________*/
 
-
-
 /*----- Cient-holder Section
 --------------------------------------------------------------*/
 #client-holder {
@@ -2018,7 +2013,6 @@ span.prev-price {
     border-bottom: 1px solid #E0E0E0;
 }
 
-
 .footer-item {
     margin-right: 100px;
 }
@@ -2058,11 +2052,12 @@ span.prev-price {
 }
 
 @media screen and (max-width: 768px) {
-  .footer {
-    margin-bottom: 0;
-    margin-top: 7vh;
-    padding-bottom: 0;
-  }
+    .footer {
+        margin-bottom: 0;
+        margin-top: 7vh;
+        padding-bottom: 0;
+    }
+
     .footer-item {
         margin-right: 0;
     }
@@ -2264,21 +2259,26 @@ span.prev-price {
         width: 100%;
     }
 }
-@media screen and (max-width: 640px) {
-  .packaging {
-    margin-top: 0;
-  }
-  .add-to-cart {
-    padding: 0 20px;
-  }
-  .products-content {
-    padding-bottom: 20px;
-  }
-  #best-selling {
 
-    padding-top: 5vh;
-  }
+@media screen and (max-width: 640px) {
+    .packaging {
+        margin-top: 0;
+    }
+
+    .add-to-cart {
+        padding: 0 20px;
+    }
+
+    .products-content {
+        padding-bottom: 20px;
+    }
+
+    #best-selling {
+
+        padding-top: 5vh;
+    }
 }
+
 /*MY STYLES__________________*/
 .header {
     padding: 10px 0;
@@ -2304,9 +2304,11 @@ span.prev-price {
     position: relative;
     display: inline-block;
 }
+
 .mobile-cart {
     display: none;
 }
+
 @media screen and (max-width: 768px) {
 
     /* HIDING__HEADER____________________________________ */
@@ -2348,6 +2350,7 @@ span.prev-price {
         z-index: 100;
         transition: all 300ms ease-in-out;
     }
+
     .mobile-cart {
         position: fixed;
         z-index: 100;
@@ -2360,12 +2363,13 @@ span.prev-price {
         text-decoration: none;
         color: inherit;
         padding: 1ch;
-        background-color: rgba(255,255,255 .5);
+        background-color: rgba(255, 255, 255 .5);
         backdrop-filter: blur(15px);
         /*filter: drop-shadow(0px 0px 6px #fff);*/
         box-shadow: 0px 0px 6px #fff;
         border-radius: 10px 0 0 10px;
     }
+
     .mobile-cart .cart__text {
         display: none;
     }
@@ -2427,10 +2431,10 @@ span.prev-price {
 .del__form {
     margin-bottom: 0;
 }
+
 #billboard {
     overflow: hidden;
 }
-
 
 .hero-img {
     /*transform: scale(0%);*/
@@ -2498,34 +2502,38 @@ span.prev-price {
     font-size: 20px;
     line-height: 10px;
 }
+
 .cart-item__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .cart-item__img img {
     max-height: 85px;
 }
-
-
 
 @media screen and (max-width: 768px) {
     .content-wrapper {
         padding-top: 0;
     }
+
     .cart-item__img img {
         max-height: unset;
         max-width: 100%;
     }
+
     .cart-item__inner {
         display: grid;
         row-gap: 3ch;
-    grid-template-areas: 'img img'
+        grid-template-areas: 'img img'
     'price info''del quantity';
     }
+
     .cart-item__img {
         grid-area: img;
     }
+
     .cart-item__info {
         display: flex;
         justify-content: flex-end;
@@ -2534,29 +2542,37 @@ span.prev-price {
         grid-area: info;
         text-decoration: none;
     }
+
     .cart-item__info h5 {
         margin-bottom: 0;
     }
+
     .cart-item__price {
         grid-area: price;
         white-space: nowrap;
     }
+
     .cart-item__quantity {
         grid-area: quantity;
     }
+
     .cart-item__del {
         grid-area: del;
         margin-bottom: 0;
     }
+
     .quest .swiper-slide {
         padding: 0;
     }
+
     #button {
         margin-top: 8px;
     }
+
     .user-account {
         padding: 15px;
     }
+
     .user-account span {
         margin-left: 8px;
     }
@@ -2567,15 +2583,19 @@ span.prev-price {
     margin-right: 7px;
     margin-bottom: 8px;
 }
+
 .footer-icon_whatsapp {
 
     height: 24px;
 
     transform: scale(1.6);
 }
+
 .footer-icon_email {
 
     height: 22px;
+}
 
-
+.footer-menu__item {
+    min-width: 16ch;
 }

@@ -17,6 +17,11 @@ class Product extends Model
         'image',
         'description',
     ];
+    
+    public function orders(){
+        return $this->belongsToMany(Order::class);
+    }
+    
     protected function image(): Attribute
     {
 //        return Attribute::make(

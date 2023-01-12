@@ -4,6 +4,7 @@ use App\Http\Controllers\BuyNowController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CredentialController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainPageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -40,6 +41,9 @@ Route::get('/', [MainPageController::class, 'index'])->name('index'); // TODO н
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/order/{id}', [HomeController::class, 'order'])->name('order.details');
 
 Route::resource('credentials', CredentialController::class);
+

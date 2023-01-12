@@ -124,7 +124,6 @@
                                             {{--</div>--}}
                                             <div class="col-md-12">
 
-
                                                 <label class="labels">Город, улица, дом</label><input type="text" id="suggest" name="address" class="form-control w-100" value="" placeholder="Введите адрес">
 
                                                 <div class="btn btn-gray mt-3" id="button">Проверить</div>
@@ -174,7 +173,7 @@
                             </div>
 
                     </div>
-
+                </section>
             </div>
 
             <style>
@@ -228,7 +227,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
 
-                                <a href="/credentials" class="btn btn-gray mb-3">редактировать</a>
+                            <a href="/credentials" class="btn btn-gray mb-3">редактировать</a>
 
                             <div class="row">
                                 <div class="col-sm-3">
@@ -269,41 +268,57 @@
                         </div>
                     </div>
                     @endif
+                    @if(!empty($orders))
+                    <div class="card-body">
+                        <p class="mb-4"> Заказы
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-striped custom-table">
+                                <thead>
+                                <tr>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card mb-4 mb-md-0">
-                                <div class="card-body">
-                                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                                    </p>
-                                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                    <div class="progress rounded mb-2" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
+                                    <th scope="col">Номер</th>
+                                    <th scope="col">Cумма</th>
+                                    <th scope="col">Трек</th>
+                                    <th scope="col">Создан</th>
+                                    <th scope="col">Education</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+
+
+
+                                    @foreach($orders as $order)
+                                        <tr scope="row">
+                                            <td>
+                                                {{ $order['order_num']  }}
+                                            </td>
+                                            <td class="pl-0">
+                                                <div class="d-flex align-items-center">
+
+                                                    <a href="#">{{ $order['total']  }}</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{ $order['track']  }}
+                                            </td>
+                                            <td> {{ $order['created_at']  }}</td>
+                                            <td>NY University</td>
+                                            <td><a href="/order/{{ $order['id']  }}" class="more">Details</a></td>
+                                        </tr>
+                                    @endforeach
+
+
+
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
+                    @endif
+                    <div class="row">
+
                         <div class="col-md-6">
                             <div class="card mb-4 mb-md-0">
                                 <div class="card-body">
@@ -339,11 +354,11 @@
                         </div>
                     </div>
                 </div>
-                </section>
+
         </div>
     </div>
 
-    </div>
+
 
 
 
@@ -353,7 +368,7 @@
       inputs.forEach((input) => {
 
         if (input.name) {
-          if(localStorage.getItem(input.name)) {
+          if (localStorage.getItem(input.name)) {
             input.value = localStorage.getItem(input.name);
           }
         }

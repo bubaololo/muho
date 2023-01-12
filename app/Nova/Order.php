@@ -7,6 +7,8 @@ use App\Models\Credential;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasManyThrough;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -58,6 +60,7 @@ class Order extends Resource
             DateTime::make('дата оформления','created_at'),
             HasOne::make('User'),
             HasOne::make('Credential'),
+            HasMany::make('Product'),
         ];
     }
 
