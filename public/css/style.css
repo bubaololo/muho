@@ -2552,4 +2552,39 @@ span.prev-price {
 #footer {
     font-size: 12px;
     margin-top: 4px;
+    margin-bottom: 16px;
+    text-shadow:
+            -0   -3px 1px #FFFFFF,
+            0   -3px 1px #FFFFFF,
+            -0    3px 1px #FFFFFF,
+            0    3px 1px #FFFFFF,
+            -3px -0   1px #FFFFFF,
+            3px -0   1px #FFFFFF,
+            -3px  0   1px #FFFFFF,
+            3px  0   1px #FFFFFF,
+            -1px -3px 1px #FFFFFF,
+            1px -3px 1px #FFFFFF,
+            -1px  3px 1px #FFFFFF,
+            1px  3px 1px #FFFFFF,
+            -3px -1px 1px #FFFFFF,
+            3px -1px 1px #FFFFFF,
+            -3px  1px 1px #FFFFFF,
+            3px  1px 1px #FFFFFF,
+            -2px -3px 1px #FFFFFF,
+            2px -3px 1px #FFFFFF,
+            -2px  3px 1px #FFFFFF,
+            2px  3px 1px #FFFFFF,
+            -3px -2px 1px #FFFFFF,
+            3px -2px 1px #FFFFFF,
+            -3px  2px 1px #FFFFFF,
+            3px  2px 1px #FFFFFF,
+            -3px -3px 1px #FFFFFF,
+            3px -3px 1px #FFFFFF,
+            -3px  3px 1px #FFFFFF,
+            3px  3px 1px #FFFFFF,
+            -3px -3px 1px #FFFFFF,
+            3px -3px 1px #FFFFFF,
+            -3px  3px 1px #FFFFFF,
+            3px  3px 1px #FFFFFF;
+}
 }

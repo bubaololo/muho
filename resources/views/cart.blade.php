@@ -87,12 +87,8 @@
                                                 @csrf
                                                 <input type=submit class="btn btn-outline-secondary btn-sm" value="очистить корзину">
                                             </form>
-                                            <div id="map"></div>
-                                            <style>
-                                                #map {
-                                                    height: 200px;
-                                                }
-                                            </style>
+
+
                                         </div>
                                         <div class="col-lg-5">
                                             <section class="checkout__slider">
@@ -168,7 +164,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <!-- ________SLIDE -->
-                                                                    <div class="swiper-slide">
+                                                                    <div class="swiper-slide address-slide">
                                                                         <div class="quest__slide">
                                                                             <div class="quest__slide_title_wrapper">
                                                                                 <div class="quest__slide_title">
@@ -180,10 +176,10 @@
                                                                             <div class="quest__slide_forms_wrapper">
                                                                                 <div class="quest__input">
                                                                                     <label for="name">Куда отправить ваши грибы</label>
-                                                                                    <p>Начните вводить ваш адрес в поле</p>
+                                                                                    <p>Город, улица, дом</p>
                                                                                     <div class="address">
                                                                                         <div id="header">
-                                                                                            <label for="suggest">Город, улица, дом</label>
+                                                                                            <label for="suggest"> Начните вводить ваш адрес в поле</label>
                                                                                             <div class="address-input">
                                                                                             <input type="text" id="suggest" name="address" class="w-100" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес">
                                                                                                 <div class="btn btn-gray" id="button">
@@ -192,17 +188,16 @@
                                                                                         </div>
                                                                                         @if( empty($credentials['address']) )
 
-                                                                                        <p id="notice"></p>
-                                                                                        {{--<div id="map"></div>--}}
-                                                                                        <div id="footer">
-                                                                                            <div id="messageHeader"></div>
-                                                                                            <div id="message"></div>
-                                                                                        </div>
+
 
                                                                                         @endif
                                                                                     </div>
                                                                                 </div>
-
+                                                                                <p id="notice"></p>
+                                                                                <div id="footer">
+                                                                                    <div id="messageHeader"></div>
+                                                                                    <div id="message"></div>
+                                                                                </div>
                                                                                 <div class="quest__input">
                                                                                     <label for="apartment">Квартира</label>
                                                                                     <input type="text" id="apartment" name="apartment"
@@ -222,6 +217,8 @@
                                                                             <div class="quest__next quest__button">Вперёд</div>
                                                                             <div class="quest__prev quest__button">Назад</div>
                                                                         </div>
+                                                                        <div id="map"></div>
+                                                                        <div class="map-mask"></div>
                                                                     </div>
                                                                     <!-- ________SLIDE -->
                                                                     <div class="swiper-slide">
@@ -329,25 +326,6 @@
         <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
         @if( empty($credentials['address']) )
         <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU" type="text/javascript"></script>
-        {{--<script type="text/javascript">--}}
-        {{--  // Функция ymaps.ready() будет вызвана, когда--}}
-        {{--  // загрузятся все компоненты API, а также когда будет готово DOM-дерево.--}}
-        {{--  ymaps.ready(init);--}}
-
-        {{--  function init() {--}}
-        {{--    // Создание карты.--}}
-        {{--    var myMap = new ymaps.Map("map", {--}}
-        {{--      // Координаты центра карты.--}}
-        {{--      // Порядок по умолчанию: «широта, долгота».--}}
-        {{--      // Чтобы не определять координаты центра карты вручную,--}}
-        {{--      // воспользуйтесь инструментом Определение координат.--}}
-        {{--      center: [55.76, 37.64],--}}
-        {{--      // Уровень масштабирования. Допустимые значения:--}}
-        {{--      // от 0 (весь мир) до 19.--}}
-        {{--      zoom: 7--}}
-        {{--    });--}}
-        {{--  }--}}
-        {{--</script>--}}
         <script>
           ymaps.ready(init);
 
