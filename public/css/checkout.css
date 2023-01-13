@@ -1539,3 +1539,9 @@ body {
 .cart-badge a {
     color: white;
 }
+
+.input_error
+{
+    border: 1px solid darkred !important;
+    background-color: #ffd0d0 !important;
+}

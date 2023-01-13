@@ -2514,6 +2514,7 @@ span.prev-price {
 }
 
 @media screen and (max-width: 768px) {
+
     .content-wrapper {
         padding-top: 0;
     }
@@ -2566,7 +2567,16 @@ span.prev-price {
     }
 
     #button {
-        margin-top: 8px;
+        /*margin-top: 8px;*/
+        top: 0;
+        position: absolute;
+        right: 0;
+        height: 100%;
+        margin: 0;
+        display: none;
+    }
+    .address-input {
+        position: relative;
     }
 
     .user-account {
@@ -2598,4 +2608,8 @@ span.prev-price {
 
 .footer-menu__item {
     min-width: 16ch;
+}
+.refresh-icon {
+    width: 24px;
+    height: 24px;
 }

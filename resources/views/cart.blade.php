@@ -87,7 +87,12 @@
                                                 @csrf
                                                 <input type=submit class="btn btn-outline-secondary btn-sm" value="очистить корзину">
                                             </form>
-
+                                            <div id="map"></div>
+                                            <style>
+                                                #map {
+                                                    height: 200px;
+                                                }
+                                            </style>
                                         </div>
                                         <div class="col-lg-5">
                                             <section class="checkout__slider">
@@ -175,14 +180,20 @@
                                                                             <div class="quest__slide_forms_wrapper">
                                                                                 <div class="quest__input">
                                                                                     <label for="name">Куда отправить ваши грибы</label>
+                                                                                    <p>Начните вводить ваш адрес в поле</p>
                                                                                     <div class="address">
                                                                                         <div id="header">
+                                                                                            <label for="suggest">Город, улица, дом</label>
+                                                                                            <div class="address-input">
                                                                                             <input type="text" id="suggest" name="address" class="w-100" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес">
+                                                                                                <div class="btn btn-gray" id="button">
+                                                                                                    <img src="{{ asset('/images/icons/refresh.svg')  }}" alt="" class="refresh-icon"></div>
+                                                                                            </div>
                                                                                         </div>
                                                                                         @if( empty($credentials['address']) )
-                                                                                            <div class="btn btn-gray mt-3" id="button">Проверить</div>
-                                                                                        <p id="notice">Адрес не найден</p>
-                                                                                        <div id="map"></div>
+
+                                                                                        <p id="notice"></p>
+                                                                                        {{--<div id="map"></div>--}}
                                                                                         <div id="footer">
                                                                                             <div id="messageHeader"></div>
                                                                                             <div id="message"></div>
@@ -351,6 +362,19 @@
               geocode();
             });
 
+            document.getElementById('suggest').addEventListener('blur', () => {
+              geocode();
+            })
+
+            let refreshBtn = document.getElementById('button');
+
+            function disableRefreshBtn() {
+              refreshBtn.style.display = 'none';
+            }
+            function enableRefreshBtn() {
+              refreshBtn.style.display = 'block';
+            }
+
             function geocode() {
               // Забираем запрос из поля ввода.
               var request = $('#suggest').val();
@@ -382,6 +406,7 @@
                 } else {
                   error = 'Адрес не найден';
                   hint = 'Уточните адрес';
+
                 }
 
                 // Если геокодер возвращает пустой массив или неточный результат, то показываем ошибку.
@@ -401,6 +426,7 @@
               // Удаляем сообщение об ошибке, если найденный адрес совпадает с поисковым запросом.
               $('#suggest').removeClass('input_error');
               $('#notice').css('display', 'none');
+              disableRefreshBtn();
 
               var mapContainer = $('#map'),
                   bounds = obj.properties.get('boundedBy'),
@@ -418,10 +444,11 @@
               // Создаём карту.
               createMap(mapState, shortAddress);
               // Выводим сообщение под картой.
-              showMessage(address);
+              showFullMessage(address);
             }
 
             function showError(message) {
+              $('#messageHeader').text('');
               $('#notice').text(message);
               $('#suggest').addClass('input_error');
               $('#notice').css('display', 'block');
@@ -430,6 +457,7 @@
                 map.destroy();
                 map = null;
               }
+              enableRefreshBtn();
             }
 
             function createMap(state, caption) {
@@ -453,6 +481,9 @@
             }
 
             function showMessage(message) {
+              $('#message').text(message);
+            }
+            function showFullMessage(message) {
               $('#messageHeader').text('Данные получены:');
               $('#message').text(message);
             }
@@ -460,7 +491,7 @@
         </script>
           @endif
         <script src="{{ asset('js/checkout.js') }}"></script>
-{{--        @if( empty($credentials) )--}}
+        @if( empty($credentials) )
         <script>
           let inputs = document.querySelectorAll('input[type=text]');
           inputs.forEach((input) => {
@@ -477,7 +508,7 @@
             })
           })
         </script>
-{{--        @endif--}}
+        @endif
     @endpush
 @endsection
 
