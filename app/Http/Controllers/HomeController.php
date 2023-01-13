@@ -50,6 +50,6 @@ class HomeController extends Controller
        
         $products = $order->product()->get();
         info($products);
-        return view('order', compact('order', 'products'));
+        return view('profile-order', compact('order', 'products'));
     }
 }

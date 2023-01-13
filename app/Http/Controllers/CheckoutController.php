@@ -69,13 +69,13 @@ class CheckoutController extends Controller
             'телефон: '.$deliveryInfo['telephone'] . "\r\n" .
             'способ оплаты: '.$deliveryInfo['pay'];
             
-        $tg = app()->make('App\Services\TelegramService');
-        $tg->sendMessage('новый заказ!, номер заказа: ' . $orderNum . "\r\n" . "\r\n" .
-            'Товары:' . "\r\n" .
-            $cartItemsString . "\r\n" . "\r\n" .
-            'Инфа для доставки: ' . "\r\n" .
-            $deliveryDataString
-        );
+//        $tg = app()->make('App\Services\TelegramService');
+//        $tg->sendMessage('новый заказ!, номер заказа: ' . $orderNum . "\r\n" . "\r\n" .
+//            'Товары:' . "\r\n" .
+//            $cartItemsString . "\r\n" . "\r\n" .
+//            'Инфа для доставки: ' . "\r\n" .
+//            $deliveryDataString
+//        );
         
 //        store data
         

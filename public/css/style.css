@@ -2073,6 +2073,9 @@ span.prev-price {
 .product-style {
     position: relative;
     margin: 0 15px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .product-style figcaption p {
@@ -2135,18 +2138,14 @@ span.prev-price {
 .product-style button.add-to-cart {
     background: transparent;
     color: #fff;
-    width: 70%;
     text-transform: uppercase;
     text-align: center;
     line-height: 3;
-    position: absolute;
-    bottom: 380px;
-    transform: translateY(80px) scale(1);
-    left: 40px;
+    position: relative;
     z-index: 9;
-    opacity: 0;
     transition: 0.5s ease-out;
     --borderWidth: 2px;
+    padding: 0 2ch;
 }
 
 .product-style button.add-to-cart:after {
@@ -2166,8 +2165,6 @@ span.prev-price {
 }
 
 .product-style:hover button.add-to-cart {
-    transform: translateY(0px) scale(1);
-    opacity: 1;
     filter: drop-shadow(0 16px 20px #fc8080);
 }
 
@@ -2223,7 +2220,10 @@ span.prev-price {
     .hero-content p {
         margin: 0;
     }
-
+    .hero__text {
+        font-size: 18px;
+        letter-spacing: 0;
+    }
     #header .menu-list a {
         text-align: right;
     }

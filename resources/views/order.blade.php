@@ -1,231 +1,179 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
-        <div class="text-uppercase">
-            <p>Order detail</p>
-        </div>
-        <div class="h4">Tuesday, December 08, 2020</div>
-        <div class="pt-1">
-            <p>Order #12615 is currently<b class="text-dark"> processing</b></p>
-        </div>
-        <div class="btn close text-white"> &times; </div>
-    </div>
-    <div class="wrapper bg-white">
-        <div class="table-responsive">
-            <table class="table table-borderless">
-                <thead>
-                <tr class="text-uppercase text-muted">
-                    <th scope="col">product</th>
-                    <th scope="col" class="text-right">total</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">Babyblends: 1meal/day</th>
-                    <td class="text-right"><b>$69.86</b></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        @foreach($products as $product)
-        <div class="d-flex justify-content-start align-items-center list py-1">
-            <div><b>{{ $product['pivot']['quantity']  }} шт.</b></div>
-            <div class="mx-3"> <img src="{{ asset($product['image']) }}" alt="apple" class="rounded-circle" width="30" height="30"> </div>
-            <div class="order-item">{{ $product['name']  }}</div>
-            <div class="order-item">{{ $product['weight']  }} г.</div>
-        </div>
-        @endforeach
+    {{--<main class="my-8">--}}
+    {{--    <div class="container">--}}
+    {{--<section class="bg-sand padding-large">--}}
+    {{--    <div class="container">--}}
+    {{--        @foreach($cartItems as $item)--}}
+    {{--            {{ $item['name'] }} <br>--}}
+    {{--            {{ $item['price'] }} <br>--}}
+    {{--            {{ $item['attributes']['weight'] }} <br>--}}
+    {{--            {{ $item['quantity'] }} <br>--}}
+    {{--        @endforeach--}}
+    {{--        @foreach($deliveryInfo as $string)--}}
+    {{--            {{ $string }} <br>--}}
 
-        <div class="pt-2 border-bottom mb-3"></div>
-        <div class="d-flex justify-content-start align-items-center pl-3">
-            <div class="text-muted">Payment Method</div>
-            <div class="ml-auto"> <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30"> <label>Mastercard ******5342</label> </div>
-        </div>
-        <div class="d-flex justify-content-start align-items-center py-1 pl-3">
-            <div class="text-muted">Shipping</div>
-            <div class="ml-auto"> <label>Free</label> </div>
-        </div>
-        <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
-            <div class="text-muted"> <button class="text-white btn">50% Discount</button> </div>
-            <div class="ml-auto price"> -$34.94 </div>
-        </div>
-        <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
-            <div class="text-muted"> Today's Total </div>
-            <div class="ml-auto h5"> $34.94 </div>
-        </div>
-        <div class="row border rounded p-1 my-3">
-            <div class="col-md-6 py-3">
-                <div class="d-flex flex-column align-items start"> <b>Billing Address</b>
-                    <p class="text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
-                    <p class="text-justify">New York</p>
+    {{--        @endforeach--}}
+    {{--    </div>--}}
+    {{--</section>--}}
+    {{--    </div>--}}
+    {{--</main>--}}
+
+
+    <div class="container-fluid">
+
+        <div class="container">
+            <!-- Title -->
+            <div class="d-flex justify-content-between align-items-center py-3">
+                <h2 class="h5 mb-0" style="color:black; margin-top: 100px;"><a href="#" ></a> Заказ №{{ $orderNum  }}</h2>
+            </div>
+
+            <!-- Main content -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Details -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex justify-content-between">
+                                {{--<div>--}}
+                                {{--    <span class="me-3">22-11-2021</span>--}}
+                                {{--    <span class="me-3">#16123222</span>--}}
+                                {{--    <span class="me-3">Visa -1234</span>--}}
+                                {{--    <span class="badge rounded-pill bg-info">SHIPPING</span>--}}
+                                {{--</div>--}}
+                                <div class="d-flex">
+                                    {{--<button class="btn btn-link p-0 me-3 d-none d-lg-block btn-icon-text"><i class="bi bi-download"></i> <span class="text">Invoice</span></button>--}}
+                                    <div class="dropdown">
+                                        <button class="btn btn-link p-0 text-muted" type="button" data-bs-toggle="dropdown">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil"></i> Edit</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Print</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-borderless">
+                                <tbody>
+                                @foreach($cartItems as $item)
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex mb-2">
+                                                <div class="flex-shrink-0">
+                                                    <img src="{{ $item['attributes']['image'] }}" alt="" width="35" class="img-fluid">
+                                                </div>
+                                                <div class="flex-lg-grow-1 ms-3">
+                                                    <h6 class="small mb-0"><a href="#" class="text-reset">{{ $item['name'] }}</a></h6>
+                                                    <span class="small">Вес: {{ $item['attributes']['weight'] }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{ $item['quantity'] }}</td>
+                                        <td class="text-end">{{ $item['price'] }} руб.</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="2">Цена грибов</td>
+                                    <td class="text-end">{{ $subtotal  }} руб.</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Цена доставки</td>
+                                    <td class="text-end">{{ $deliveryPrice }} руб.</td>
+                                </tr>
+                                {{--<tr>--}}
+                                {{--    <td colspan="2">Discount (Code: NEWYEAR)</td>--}}
+                                {{--    <td class="text-danger text-end">-$10.00</td>--}}
+                                {{--</tr>--}}
+                                <tr class="fw-bold">
+                                    <td colspan="2">ИТОГО</td>
+                                    <td class="text-end">{{ $total }} руб.</td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Payment -->
+                    {{--<div class="card mb-4">--}}
+                    {{--    <div class="card-body">--}}
+                    {{--        <div class="row">--}}
+                    {{--            <div class="col-lg-6">--}}
+                    {{--                <h3 class="h6">Payment Method</h3>--}}
+                    {{--                <p>Visa -1234 <br>--}}
+                    {{--                    Total: $169,98 <span class="badge bg-success rounded-pill">PAID</span></p>--}}
+                    {{--            </div>--}}
+                    {{--            <div class="col-lg-6">--}}
+                    {{--                <h3 class="h6">Billing address</h3>--}}
+                    {{--                <address>--}}
+                    {{--                    <strong>John Doe</strong><br>--}}
+                    {{--                    1355 Market St, Suite 900<br>--}}
+                    {{--                    San Francisco, CA 94103<br>--}}
+                    {{--                    <abbr title="Phone">P:</abbr> (123) 456-7890--}}
+                    {{--                </address>--}}
+                    {{--            </div>--}}
+                    {{--        </div>--}}
+                    {{--    </div>--}}
+                    {{--</div>--}}
+                </div>
+                <div class="col-lg-4">
+                    <!-- Customer Notes -->
+                    @if($deliveryInfo['comment'])
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="h6">Комментарий к заказу</h3>
+                            <p>{{ $deliveryInfo['comment'] }}</p>
+                        </div>
+                    </div>
+                    @endif
+                    <div class="card mb-4">
+                        <!-- Shipping information -->
+                        <div class="card-body">
+                            <h3 class="h6">Информация о доставке</h3>
+                            <strong>Тип доставки: {{ $deliveryType }}</strong>
+                            {{--<span><a href="#" class="text-decoration-underline" target="_blank">FF1234567890</a> <i class="bi bi-box-arrow-up-right"></i> </span>--}}
+                            <hr>
+                            <h3 class="h6">Адрес доставки</h3>
+                            <address>
+                                <strong>{{ $deliveryInfo['surname'] }} {{ $deliveryInfo['name'] }} {{ $deliveryInfo['middle_name'] }}</strong><br>
+                                {{ $deliveryInfo['address'] }}<br>
+                                квартира {{ $deliveryInfo['apartment'] }}<br>
+                                <abbr title="Телефон">Тел:</abbr> {{ $deliveryInfo['telephone'] }}
+                            </address>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 py-3">
-                <div class="d-flex flex-column align-items start"> <b>Shipping Address</b>
-                    <p class="text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
-                    <p class="text-justify">New York</p>
-                </div>
-            </div>
-        </div>
-        <div class="pl-3 font-weight-bold">Related Subsriptions</div>
-        <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
-            <div> <b>#9632</b> </div>
-            <div>December 08, 2020</div>
-            <div>Status: Processing</div>
-            <div> Total: <b> $68.8 for 10 items</b> </div>
         </div>
     </div>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif
+        .card {
+            box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
         }
-
-        body {
-            background-color: #7C4135
-        }
-
-        #order-heading {
-            background-color: #edf4f7;
+        .card {
             position: relative;
-            border-top-left-radius: 25px;
-            max-width: 800px;
-            padding-top: 20px;
-            margin: 30px auto 0px
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 0 solid rgba(0,0,0,.125);
+            border-radius: 1rem;
         }
-
-        #order-heading .text-uppercase {
-            font-size: 0.9rem;
-            color: #777;
-            font-weight: 600
+        .text-reset {
+            --bs-text-opacity: 1;
+            color: inherit!important;
         }
-
-        #order-heading .h4 {
-            font-weight: 600
-        }
-
-        #order-heading .h4+div p {
-            font-size: 0.8rem;
-            color: #777
-        }
-
-        .close {
-            padding: 10px 15px;
-            background-color: #777;
-            border-radius: 50%;
-            position: absolute;
-            right: -15px;
-            top: -20px
-        }
-
-        .wrapper {
-            padding: 0px 50px 50px;
-            max-width: 800px;
-            margin: 0px auto 40px;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px
-        }
-
-        .table th {
-            border-top: none
-        }
-
-        .table thead tr.text-uppercase th {
-            font-size: 0.8rem;
-            padding-left: 0px;
-            padding-right: 0px
-        }
-
-        .table tbody tr th,
-        .table tbody tr td {
-            font-size: 0.9rem;
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-bottom: 5px
-        }
-
-        .table-responsive {
-            height: 100px
-        }
-
-        .list div b {
-            font-size: 0.8rem
-        }
-
-        .list .order-item {
-            font-weight: 600;
-            color: #6db3ec
-        }
-
-        .list:hover {
-            background-color: #f4f4f4;
-            cursor: pointer;
-            border-radius: 5px
-        }
-
-        label {
-            margin-bottom: 0;
-            padding: 0;
-            font-weight: 900
-        }
-
-        button.btn {
-            font-size: 0.9rem;
-            background-color: #66cdaa
-        }
-
-        button.btn:hover {
-            background-color: #5cb99a
-        }
-
-        .price {
-            color: #5cb99a;
-            font-weight: 700
-        }
-
-        p.text-justify {
-            font-size: 0.9rem;
-            margin: 0
-        }
-
-        .row {
-            margin: 0px
-        }
-
-        .subscriptions {
-            border: 1px solid #ddd;
-            border-left: 5px solid #ffa500;
-            padding: 10px
-        }
-
-        .subscriptions div {
-            font-size: 0.9rem
-        }
-
-        @media(max-width: 425px) {
-            .wrapper {
-                padding: 20px
-            }
-
-            body {
-                font-size: 0.85rem
-            }
-
-            .subscriptions div {
-                padding-left: 5px
-            }
-
-            img+label {
-                font-size: 0.75rem
-            }
+        a {
+            color: #5465ff;
+            text-decoration: none;
         }
     </style>
+
 
 
 @endsection

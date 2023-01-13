@@ -32,6 +32,7 @@ return new class extends Migration
             $table->enum('delivery',['post','avito','sdek']);
             $table->text('comment')->nullable();
             $table->text('track')->nullable();
+            $table->enum('status',['в обработке','отправлен'])->default('в обработке');
             $table->timestamps();
         });
     }
