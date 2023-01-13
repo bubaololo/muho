@@ -15,7 +15,7 @@ use Darryldecode\Cart\CartCondition;
 
 class DeliverySelector extends Component
 {
-    public $deliveryType = 'post';
+    public $deliveryType;
     private $shipping;
 
     public function render()
@@ -24,7 +24,8 @@ class DeliverySelector extends Component
 
         \Cart::clearCartConditions();
 
-
+    if($this->deliveryType) {
+    
         match ($this->deliveryType) {
             'post' => $this->shipping = new CartCondition([
                 'name' => 'Post',
@@ -47,11 +48,11 @@ class DeliverySelector extends Component
                 'value' => '+300',
                 'attributes' => array()
             ]),
+        
         };
-
-
+    
         \Cart::condition($this->shipping);
-
+    }
         $this->emit('shipping_set');
         return view('livewire.delivery-selector');
 
