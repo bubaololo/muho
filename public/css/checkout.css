@@ -439,7 +439,7 @@ body {
     text-align: center;
     font-size: 18px;
     background: #fff;
-
+    padding: 20px;
     /* Center slide text vertically */
     display: -webkit-box;
     display: -ms-flexbox;
@@ -454,6 +454,14 @@ body {
     -webkit-align-items: center;
     align-items: center;
 }
+
+@media screen and (max-width: 600px) {
+    .swiper-slide {
+        background-color: transparent;
+        padding: 0;
+    }
+}
+
 
 .manufacture__popup_container .swiper-slide img {
     display: block;
@@ -1559,10 +1567,6 @@ body {
 }
 @media screen and (max-width: 768px) {
 
-    .content-wrapper {
-        padding-top: 0;
-    }
-
     .cart-item__img img {
         max-height: unset;
         max-width: 100%;
@@ -1606,9 +1610,6 @@ body {
         margin-bottom: 0;
     }
 
-    .quest .swiper-slide {
-        padding: 0;
-    }
     .quest-slider {
         position: relative;
     }

@@ -19,8 +19,8 @@
     <link href="{{ asset('css/icomoon.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     @livewireStyles
-    @stack('styles')
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @stack('styles')
 
     <!-- Scripts -->
     {{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
