@@ -9,9 +9,6 @@ use Tests\DuskTestCase;
 class CartTest extends DuskTestCase
 {
     use DatabaseMigrations;
-    /**
-     * A Dusk test example.
-     */
     
     public function setUp(): void
     {
@@ -23,7 +20,18 @@ class CartTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->assertSee('Laravel');
+                    ->assertSee('Сибирские');
+            $browser->waitFor('.product-list');
+            $browser->scrollTo('.product-list');
+//            $browser->clickLink('в корзину');
+            $browser->pause(1000);
+            $browser->click('.add-to-cart');
+//            foreach($browser->elements('.add-to-cart') as $toCart) {
+//            $browser->click($toCart);
+//                $browser->pause(1000);
+//            }
+            $browser->waitForTextIn('.cart-accent', '1', 1);
+            $browser->assertSeeIn('.cart-accent', '1');
         });
     }
 }
