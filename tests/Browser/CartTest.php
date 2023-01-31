@@ -19,19 +19,26 @@ class CartTest extends DuskTestCase
     public function testExample(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
+            $browser->visit('http://muhostore.loc/')
                     ->assertSee('Сибирские');
             $browser->waitFor('.product-list');
             $browser->scrollTo('.product-list');
-//            $browser->clickLink('в корзину');
             $browser->pause(1000);
+
+//            $browser->clickLink('в корзину');
             $browser->click('.add-to-cart');
-//            foreach($browser->elements('.add-to-cart') as $toCart) {
+            $browser->pause(1000);
+            $browser->waitForTextIn('.cart-accent', '1', 1);
+            $browser->assertSeeIn('.cart-accent', '1');
+            $browser->scrollTo('.btn-accent-arrow');
+            $browser->pause(1000);
+    
+            $browser->click('.btn-accent-arrow');
+            $browser->assertPathIs('/cart');//            foreach($browser->elements('.add-to-cart') as $toCart) {
 //            $browser->click($toCart);
 //                $browser->pause(1000);
 //            }
-            $browser->waitForTextIn('.cart-accent', '1', 1);
-            $browser->assertSeeIn('.cart-accent', '1');
+
         });
     }
 }
