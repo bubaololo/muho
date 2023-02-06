@@ -9,9 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "antistress-store/cdek-sdk-v2": "^1.1",
+        "coderello/laravel-nova-lang": "^2.0",
         "darryldecode/cart": "^4.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
+        "laravel/nova": "*",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",

@@ -34,13 +34,6 @@ class DeliverySelector extends Component
                 'value' => '+150',
                 'attributes' => array()
             ]),
-            'avito' => $this->shipping = new CartCondition([
-                'name' => 'Avito',
-                'type' => 'shipping',
-                'target' => 'total',
-                'value' => '+250',
-                'attributes' => array()
-            ]),
             'sdek' => $this->shipping = new CartCondition([
                 'name' => 'Sdek',
                 'type' => 'shipping',
