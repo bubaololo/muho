@@ -374,16 +374,17 @@
                   //Извлекаем город из адреса
                   // const adressString = obj.getAddressLine();
                   // const city = adressString.match(/^[^,]*/)[0];
-                  // console.log(obj._getParsedXal());
+                  const coord = obj.properties.get('boundedBy')[0];
                   const city = obj._getParsedXal().localities[0];
                   const post_index = obj.properties.get('metaDataProperty').GeocoderMetaData.Address.postal_code;
-                  // console.log(obj.postal_code);
+                  console.log(post_index);
                   const sendCityToCDEK = (city) => {
                     fetch('/cdek', {
                       method: 'POST',
                       body: JSON.stringify({
                         city,
-                        post_index
+                        post_index,
+                        coord
                       }),
                       headers: {
                         'Content-Type': 'application/json',
@@ -391,6 +392,7 @@
                       },
                     })
                         .then((response) => {
+                          console.log(response)
                           return response.json();
                         })
                         .then((result) => {
