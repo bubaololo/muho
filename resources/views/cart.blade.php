@@ -331,7 +331,6 @@
                   ymaps.geocode(request).then(function(res) {
                     var obj = res.geoObjects.get(0),
                         error, hint;
-
                     if (obj) {
                       // Об оценке точности ответа геокодера можно прочитать тут: https://tech.yandex.ru/maps/doc/geocoder/desc/reference/precision-docpage/
                       switch (obj.properties.get('metaDataProperty.GeocoderMetaData.precision')) {
@@ -373,9 +372,36 @@
 
                 function showResult(obj) {
                   //Извлекаем город из адреса
-                  const adressString = obj.getAddressLine();
-                  const city = adressString.match(/^[^,]*/)[0];
-                  console.log(city);
+                  // const adressString = obj.getAddressLine();
+                  // const city = adressString.match(/^[^,]*/)[0];
+                  // console.log(obj._getParsedXal());
+                  const city = obj._getParsedXal().localities[0];
+                  const post_index = obj.properties.get('metaDataProperty').GeocoderMetaData.Address.postal_code;
+                  // console.log(obj.postal_code);
+                  const sendCityToCDEK = (city) => {
+                    fetch('/cdek', {
+                      method: 'POST',
+                      body: JSON.stringify({
+                        city,
+                        post_index
+                      }),
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                      },
+                    })
+                        .then((response) => {
+                          return response.json();
+                        })
+                        .then((result) => {
+                          console.log(result);
+                        })
+                        .catch((error) => {
+                          console.log('Error:', error);
+                        });
+                  };
+
+                  sendCityToCDEK(city);
                   // Удаляем сообщение об ошибке, если найденный адрес совпадает с поисковым запросом.
                   $('#suggest').removeClass('input_error');
                   $('#notice').css('display', 'none');
@@ -398,6 +424,7 @@
                   createMap(mapState, shortAddress);
                   // Выводим сообщение под картой.
                   showFullMessage(address);
+                  Livewire.emit('delivery_price_set');
                 }
 
                 function showError(message) {

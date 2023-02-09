@@ -6,7 +6,7 @@
 
     <div class="d-flex justify-content-between">
         <p class="mb-2">Доставка</p>
-        <p class="mb-2">{{ $delivery }}р.</p>
+        <p class="mb-2">{{ $delivery }}</p>
     </div>
 
     <div class="d-flex justify-content-between mb-4">
