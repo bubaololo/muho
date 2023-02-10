@@ -9,16 +9,18 @@
                     <input type="radio" wire:model="deliveryType" id="sdek" value="sdek"
                     >
                     <label for="sdek">Сдэк</label>
-                </div>
+                    @if($cdekCalculatedDeliveryCost !== null)
+                        <small class="text-muted">цена: {{  $cdekCalculatedDeliveryCost }}</small>
+                    @endif
 
-                <div>
-                    <input type="radio" wire:model="deliveryType" id="avito" value="avito">
-                    <label for="avito">Авито</label>
                 </div>
 
                 <div>
                     <input type="radio" wire:model="deliveryType" id="post" value="post">
                     <label for="post">Почта</label>
+                    @if($postCalculatedDeliveryCost !== null)
+                        <small class="text-muted">цена: {{  $postCalculatedDeliveryCost }}</small>
+                    @endif
                 </div>
             </div>
         </fieldset>

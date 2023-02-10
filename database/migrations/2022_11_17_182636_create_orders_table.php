@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -29,14 +28,14 @@ return new class extends Migration
             $table->unsignedDecimal('subtotal', $precision = 8, $scale = 2)->default(0);
             $table->unsignedDecimal('delivery_cost', $precision = 8, $scale = 2)->default(0);
             $table->boolean('paid')->default(0);
-            $table->enum('delivery',['post','avito','sdek']);
+            $table->enum('delivery', ['post', 'sdek']);
             $table->text('comment')->nullable();
             $table->text('track')->nullable();
-            $table->enum('status',['в обработке','отправлен'])->default('в обработке');
+            $table->enum('status', ['в обработке', 'отправлен'])->default('в обработке');
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *

@@ -86,28 +86,6 @@
                         <div class="col-lg-5">
                             <section class="checkout__slider">
                                 <div class="quest">
-                                    {{--                                                    <div class="container">--}}
-                                    {{--                                                        <div class="quest__header">--}}
-                                    {{--                                                            <div class="quest__header_title_wrapper">--}}
-                                    {{--                                                                <div class="quest__header_title">--}}
-                                    {{--                                                                    <div class="quest__header_title-text">--}}
-                                    {{--                                                                        Вопросник по потребностям--}}
-                                    {{--                                                                    </div>--}}
-                                    {{--                                                                    <div class="quest__header_title-tag">--}}
-                                    {{--                                                                        СОКРАЩЁННЫЙ--}}
-                                    {{--                                                                    </div>--}}
-                                    {{--                                                                    <div class="quest__header_subtitle">--}}
-                                    {{--                                                                        Сокращённый (для первичного знакомства с потребностью)--}}
-                                    {{--                                                                    </div>--}}
-                                    {{--                                                                </div>--}}
-                                    {{--                                                            </div>--}}
-                                    {{--                                                            <div class="quest__header-question">--}}
-                                    {{--                                                                8 вопросов--}}
-                                    {{--                                                            </div>--}}
-                                    {{--                                                        </div>--}}
-
-                                    {{--                                                    </div>--}}
-
                                     <section class="quest__slider">
                                         <div class="success">
                                             <img src="img/quest_success.svg" alt="icon" class="quest__success">
@@ -135,26 +113,7 @@
                                             <form enctype="multipart/form-data" method="post" id="quest_form"
                                                     class="quest__slides swiper-wrapper" action="/checkout">
                                             @csrf
-                                            <!-- ________SLIDE -->
-                                                <div class="swiper-slide">
-                                                    <div class="quest__slide">
-                                                        <div class="quest__slide_title_wrapper">
-                                                            <div class="quest__slide_title">
-                                                                Оформить заказ
-                                                            </div>
-                                                        </div>
 
-                                                        @livewire('delivery-selector')
-
-                                                        <hr class="my-4">
-
-                                                        @livewire('cart-total')
-
-                                                    </div>
-                                                    <div class="quest__slider_buttons_wrapper">
-                                                        <div class="quest__next quest__button">Вперёд</div>
-                                                    </div>
-                                                </div>
                                                 <!-- ________SLIDE -->
                                                 <div class="swiper-slide address-slide">
                                                     <div class="quest__slide">
@@ -209,10 +168,30 @@
                                                     </div>
                                                     <div class="quest__slider_buttons_wrapper">
                                                         <div class="quest__next quest__button">Вперёд</div>
-                                                        <div class="quest__prev quest__button">Назад</div>
                                                     </div>
                                                     <div id="map"></div>
                                                     <div class="map-mask"></div>
+                                                </div>
+                                                <!-- ________SLIDE -->
+                                                <div class="swiper-slide">
+                                                    <div class="quest__slide">
+                                                        <div class="quest__slide_title_wrapper">
+                                                            <div class="quest__slide_title">
+                                                                Оформить заказ
+                                                            </div>
+                                                        </div>
+
+                                                        @livewire('delivery-selector')
+
+                                                        <hr class="my-4">
+
+                                                        @livewire('cart-total')
+
+                                                    </div>
+                                                    <div class="quest__slider_buttons_wrapper">
+                                                        <div class="quest__next quest__button">Вперёд</div>
+                                                        <div class="quest__prev quest__button">Назад</div>
+                                                    </div>
                                                 </div>
                                                 <!-- ________SLIDE -->
                                                 <div class="swiper-slide">
@@ -352,7 +331,6 @@
                   ymaps.geocode(request).then(function(res) {
                     var obj = res.geoObjects.get(0),
                         error, hint;
-
                     if (obj) {
                       // Об оценке точности ответа геокодера можно прочитать тут: https://tech.yandex.ru/maps/doc/geocoder/desc/reference/precision-docpage/
                       switch (obj.properties.get('metaDataProperty.GeocoderMetaData.precision')) {
@@ -393,6 +371,39 @@
                 }
 
                 function showResult(obj) {
+                  //Извлекаем город из адреса
+                  // const adressString = obj.getAddressLine();
+                  // const city = adressString.match(/^[^,]*/)[0];
+                  const coord = obj.properties.get('boundedBy')[0];
+                  const city = obj._getParsedXal().localities[0];
+                  const post_index = obj.properties.get('metaDataProperty').GeocoderMetaData.Address.postal_code;
+                  console.log(post_index);
+                  const sendCityToCDEK = (city) => {
+                    fetch('/cdek', {
+                      method: 'POST',
+                      body: JSON.stringify({
+                        city,
+                        post_index,
+                        coord
+                      }),
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                      },
+                    })
+                        .then((response) => {
+                          console.log(response)
+                          return response.json();
+                        })
+                        .then((result) => {
+                          console.log(result);
+                        })
+                        .catch((error) => {
+                          console.log('Error:', error);
+                        });
+                  };
+
+                  sendCityToCDEK(city);
                   // Удаляем сообщение об ошибке, если найденный адрес совпадает с поисковым запросом.
                   $('#suggest').removeClass('input_error');
                   $('#notice').css('display', 'none');
@@ -415,6 +426,7 @@
                   createMap(mapState, shortAddress);
                   // Выводим сообщение под картой.
                   showFullMessage(address);
+                  Livewire.emit('delivery_price_set');
                 }
 
                 function showError(message) {

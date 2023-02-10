@@ -18,9 +18,9 @@ class CartTotal extends Component
         $rawDelivery = (string)\Cart::getConditionsByType('shipping');
         preg_match('/\d+/', $rawDelivery, $deliveryEntries);
         if ($deliveryEntries) {
-            $delivery = $deliveryEntries[0];
+            $delivery = $deliveryEntries[0].' р.';
         } else {
-            $delivery = 150;
+            $delivery = 'выберите способ доставки';
         }
         
         $total = \Cart::getTotal();

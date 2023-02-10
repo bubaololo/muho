@@ -1564,6 +1564,8 @@ body {
 }
 .address-input {
     position: relative;
+    font-size: 14px;
+    font-family: Roboto, SansSerif;
 }
 @media screen and (max-width: 768px) {
 

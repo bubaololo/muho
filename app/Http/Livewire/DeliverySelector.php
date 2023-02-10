@@ -5,63 +5,62 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Darryldecode\Cart\CartCondition;
 
-//enum Shipping
-//{
-//    case post;
-//    case pdek;
-//    case pvito;
-//
-//}
 
 class DeliverySelector extends Component
 {
     public $deliveryType;
     private $shipping;
-
+    protected $listeners = ['delivery_price_set' => 'render'];
+    
     public function render()
     {
-
-
         \Cart::clearCartConditions();
-
-    if($this->deliveryType) {
-    
-        match ($this->deliveryType) {
-            'post' => $this->shipping = new CartCondition([
-                'name' => 'Post',
-                'type' => 'shipping',
-                'target' => 'total',
-                'value' => '+150',
-                'attributes' => array()
-            ]),
-            'avito' => $this->shipping = new CartCondition([
-                'name' => 'Avito',
-                'type' => 'shipping',
-                'target' => 'total',
-                'value' => '+250',
-                'attributes' => array()
-            ]),
-            'sdek' => $this->shipping = new CartCondition([
-                'name' => 'Sdek',
-                'type' => 'shipping',
-                'target' => 'total',
-                'value' => '+300',
-                'attributes' => array()
-            ]),
+        //check if we got real delivery price from api
+        // to show prices on delivery select screen
+        $cdekCalculatedDeliveryCost = session('cdek') ? session('cdek') : null;
+        $postCalculatedDeliveryCost = session('post') ? session('post') : null;
+        if ($this->deliveryType) {
+            //also check if variables set
+            // if not we set default prices
+            $cdekDeliveryCost = session('cdek') ? session('cdek') : 500;
+            $postDeliveryCost = session('post') ? session('post') : 350;
+            match ($this->deliveryType) {
+                'post' => $this->shipping = new CartCondition([
+                    'name' => 'Post',
+                    'type' => 'shipping',
+                    'target' => 'total',
+                    'value' => "+$postDeliveryCost",
+                    'attributes' => array()
+                ]),
+                'sdek' => $this->shipping = new CartCondition([
+                    'name' => 'Sdek',
+                    'type' => 'shipping',
+                    'target' => 'total',
+                    'value' => "+$cdekDeliveryCost",
+                    'attributes' => array()
+                ]),
+                
+            };
+            
+            \Cart::condition($this->shipping);
+        }
         
-        };
-    
-        \Cart::condition($this->shipping);
-    }
+        
         $this->emit('shipping_set');
-        return view('livewire.delivery-selector');
-
+        return view('livewire.delivery-selector', compact('cdekCalculatedDeliveryCost', 'postCalculatedDeliveryCost'));
+        
     }
-
-
-    public function setDelivery($deliveryType)
-    {
-
-
-    }
+    
+//    public function mount(): void
+//    {
+//        if (session()->has('costs')) {
+//            foreach (session('costs') as $cost) {
+//                $this->receiveAlert($cost['type'], $cost['message']);
+//            }
+//            session()->forget('alerts');
+//            $this->render();
+//        }
+//    }
+    
+    
 }
