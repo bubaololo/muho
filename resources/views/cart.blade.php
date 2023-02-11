@@ -81,7 +81,9 @@
                                 @csrf
                                 <input type=submit class="btn btn-outline-secondary btn-sm" value="очистить корзину">
                             </form>
+                            <hr class="my-4">
 
+                            @livewire('cart-total')
                         </div>
                         <div class="col-lg-5">
                             <section class="checkout__slider">
@@ -115,7 +117,7 @@
                                             @csrf
 
                                                 <!-- ________SLIDE -->
-                                                <div class="swiper-slide address-slide">
+                                                <div id="adress-slide" class="swiper-slide address-slide">
                                                     <div class="quest__slide">
                                                         <div class="quest__slide_title_wrapper">
                                                             <div class="quest__slide_title">
@@ -163,36 +165,34 @@
                                                                 <input type="text" id="comment" name="comment" class="quest__textarea"
                                                                         value="@isset($credentials['comment']) {{ $credentials['comment'] }} @endisset" placeholder="любые уточнения">
                                                             </div>
-
+                                                            @livewire('delivery-selector')
                                                         </div>
                                                     </div>
                                                     <div class="quest__slider_buttons_wrapper">
-                                                        <div class="quest__next quest__button">Вперёд</div>
+                                                        <div id="address-button" class="quest__next quest__button">Вперёд</div>
                                                     </div>
                                                     <div id="map"></div>
                                                     <div class="map-mask"></div>
                                                 </div>
                                                 <!-- ________SLIDE -->
-                                                <div class="swiper-slide">
-                                                    <div class="quest__slide">
-                                                        <div class="quest__slide_title_wrapper">
-                                                            <div class="quest__slide_title">
-                                                                Оформить заказ
-                                                            </div>
-                                                        </div>
+                                                {{--<div class="swiper-slide">--}}
+                                                {{--    <div class="quest__slide">--}}
+                                                {{--        <div class="quest__slide_title_wrapper">--}}
+                                                {{--            <div class="quest__slide_title">--}}
+                                                {{--                Оформить заказ--}}
+                                                {{--            </div>--}}
+                                                {{--        </div>--}}
 
-                                                        @livewire('delivery-selector')
+                                                {{--        @livewire('delivery-selector')--}}
 
-                                                        <hr class="my-4">
 
-                                                        @livewire('cart-total')
 
-                                                    </div>
-                                                    <div class="quest__slider_buttons_wrapper">
-                                                        <div class="quest__next quest__button">Вперёд</div>
-                                                        <div class="quest__prev quest__button">Назад</div>
-                                                    </div>
-                                                </div>
+                                                {{--    </div>--}}
+                                                {{--    <div class="quest__slider_buttons_wrapper">--}}
+                                                {{--        <div class="quest__next quest__button">Вперёд</div>--}}
+                                                {{--        <div class="quest__prev quest__button">Назад</div>--}}
+                                                {{--    </div>--}}
+                                                {{--</div>--}}
                                                 <!-- ________SLIDE -->
                                                 <div class="swiper-slide">
                                                     <div class="quest__slide">
@@ -297,6 +297,7 @@
         @if( empty($credentials['address']) )
             <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU" type="text/javascript"></script>
             <script>
+              let addressIsValid = null;
               ymaps.ready(init);
 
               function init() {
@@ -361,6 +362,7 @@
                     if (error) {
                       showError(error);
                       showMessage(hint);
+                       addressIsValid = false;
                     } else {
                       showResult(obj);
                     }
@@ -377,9 +379,9 @@
                   const coord = obj.properties.get('boundedBy')[0];
                   const city = obj._getParsedXal().localities[0];
                   const post_index = obj.properties.get('metaDataProperty').GeocoderMetaData.Address.postal_code;
-                  console.log(post_index);
+                  addressIsValid = true;
                   const sendCityToCDEK = (city) => {
-                    fetch('/cdek', {
+                    fetch('/delivery', {
                       method: 'POST',
                       body: JSON.stringify({
                         city,
@@ -430,6 +432,7 @@
                 }
 
                 function showError(message) {
+                   addressIsValid = false;
                   $('#messageHeader').text('');
                   $('#notice').text(message);
                   $('#suggest').addClass('input_error');
@@ -492,6 +495,29 @@
               })
             </script>
         @endif
+        <!-- Laravel Javascript Validation -->
+        <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+        {!! $validator->selector('#quest_form') !!}
+        <script>
+          //intermediate validation
+          document.getElementById('address-button').addEventListener('click', () => {
+            address = $("#quest_form").validate().element('#suggest');
+            delivery = $("#quest_form").validate().element('#sdek');
+
+              if(address && addressIsValid && delivery) {
+                swiper.allowSlideNext = true
+                swiper.slideNext()
+              } else {
+                swiper.allowSlideNext = false
+              }
+
+
+
+
+          });
+
+
+        </script>
     @endpush
 @endsection
 

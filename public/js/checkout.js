@@ -20,6 +20,7 @@ var swiper = new Swiper(".mySwiper", {
   },
   effect: "fade",
   allowTouchMove: false,
+  allowSlideNext: false,
 });
 
 const bar = document.querySelector(".quest__slider_bar_wrapper");

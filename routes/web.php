@@ -29,11 +29,10 @@ Route::get('cart/{id}', [BuyNowController::class, 'buySpecificProduct'])->name('
 Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+Route::post('checkout', [CartController::class, 'store'])->name('cart.checkout');
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
-Route::post('cdek', [DeliveryCostController::class, 'getDeliveryCost'])->name('cdek');
+Route::post('delivery', [DeliveryCostController::class, 'getDeliveryCost'])->name('cdek');
 
-Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
 Route::get('profile',[ProfileController::class, 'index'])->name('profile');
 

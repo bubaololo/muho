@@ -6,9 +6,20 @@ use App\Models\Credential;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use JsValidator;
 
 class CheckoutController extends Controller
 {
+    
+    protected $validationRules = ['user_id' => 'nullable|exists:users,user_id',
+            'name' => 'bail|alpha|required|max:50|string',
+            'surname' => 'alpha_dash|required|max:50|string',
+            'middle_name' => 'alpha|required|max:50|string',
+            'address' => 'required',
+            'telephone' => 'integer'
+        ];
+    
+    
     public function index()
     {
 //        info('yo');
@@ -26,13 +37,15 @@ class CheckoutController extends Controller
     
     public function store(Request $request)
     {
-        $validated = $request->validate(['user_id' => 'nullable|exists:users,user_id',
-            'name' => 'bail|alpha|required|max:50|string',
-            'surname' => 'alpha_dash|required|max:50|string',
-            'middle_name' => 'alpha|required|max:50|string',
-            'address' => 'required',
-            'telephone' => 'integer'
-        ]);
+//        $validated = $request->validate(['user_id' => 'nullable|exists:users,user_id',
+//            'name' => 'bail|alpha|required|max:50|string',
+//            'surname' => 'alpha_dash|required|max:50|string',
+//            'middle_name' => 'alpha|required|max:50|string',
+//            'address' => 'required',
+//            'telephone' => 'integer'
+//        ]);
+        $validator = JsValidator::make($this->validationRules);
+        
         $orderNum = rand(10000, 99999);
         $total = \Cart::getTotal();
         $subtotal = \Cart::getSubTotal();
