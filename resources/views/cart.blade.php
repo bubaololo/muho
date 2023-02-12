@@ -510,10 +510,25 @@
               } else {
                 swiper.allowSlideNext = false
               }
+          });
+
+          document.getElementById('address-button').addEventListener('click', () => {
+            address = $("#quest_form").validate().element('#suggest');
+            delivery = $("#quest_form").validate().element('#sdek');
+
+            if(address && !addressIsValid) {
+              $('#notice').text('некорректный или неполный адрес');
+              $('#suggest').addClass('input_error');
+              $('#notice').css('display', 'block');
+            }
 
 
-
-
+            if(address && addressIsValid && delivery) {
+              swiper.allowSlideNext = true
+              swiper.slideNext()
+            } else {
+              swiper.allowSlideNext = false
+            }
           });
 
 
