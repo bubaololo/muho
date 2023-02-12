@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -31,7 +32,7 @@ class DeliveryCostController extends Controller
             $tariff_response = $cdek_client->calculateTariff($tariff);
             
             $deliveryCost = $tariff_response->getTotalSum() * 1.5;
-            session(['cdek' => $deliveryCost]);
+            Session::put('cdek', $deliveryCost);
         } catch (AntistressStore\CdekSDK2\Exceptions\CdekV2RequestException $exception) {
             Session::forget('cdek');
         }
@@ -58,7 +59,8 @@ class DeliveryCostController extends Controller
         try {
             $postDeliveryResponce = Http::get("https://postprice.ru/engine/russia/api.php?from=644083&to=$post_index&mass=100&valuation=0&vat=0");
             $postDeliveryCost = json_decode($postDeliveryResponce->body(), true)['pkg'];
-            session(['post' => $postDeliveryCost]);
+            Session::put('post', $postDeliveryCost);
+            Event::dispatch('delivery-cost-refresh');
         } catch (Throwable $e) {
             report($e);
             Session::forget('post');
@@ -67,6 +69,7 @@ class DeliveryCostController extends Controller
     
     public function getPostIndexByCoordinates($coord)
     {
+        
         $lat = $coord[0];
         $lon = $coord[1];
         $response = Http::withHeaders([
@@ -77,8 +80,16 @@ class DeliveryCostController extends Controller
             'lon' => $lon,
             'radius_meters' => 1000
         ]);
-        $postal_code = json_decode($response->body(), true)['suggestions'][0]['data']['postal_code'];
+        
+        
+        $dadataResponse = json_decode($response->body(), true);
+        if ($dadataResponse['suggestions']) {
+            $postal_code = $response['suggestions'][0]['data']['postal_code'];
+        } else {
+            $postal_code = null;
+        }
         return $postal_code;
+        
     }
     
 }

@@ -342,7 +342,7 @@ abbr {
 }
 
 .text-hide {
-    font: 0/0 a;
+    /*font: 0/0 a;*/
     color: transparent;
     text-shadow: none;
     background-color: transparent;
@@ -2220,10 +2220,12 @@ span.prev-price {
     .hero-content p {
         margin: 0;
     }
+
     .hero__text {
         font-size: 18px;
         letter-spacing: 0;
     }
+
     #header .menu-list a {
         text-align: right;
     }
@@ -2487,6 +2489,12 @@ span.prev-price {
 .delivery__type {
     display: flex;
     justify-content: space-evenly;
+    position: relative;
+}
+
+.delivery__type .invalid-feedback {
+    position: absolute;
+    bottom: 30%;
 }
 
 .cart-item__del {
@@ -2545,46 +2553,48 @@ span.prev-price {
 .footer-menu__item {
     min-width: 16ch;
 }
+
 .refresh-icon {
     width: 24px;
     height: 24px;
 }
+
 #footer {
     font-size: 12px;
     margin-top: 4px;
     margin-bottom: 16px;
-    text-shadow:
-            -0   -3px 1px #FFFFFF,
-            0   -3px 1px #FFFFFF,
-            -0    3px 1px #FFFFFF,
-            0    3px 1px #FFFFFF,
-            -3px -0   1px #FFFFFF,
-            3px -0   1px #FFFFFF,
-            -3px  0   1px #FFFFFF,
-            3px  0   1px #FFFFFF,
-            -1px -3px 1px #FFFFFF,
-            1px -3px 1px #FFFFFF,
-            -1px  3px 1px #FFFFFF,
-            1px  3px 1px #FFFFFF,
-            -3px -1px 1px #FFFFFF,
-            3px -1px 1px #FFFFFF,
-            -3px  1px 1px #FFFFFF,
-            3px  1px 1px #FFFFFF,
-            -2px -3px 1px #FFFFFF,
-            2px -3px 1px #FFFFFF,
-            -2px  3px 1px #FFFFFF,
-            2px  3px 1px #FFFFFF,
-            -3px -2px 1px #FFFFFF,
-            3px -2px 1px #FFFFFF,
-            -3px  2px 1px #FFFFFF,
-            3px  2px 1px #FFFFFF,
-            -3px -3px 1px #FFFFFF,
-            3px -3px 1px #FFFFFF,
-            -3px  3px 1px #FFFFFF,
-            3px  3px 1px #FFFFFF,
-            -3px -3px 1px #FFFFFF,
-            3px -3px 1px #FFFFFF,
-            -3px  3px 1px #FFFFFF,
-            3px  3px 1px #FFFFFF;
+    text-shadow: -0 -3px 1px #FFFFFF,
+    0 -3px 1px #FFFFFF,
+    -0 3px 1px #FFFFFF,
+    0 3px 1px #FFFFFF,
+    -3px -0 1px #FFFFFF,
+    3px -0 1px #FFFFFF,
+    -3px 0 1px #FFFFFF,
+    3px 0 1px #FFFFFF,
+    -1px -3px 1px #FFFFFF,
+    1px -3px 1px #FFFFFF,
+    -1px 3px 1px #FFFFFF,
+    1px 3px 1px #FFFFFF,
+    -3px -1px 1px #FFFFFF,
+    3px -1px 1px #FFFFFF,
+    -3px 1px 1px #FFFFFF,
+    3px 1px 1px #FFFFFF,
+    -2px -3px 1px #FFFFFF,
+    2px -3px 1px #FFFFFF,
+    -2px 3px 1px #FFFFFF,
+    2px 3px 1px #FFFFFF,
+    -3px -2px 1px #FFFFFF,
+    3px -2px 1px #FFFFFF,
+    -3px 2px 1px #FFFFFF,
+    3px 2px 1px #FFFFFF,
+    -3px -3px 1px #FFFFFF,
+    3px -3px 1px #FFFFFF,
+    -3px 3px 1px #FFFFFF,
+    3px 3px 1px #FFFFFF,
+    -3px -3px 1px #FFFFFF,
+    3px -3px 1px #FFFFFF,
+    -3px 3px 1px #FFFFFF,
+    3px 3px 1px #FFFFFF;
 }
+
 }

@@ -3,14 +3,17 @@
         <label for="name">Способ доставки</label>
         <fieldset>
 
-            <legend>Выберите один из доступных способов доставки:</legend>
+            {{--<legend>Выберите один из доступных способов доставки:</legend>--}}
             <div class="delivery__type">
                 <div>
                     <input type="radio" class="btn-check" name="deliveryType" wire:model="deliveryType" id="sdek" value="sdek"
                     >
                     <label class="btn btn-outline-success" for="sdek">Сдэк</label>
-                    @if($cdekCalculatedDeliveryCost !== null)
-                        <small class="text-muted">цена: {{  $cdekCalculatedDeliveryCost }}</small>
+                    @if($cdekCalculatedDeliveryCost == null)
+                        <small class="text-muted" title="Не удалось найти информацию о цене доставки для вашего адреса,
+                        указана средняя цена для доставки по России, если реальная стоимость доставки будет существенно превышать эту сумму - мы свяжемся с вами">примерная цена: 800р</small>
+                    @else
+                        <small class="text-muted">цена доставки в ваш город: {{ $cdekCalculatedDeliveryCost }}</small>
                     @endif
 
                 </div>
@@ -18,8 +21,11 @@
                 <div>
                     <input type="radio" class="btn-check" name="deliveryType" wire:model="deliveryType" id="post" value="post">
                     <label class="btn btn-outline-success" for="post">Почта</label>
-                    @if($postCalculatedDeliveryCost !== null)
-                        <small class="text-muted">цена: {{  $postCalculatedDeliveryCost }}</small>
+                    @if($postCalculatedDeliveryCost == null)
+                        <small class="text-muted" title="Не удалось найти информацию о цене доставки для вашего адреса,
+                        указана средняя цена для доставки по России, если реальная стоимость доставки будет существенно превышать эту сумму - мы свяжемся с вами">примерная цена: 350р</small>
+                    @else
+                        <small class="text-muted">цена доставки в ваш город: {{  $postCalculatedDeliveryCost }}</small>
                     @endif
                 </div>
             </div>

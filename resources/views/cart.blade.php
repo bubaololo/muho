@@ -129,11 +129,11 @@
                                                         </div>
                                                         <div class="quest__slide_forms_wrapper">
                                                             <div class="quest__input">
-                                                                <label for="name">Куда отправить ваши грибы</label>
-                                                                <p>Город, улица, дом</p>
+                                                                {{--<label for="name">Куда отправить ваши грибы</label>--}}
+                                                                {{--<p>Город, улица, дом</p>--}}
                                                                 <div class="address">
                                                                     <div id="header">
-                                                                        <label for="suggest"> Начните вводить ваш адрес в поле</label>
+                                                                        <label for="suggest">Город, улица, дом</label>
                                                                         <div class="address-input">
                                                                             <input type="text" id="suggest" name="address" class="w-100" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес">
                                                                             <div class="btn btn-gray" id="button">
@@ -308,6 +308,7 @@
 
                 // При клике по кнопке запускаем верификацию введёных данных.
                 $('#button').bind('click', function(e) {
+                  console.log('клик')
                   geocode();
                 });
 
@@ -376,6 +377,7 @@
                   //Извлекаем город из адреса
                   // const adressString = obj.getAddressLine();
                   // const city = adressString.match(/^[^,]*/)[0];
+                  addressRetryCount = 0;
                   const coord = obj.properties.get('boundedBy')[0];
                   const city = obj._getParsedXal().localities[0];
                   const post_index = obj.properties.get('metaDataProperty').GeocoderMetaData.Address.postal_code;
@@ -428,10 +430,21 @@
                   createMap(mapState, shortAddress);
                   // Выводим сообщение под картой.
                   showFullMessage(address);
-                  Livewire.emit('delivery_price_set');
-                }
+                  setTimeout(function(){
+                    Livewire.emit('delivery_price_set');
+                  }, 1500);
 
+                }
+                let addressRetryCount = 0;
                 function showError(message) {
+                  if(addressRetryCount == 0) {
+                    geocode();
+                    setTimeout(function(){
+                      $('#button').trigger('click');
+                    }, 1000);
+                    addressRetryCount = 1;
+                    console.log ('залетели в проверку')
+                  }
                    addressIsValid = false;
                   $('#messageHeader').text('');
                   $('#notice').text(message);
@@ -497,7 +510,8 @@
         @endif
         <!-- Laravel Javascript Validation -->
         <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-        {!! $validator->selector('#quest_form') !!}
+{{--        {!! $validator->selector('#quest_form') !!}--}}
+        {!! JsValidator::formRequest('App\Http\Requests\StoreCheckout', '#quest_form'); !!}
         <script>
           //intermediate validation
           document.getElementById('address-button').addEventListener('click', () => {
