@@ -14,7 +14,7 @@ class DeliverySelector extends Component
     
     public function render()
     {
-        
+      info(session()->all());
         \Cart::clearCartConditions();
         //check if we got real delivery price from api
         // to show prices on delivery select screen
@@ -23,7 +23,7 @@ class DeliverySelector extends Component
         if ($this->deliveryType) {
             //also check if variables set
             // if not we set default prices
-            $cdekDeliveryCost = session('cdek') ? session('cdek') : 500;
+            $cdekDeliveryCost = session('cdek') ? session('cdek') : 800;
             $postDeliveryCost = session('post') ? session('post') : 350;
             match ($this->deliveryType) {
                 'post' => $this->shipping = new CartCondition([
@@ -51,6 +51,9 @@ class DeliverySelector extends Component
         return view('livewire.delivery-selector', compact('cdekCalculatedDeliveryCost', 'postCalculatedDeliveryCost'));
         
     }
+    
+    
+    
     
 //    public function mount(): void
 //    {
