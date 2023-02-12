@@ -34,7 +34,7 @@ class DeliveryCostController extends Controller
             $deliveryCost = $tariff_response->getTotalSum() * 1.5;
             Session::put('cdek', $deliveryCost);
         } catch (AntistressStore\CdekSDK2\Exceptions\CdekV2RequestException $exception) {
-            Session::forget('cdek');
+            Session::put('cdek', 'fail');
         }
         
         if (array_key_exists("post_index", $input)) {
@@ -46,7 +46,7 @@ class DeliveryCostController extends Controller
             if ($post_index) {
                 $this->getPostDeliveryCost($post_index);
             } else {
-                Session::forget('post');
+                Session::put('post', 'fail');
             }
             
         }
@@ -63,7 +63,7 @@ class DeliveryCostController extends Controller
             Event::dispatch('delivery-cost-refresh');
         } catch (Throwable $e) {
             report($e);
-            Session::forget('post');
+            Session::put('post', 'fail');
         }
     }
     
