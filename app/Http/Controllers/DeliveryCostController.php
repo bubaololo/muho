@@ -73,20 +73,21 @@ class DeliveryCostController extends Controller
         
         $lat = $coord[0];
         $lon = $coord[1];
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Token ' . env('DADATA_TOKEN'),
-        ])->post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/geolocate/postal_unit', [
-            'lat' => $lat,
-            'lon' => $lon,
-            'radius_meters' => 1000
-        ]);
         
         
-        $dadataResponse = json_decode($response->body(), true);
-        if ($dadataResponse['suggestions']) {
-            $postal_code = $response['suggestions'][0]['data']['postal_code'];
-        } else {
+        try {
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Token ' . env('DADATA_TOKEN'),
+            ])->post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/geolocate/postal_unit', [
+                'lat' => $lat,
+                'lon' => $lon,
+                'radius_meters' => 1000
+            ]);
+            $dadataResponse = json_decode($response->body(), true);
+            $postal_code = $dadataResponse['suggestions'][0]['data']['postal_code'];
+        } catch (\Exception $exception) {
+            info('Исключение из дадаты' . $exception->getMessage());
             $postal_code = null;
         }
         return $postal_code;
