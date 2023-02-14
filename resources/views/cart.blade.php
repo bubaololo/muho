@@ -308,7 +308,6 @@
 
                 // При клике по кнопке запускаем верификацию введёных данных.
                 $('#button').bind('click', function(e) {
-                  console.log('клик')
                   geocode();
                 });
 
@@ -368,7 +367,6 @@
                       showResult(obj);
                     }
                   }, function(e) {
-                    console.log(e)
                   })
 
                 }
@@ -396,11 +394,11 @@
                       },
                     })
                         .then((response) => {
-                          console.log(response)
+                          // console.log(response)
                           return response.json();
                         })
                         .then((result) => {
-                          console.log(result);
+                          // console.log(result);
                         })
                         .catch((error) => {
                           console.log('Error:', error);
@@ -443,7 +441,6 @@
                       $('#button').trigger('click');
                     }, 1000);
                     addressRetryCount = 1;
-                    console.log ('залетели в проверку')
                   }
                    addressIsValid = false;
                   $('#messageHeader').text('');
@@ -520,7 +517,7 @@
 
               if(address && addressIsValid && delivery) {
                 swiper.allowSlideNext = true
-                swiper.slideNext()
+                // swiper.slideNext()
               } else {
                 swiper.allowSlideNext = false
               }
@@ -538,8 +535,14 @@
 
 
             if(address && addressIsValid && delivery) {
+
+              if(swiper.allowSlideNext == false) {
+                swiper.slideNext()
+                swiper.allowSlideNext = true
+                console.log('залетел в проверку')
+              }
               swiper.allowSlideNext = true
-              swiper.slideNext()
+
             } else {
               swiper.allowSlideNext = false
             }

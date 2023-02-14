@@ -31,7 +31,7 @@ class StoreCheckout extends FormRequest
         'name' => 'bail|alpha|required|max:50|string',
         'surname' => 'alpha_dash|required|max:50|string',
         'middle_name' => 'alpha|required|max:50|string',
-        'telephone' => 'integer'
+        'telephone' => 'required|regex:/^[\d\+\(\)\-]+$/',
     
         ];
     }
@@ -46,6 +46,17 @@ class StoreCheckout extends FormRequest
         return [
             'deliveryType.required' => 'Выберите тип доставки',
             'address.required' => 'Заполните адрес доставки',
+            'address.required' => 'Заполните адрес доставки',
+            'telephone.required' => 'Укажите номер телефона',
+            'telephone.regex' => 'Телефон может содержать цифры,"+" скобки и тире',
+            'name.alpha' => 'Имя может содержать только буквы',
+            'name.required' => 'Имя обязательно для доставки',
+            'surname.alpha' => 'Фамилия может содержать только буквы',
+            'surname.required' => 'Фамилия обязательнa для доставки',
+            'middle_name.alpha' => 'Отчество может содержать только буквы',
+            'middle_name.required' => 'Отчество обязательно для доставки',
+            
+            
         ];
     }
 }

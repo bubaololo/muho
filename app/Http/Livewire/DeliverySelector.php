@@ -14,16 +14,44 @@ class DeliverySelector extends Component
     
     public function render()
     {
+        info(session()->all());
         \Cart::clearCartConditions();
         //check if we got real delivery price from api
         // to show prices on delivery select screen
-        $cdekCalculatedDeliveryCost = session('cdek') ? session('cdek') : null;
-        $postCalculatedDeliveryCost = session('post') ? session('post') : null;
+        if (session('cdek')) {
+            if (session('cdek') == 'fail') {
+                $cdekCalculatedDeliveryCost = 'fail';
+            } else {
+                $cdekCalculatedDeliveryCost = session('cdek');
+            }
+        } else {
+            $cdekCalculatedDeliveryCost = null;
+        }
+        
+        if (session('post')) {
+            if (session('post') == 'fail') {
+                $postCalculatedDeliveryCost = 'fail';
+            } else {
+                $postCalculatedDeliveryCost = session('post');
+            }
+        } else {
+            $postCalculatedDeliveryCost = null;
+        }
+        
         if ($this->deliveryType) {
             //also check if variables set
             // if not we set default prices
-            $cdekDeliveryCost = session('cdek') ? session('cdek') : 800;
-            $postDeliveryCost = session('post') ? session('post') : 350;
+            if (session('cdek') && session('cdek') !== 'fail') {
+                $cdekDeliveryCost = session('cdek');
+            } else {
+                $cdekDeliveryCost = 800;
+            }
+            if (session('post') && session('post') !== 'fail') {
+                $postDeliveryCost = session('post');
+            } else {
+                $postDeliveryCost = 350;
+            }
+
             match ($this->deliveryType) {
                 'post' => $this->shipping = new CartCondition([
                     'name' => 'Post',
@@ -50,10 +78,10 @@ class DeliverySelector extends Component
         return view('livewire.delivery-selector', compact('cdekCalculatedDeliveryCost', 'postCalculatedDeliveryCost'));
         
     }
-    
-    
-    
-    
+
+
+
+
 //    public function mount(): void
 //    {
 //        if (session()->has('costs')) {

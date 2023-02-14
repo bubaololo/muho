@@ -2487,9 +2487,9 @@ span.prev-price {
 }
 
 .delivery__type {
-    display: flex;
-    justify-content: space-evenly;
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15%;
 }
 
 .delivery__type .invalid-feedback {
