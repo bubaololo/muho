@@ -33,7 +33,8 @@ class DeliveryCostController extends Controller
             
             $deliveryCost = $tariff_response->getTotalSum() * 1.5;
             Session::put('cdek', $deliveryCost);
-        } catch (AntistressStore\CdekSDK2\Exceptions\CdekV2RequestException $exception) {
+        } catch (\Exception $exception) {
+            info('Исключение и сдэка' . $exception->getMessage());
             Session::put('cdek', 'fail');
         }
         
@@ -93,3 +94,5 @@ class DeliveryCostController extends Controller
     }
     
 }
+
+//Краснодарский край, Сочи, причал № 6

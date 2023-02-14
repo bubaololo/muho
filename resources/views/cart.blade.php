@@ -520,7 +520,7 @@
 
               if(address && addressIsValid && delivery) {
                 swiper.allowSlideNext = true
-                swiper.slideNext()
+                // swiper.slideNext()
               } else {
                 swiper.allowSlideNext = false
               }
@@ -539,7 +539,7 @@
 
             if(address && addressIsValid && delivery) {
               swiper.allowSlideNext = true
-              swiper.slideNext()
+              // swiper.slideNext()
             } else {
               swiper.allowSlideNext = false
             }
