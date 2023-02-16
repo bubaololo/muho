@@ -645,7 +645,7 @@ body {
     color: rgba(17, 17, 17, 0.48);
 }
 
-.quest__textarea {
+.quest__input {
     padding: 25px;
     background-color: #fbfbfb;
     border-radius: 4px;
@@ -657,11 +657,11 @@ body {
 }
 
 
-.quest__textarea::-webkit-resizer {
-    background-repeat: no-repeat;
-    background-size: 70%;
-    background-image: url(/images/tmpimg/corner.svg);
-}
+/*.quest__textarea::-webkit-resizer {*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: 70%;*/
+/*    background-image: url(/images/tmpimg/corner.svg);*/
+/*}*/
 
 .quest .swiper-slide {
     display: block;

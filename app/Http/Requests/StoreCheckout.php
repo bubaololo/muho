@@ -28,10 +28,10 @@ class StoreCheckout extends FormRequest
         'user_id' => 'nullable|exists:users,user_id',
         'address' => 'required',
         'deliveryType' => 'required|in:sdek,post',
-        'name' => 'bail|alpha|required|max:50|string',
-        'surname' => 'alpha_dash|required|max:50|string',
-        'middle_name' => 'alpha|required|max:50|string',
-        'telephone' => 'required|regex:/^[\d\+\(\)\-]+$/',
+        'name' => 'required|max:50|string',
+        'surname' => 'required|max:50|string',
+        'middle_name' => 'required|max:50|string',
+        'telephone' => 'required|min:7|regex:/^[\d\+\(\)\-]+$/',
     
         ];
     }
@@ -45,7 +45,6 @@ class StoreCheckout extends FormRequest
     {
         return [
             'deliveryType.required' => 'Выберите тип доставки',
-            'address.required' => 'Заполните адрес доставки',
             'address.required' => 'Заполните адрес доставки',
             'telephone.required' => 'Укажите номер телефона',
             'telephone.regex' => 'Телефон может содержать цифры,"+" скобки и тире',

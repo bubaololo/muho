@@ -7,7 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title','Купить сибирские мухоморы')</title>
+    <meta name="description" content="@yield('meta_description','Мухомор купить | мухомор красный | микродозинг мухомора | сушёные мухоморы')">
+    <meta name="keywords" content="@yield('meta_keywords','мухомор купить, красный мухомор, микродозинг мухомора, купить сушёные мухоморы')">
+    <link rel="canonical" href="{{url()->current()}}"/>
     <link rel="icon" type="image/x-icon" href="favicon32.png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

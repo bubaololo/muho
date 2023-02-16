@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Order;
 use App\Models\Credential;
 use App\Models\OrderProduct;
@@ -12,13 +13,14 @@ class CheckoutController extends Controller
 {
     
     protected $validationRules = ['user_id' => 'nullable|exists:users,user_id',
-            'name' => 'bail|alpha|required|max:50|string',
-            'surname' => 'alpha_dash|required|max:50|string',
-            'middle_name' => 'alpha|required|max:50|string',
-            'address' => 'required',
-            'telephone' => 'integer'
-        ];
-    
+        'name' => 'bail|alpha|required|max:50|string',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+        'surname' => 'alpha_dash|required|max:50|string',
+        'middle_name' => 'alpha|required|max:50|string',
+        'address' => 'required',
+        'telephone' => 'integer'
+    ];
     
     public function index()
     {
@@ -69,19 +71,18 @@ class CheckoutController extends Controller
         $itemCounter = 0;
         foreach ($cartItems as $item) {
             $itemCounter++;
-            $cartItemsString = $cartItemsString . $itemCounter. "\r\n";
-            $cartItemsString = $cartItemsString . $item['name']. "\r\n" .
-              'Кол-во: ' . $item['quantity']. "\r\n" .
-                'Вес: ' . $item['attributes']['weight']. "\r\n"
-            ;
+            $cartItemsString = $cartItemsString . $itemCounter . "\r\n";
+            $cartItemsString = $cartItemsString . $item['name'] . "\r\n" .
+                'Кол-во: ' . $item['quantity'] . "\r\n" .
+                'Вес: ' . $item['attributes']['weight'] . "\r\n";
         }
-        $deliveryDataString =   'Адрес: '.$deliveryInfo['address'] . "\r\n" .
-            'квартира: '.$deliveryInfo['apartment'] . "\r\n" .
-            'коммент: '.$deliveryInfo['comment'] . "\r\n" .
-            'ФИО: '.$deliveryInfo['name'] .' ' . $deliveryInfo['surname'] . ' ' . $deliveryInfo['middle_name'] . "\r\n" .
-            'телефон: '.$deliveryInfo['telephone'] . "\r\n" .
-            'способ оплаты: '.$deliveryInfo['pay'];
-            
+        $deliveryDataString = 'Адрес: ' . $deliveryInfo['address'] . "\r\n" .
+            'квартира: ' . $deliveryInfo['apartment'] . "\r\n" .
+            'коммент: ' . $deliveryInfo['comment'] . "\r\n" .
+            'ФИО: ' . $deliveryInfo['name'] . ' ' . $deliveryInfo['surname'] . ' ' . $deliveryInfo['middle_name'] . "\r\n" .
+            'телефон: ' . $deliveryInfo['telephone'] . "\r\n" .
+            'способ оплаты: ' . $deliveryInfo['pay'];
+
 //        $tg = app()->make('App\Services\TelegramService');
 //        $tg->sendMessage('новый заказ!, номер заказа: ' . $orderNum . "\r\n" . "\r\n" .
 //            'Товары:' . "\r\n" .
@@ -89,7 +90,7 @@ class CheckoutController extends Controller
 //            'Инфа для доставки: ' . "\r\n" .
 //            $deliveryDataString
 //        );
-        
+
 //        store data
         
         $credential = Credential::create([
@@ -100,7 +101,7 @@ class CheckoutController extends Controller
             'apartment' => $deliveryInfo['apartment'],
             'comment' => $deliveryInfo['comment'],
             'tel' => $deliveryInfo['telephone'],
-
+        
         ]);
         
         $order = Order::create([
@@ -108,21 +109,20 @@ class CheckoutController extends Controller
             'credential_id' => $credential->id,
             'total' => $total,
             'subtotal' => $subtotal,
-            'delivery'=> $deliveryType,
-            'delivery_cost'=> $deliveryPrice,
-            'comment'=> $deliveryInfo['comment'],
+            'delivery' => $deliveryType,
+            'delivery_cost' => $deliveryPrice,
+            'comment' => $deliveryInfo['comment'],
         ]);
-    
-        if (Auth::check())
-        {
+        
+        if (Auth::check()) {
             $user_id = Auth::user()->id;
             $order->user_id = $user_id;
             $order->save();
             
             $currentUserCredentials = Credential::where('user_id', $user_id)->first();
-            if(!$currentUserCredentials){
-            $credential->user_id = $user_id;
-            $credential->save();
+            if (!$currentUserCredentials) {
+                $credential->user_id = $user_id;
+                $credential->save();
             }
         }
         
@@ -133,7 +133,6 @@ class CheckoutController extends Controller
             $products->quantity = $item['quantity'];
             $products->save();
         }
-        
         
         
         \Cart::clear();

@@ -116,9 +116,9 @@
                                                     class="quest__slides swiper-wrapper" action="/checkout">
                                             @csrf
 
-                                                <!-- ________SLIDE -->
+                                            <!-- ________SLIDE -->
                                                 <div id="adress-slide" class="swiper-slide address-slide">
-                                                    <div class="quest__slide">
+                                                    <div class="quest__input-group">
                                                         <div class="quest__slide_title_wrapper">
                                                             <div class="quest__slide_title">
                                                                 Адрес
@@ -128,7 +128,7 @@
 
                                                         </div>
                                                         <div class="quest__slide_forms_wrapper">
-                                                            <div class="quest__input">
+                                                            <div class="quest__input-group">
                                                                 {{--<label for="name">Куда отправить ваши грибы</label>--}}
                                                                 {{--<p>Город, улица, дом</p>--}}
                                                                 <div class="address">
@@ -153,16 +153,16 @@
                                                                 <div id="messageHeader"></div>
                                                                 <div id="message"></div>
                                                             </div>
-                                                            <div class="quest__input">
+                                                            <div class="quest__input-group">
                                                                 <label for="apartment">Квартира</label>
                                                                 <input type="text" id="apartment" name="apartment"
-                                                                        class="quest__textarea" value="@isset($credentials['apartment']) {{ $credentials['apartment'] }} @endisset"
+                                                                        class="quest__input" value="@isset($credentials['apartment']) {{ $credentials['apartment'] }} @endisset"
                                                                         placeholder="56">
                                                             </div>
 
-                                                            <div class="quest__input">
+                                                            <div class="quest__input-group">
                                                                 <label for="street">Комментарий</label>
-                                                                <input type="text" id="comment" name="comment" class="quest__textarea"
+                                                                <input type="text" id="comment" name="comment" class="quest__input"
                                                                         value="@isset($credentials['comment']) {{ $credentials['comment'] }} @endisset" placeholder="любые уточнения">
                                                             </div>
                                                             @livewire('delivery-selector')
@@ -175,25 +175,25 @@
                                                     <div class="map-mask"></div>
                                                 </div>
                                                 <!-- ________SLIDE -->
-                                                {{--<div class="swiper-slide">--}}
-                                                {{--    <div class="quest__slide">--}}
-                                                {{--        <div class="quest__slide_title_wrapper">--}}
-                                                {{--            <div class="quest__slide_title">--}}
-                                                {{--                Оформить заказ--}}
-                                                {{--            </div>--}}
-                                                {{--        </div>--}}
+                                            {{--<div class="swiper-slide">--}}
+                                            {{--    <div class="quest__slide">--}}
+                                            {{--        <div class="quest__slide_title_wrapper">--}}
+                                            {{--            <div class="quest__slide_title">--}}
+                                            {{--                Оформить заказ--}}
+                                            {{--            </div>--}}
+                                            {{--        </div>--}}
 
-                                                {{--        @livewire('delivery-selector')--}}
+                                            {{--        @livewire('delivery-selector')--}}
 
 
 
-                                                {{--    </div>--}}
-                                                {{--    <div class="quest__slider_buttons_wrapper">--}}
-                                                {{--        <div class="quest__next quest__button">Вперёд</div>--}}
-                                                {{--        <div class="quest__prev quest__button">Назад</div>--}}
-                                                {{--    </div>--}}
-                                                {{--</div>--}}
-                                                <!-- ________SLIDE -->
+                                            {{--    </div>--}}
+                                            {{--    <div class="quest__slider_buttons_wrapper">--}}
+                                            {{--        <div class="quest__next quest__button">Вперёд</div>--}}
+                                            {{--        <div class="quest__prev quest__button">Назад</div>--}}
+                                            {{--    </div>--}}
+                                            {{--</div>--}}
+                                            <!-- ________SLIDE -->
                                                 <div class="swiper-slide">
                                                     <div class="quest__slide">
                                                         <div class="quest__slide_title_wrapper">
@@ -206,34 +206,77 @@
                                                             <div class="redline"></div>
                                                         </div>
                                                         <div class="quest__slide_forms_wrapper">
-                                                            <div class="quest__input">
+                                                            <div class="quest__input-group">
                                                                 <label for="name">Имя</label>
-                                                                <input type="text" id="name" name="name" class="quest__textarea"
+                                                                <input type="text" id="name" name="name" class="quest__input"
                                                                         value="@isset($credentials['name']) {{ $credentials['name'] }} @endisset" placeholder="Иван">
                                                             </div>
-                                                            <div class="quest__input">
+                                                            <div class="quest__input-group">
                                                                 <label for="surname">Фамилия</label>
-                                                                <input type="text" id="surname" name="surname" class="quest__textarea"
+                                                                <input type="text" id="surname" name="surname" class="quest__input"
                                                                         value="@isset($credentials['surname']) {{ $credentials['surname'] }} @endisset" placeholder="Иванов">
 
                                                             </div>
-                                                            <div class="quest__input">
+                                                            <div class="quest__input-group">
                                                                 <label for="middle_name">Отчество</label>
                                                                 <input type="text" id="middle_name" name="middle_name"
-                                                                        class="quest__textarea"
+                                                                        class="quest__input"
                                                                         value="@isset($credentials['middle_name']) {{ $credentials['middle_name'] }} @endisset" placeholder="Иванович">
                                                             </div>
-                                                            <div class="quest__input">
-                                                                <label for="middle_name">Телефон</label>
+                                                            <div class="quest__input-group">
+                                                                <label for="tel">Телефон</label>
                                                                 <input type="tel" id="tel" name="telephone"
-                                                                        class="quest__textarea"
+                                                                        class="quest__input"
                                                                         value="@isset($credentials['tel']) {{ $credentials['tel'] }} @endisset" placeholder="89000000000">
                                                             </div>
 
                                                         </div>
                                                     </div>
                                                     <div class="quest__slider_buttons_wrapper">
-                                                        <div class="quest__next quest__button">Далее</div>
+                                                        <div id="credentials-button" class="quest__next quest__button">Далее</div>
+                                                        <div class="quest__prev quest__button">Назад</div>
+                                                    </div>
+                                                </div>
+                                                <!-- ________SLIDE -->
+                                                <div class="swiper-slide">
+                                                    <div class="quest__slide">
+                                                        <div class="quest__slide_title_wrapper">
+                                                            <div class="quest__slide_title">
+                                                                Регистрация и контакты
+                                                            </div>
+                                                            <div class="quest__slide_subtitle">
+                                                                Предпочтительный способ связи
+                                                            </div>
+                                                            <div class="redline"></div>
+                                                        </div>
+                                                        <div class="quest__slide_forms_wrapper">
+                                                            <div class="quest__input-group">
+                                                                <label for="email">Email</label>
+                                                                <input type="text" id="email" name="email" class="quest__input"
+                                                                        value="@isset($credentials['email']) {{ $credentials['email'] }} @endisset" placeholder="mail@mail.com">
+                                                            </div>
+                                                            <div class="quest__input-group">
+                                                                <label for="password">пароль</label>
+                                                                <input type="password" id="password" name="password" class="quest__input"
+                                                                         >
+                                                            </div>
+                                                            <div class="quest__input-group">
+                                                                <label for="telegram">Отчество</label>
+                                                                <input type="text" id="telegram" name="telegram"
+                                                                        class="quest__input"
+                                                                        value="@isset($credentials['telegram']) {{ $credentials['telegram'] }} @endisset" placeholder="@username">
+                                                            </div>
+                                                            <div class="quest__input-group">
+                                                                <label for="whatsapp">Whatsapp</label>
+                                                                <input type="whatsapp" id="whatsapp" name="telephone"
+                                                                        class="quest__input"
+                                                                        value="@isset($credentials['whatsapp']) {{ $credentials['whatsapp'] }} @endisset" placeholder="89000000000">
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="quest__slider_buttons_wrapper">
+                                                        <div id="credentials-button" class="quest__next quest__button">Далее</div>
                                                         <div class="quest__prev quest__button">Назад</div>
                                                     </div>
                                                 </div>
@@ -248,7 +291,7 @@
                                                         </div>
                                                         <div class="quest__slide_forms_wrapper">
 
-                                                            <div class="quest__input">
+                                                            <div class="quest__input-group">
                                                                 <label for="name">Способ оплаты</label>
                                                                 <fieldset>
                                                                     <legend>Выберите один из доступных способов оплаты:</legend>
@@ -282,6 +325,7 @@
                                         </div>
 
                                     </section>
+                                </div>
                             </section>
                         </div>
 
@@ -362,7 +406,7 @@
                     if (error) {
                       showError(error);
                       showMessage(hint);
-                       addressIsValid = false;
+                      addressIsValid = false;
                     } else {
                       showResult(obj);
                     }
@@ -390,8 +434,8 @@
                       }),
                       headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                      },
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                      }
                     })
                         .then((response) => {
                           // console.log(response)
@@ -428,21 +472,23 @@
                   createMap(mapState, shortAddress);
                   // Выводим сообщение под картой.
                   showFullMessage(address);
-                  setTimeout(function(){
+                  setTimeout(function() {
                     Livewire.emit('delivery_price_set');
                   }, 1500);
 
                 }
+
                 let addressRetryCount = 0;
+
                 function showError(message) {
-                  if(addressRetryCount == 0) {
+                  if (addressRetryCount == 0) {
                     geocode();
-                    setTimeout(function(){
+                    setTimeout(function() {
                       $('#button').trigger('click');
                     }, 1000);
                     addressRetryCount = 1;
                   }
-                   addressIsValid = false;
+                  addressIsValid = false;
                   $('#messageHeader').text('');
                   $('#notice').text(message);
                   $('#suggest').addClass('input_error');
@@ -507,51 +553,46 @@
         @endif
         <!-- Laravel Javascript Validation -->
         <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{{--        {!! $validator->selector('#quest_form') !!}--}}
+        {{--        {!! $validator->selector('#quest_form') !!}--}}
         {!! JsValidator::formRequest('App\Http\Requests\StoreCheckout', '#quest_form'); !!}
         <script>
           //intermediate validation
+          const form = $("#quest_form");
+
+          function checkIfAllFieldsValidated(condition) {
+            if (condition) {
+              swiper.allowSlideNext = true
+              swiper.slideNext()
+              swiper.allowSlideNext = false
+            } else {
+              swiper.allowSlideNext = false
+            }
+          }
+
+
           document.getElementById('address-button').addEventListener('click', () => {
-            address = $("#quest_form").validate().element('#suggest');
-            delivery = $("#quest_form").validate().element('#sdek');
-
-              if(address && addressIsValid && delivery) {
-                if(swiper.allowSlideNext === false){
-                swiper.allowSlideNext = true
-                swiper.slideNext()
-                }
-              } else {
-                swiper.allowSlideNext = false
-              }
-          });
-
-          document.getElementById('address-button').addEventListener('click', () => {
-            address = $("#quest_form").validate().element('#suggest');
-            delivery = $("#quest_form").validate().element('#sdek');
-
-            if(address && !addressIsValid) {
+            let address = form.validate().element('#suggest');
+            let delivery = form.validate().element('#sdek');
+            let addressCondition = address && addressIsValid && delivery;
+            if (address && !addressIsValid) {
               $('#notice').text('некорректный или неполный адрес');
               $('#suggest').addClass('input_error');
               $('#notice').css('display', 'block');
             }
+            checkIfAllFieldsValidated(addressCondition);
 
-
-            if(address && addressIsValid && delivery) {
-
-              if(swiper.allowSlideNext == false) {
-                swiper.slideNext()
-                swiper.allowSlideNext = true
-                console.log('залетел в проверку')
-              }
-              swiper.allowSlideNext = true
-
-            } else {
-              swiper.allowSlideNext = false
-            }
           });
 
+          document.getElementById('credentials-button').addEventListener('click', () => {
 
+            let name = form.validate().element('#name');
+            let surname = form.validate().element('#surname');
+            let middle_name = form.validate().element('#middle_name');
+            let tel = form.validate().element('#tel');
+            let credentialsCondition = name && surname && middle_name && tel;
+            checkIfAllFieldsValidated(credentialsCondition);
 
+          }, 10);
         </script>
     @endpush
 @endsection
