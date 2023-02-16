@@ -516,8 +516,10 @@
             delivery = $("#quest_form").validate().element('#sdek');
 
               if(address && addressIsValid && delivery) {
+                if(swiper.allowSlideNext === false){
                 swiper.allowSlideNext = true
-                // swiper.slideNext()
+                swiper.slideNext()
+                }
               } else {
                 swiper.allowSlideNext = false
               }
@@ -547,6 +549,7 @@
               swiper.allowSlideNext = false
             }
           });
+
 
 
         </script>
