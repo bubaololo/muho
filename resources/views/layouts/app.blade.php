@@ -84,8 +84,8 @@
                     {{--                                    <li class="menu-item"><a href="#latest-blog" class="nav-link"--}}
                     {{--                                                             data-effect="Articles">Articles</a>--}}
                     {{--                                    </li>--}}
-                    <li class="menu-item"><a class="nav-link"
-                                data-effect="Contact">Контакты</a></li>
+                    <li class="menu-item"><a href="{{ route('posts.list') }}" class="nav-link"
+                                data-effect="Contact">Статьи</a></li>
                     @auth
                         <a href="{{ route('home') }}" class="user-account for-buy"><i
                                     class="icon icon-user"></i><span>Профиль</span></a>
@@ -152,7 +152,7 @@
         </div>
     </div>
 </header>
-</div><!--header-wrap-->
+<!--header-wrap-->
 <div class="content-wrapper">
     @yield('content')
 </div>
