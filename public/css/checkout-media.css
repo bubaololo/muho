@@ -263,7 +263,7 @@
   .quest__input {
     margin-bottom: 20px;
   }
-  .quest__textarea {
+  .quest__input {
     padding: 15px;
   }
   .quest__slider_buttons_wrapper {
@@ -282,9 +282,7 @@
   .quest__next::after {
     display: none;
   }
-  .quest__textarea {
-    resize: none;
-}
+
 .eng__main_banner_wrapper {
   padding: 20px 15px;
 }
