@@ -6,7 +6,7 @@
             <div class="row">
 
                 <div class="col-md-6">
-                    <a href="#" class="product-image"><img src="{{ asset($product->image) }}"></a>
+                    <a href="#" class="product-image"><img src="{{ asset(Storage::url($product->image)) }}"></a>
                 </div>
 
                 <div class="col-md-6 pl-5">

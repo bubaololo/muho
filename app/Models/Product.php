@@ -22,11 +22,8 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }
     
-    protected function image(): Attribute
+    protected function image_path(): Attribute
     {
-//        return Attribute::make(
-//            get: fn ($value) => 'images/tmpimg/'.$value,
-//        );
         return Attribute::make(
             get: fn ($value) => Storage::url($value),
         );

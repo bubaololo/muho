@@ -46,7 +46,7 @@
                                         <div class="cart-item__inner">
 
                                             <a href="/product/{{ $item->id }}" class="cart-item__img">
-                                                <img src="{{ asset($item->attributes->image) }}"
+                                                <img src="{{ asset(Storage::url($item->attributes->image)) }}"
                                                         class="rounded-3"
                                                         alt="Мухомор">
                                             </a>

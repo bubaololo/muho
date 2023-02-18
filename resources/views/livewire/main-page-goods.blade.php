@@ -3,7 +3,7 @@
         @foreach ($products as $product)
             <a href="/product/{{ $product->id }}" class="col-md-3 product__card">
                 <figure class="product-style">
-                    <img src="{{ asset($product->image) }}" alt="muhomor" class="product-item">
+                    <img src="{{ asset(Storage::url($product->image)) }}" alt="muhomor" class="product-item">
                     @csrf
                     <input type="hidden" value="{{ $product->name }}" name="name">
                     <input type="hidden" value="{{ $product->id }}" name="id">
@@ -18,7 +18,7 @@
                         <input type="hidden" value="{{ $product->name }}" name="name">
                         <input type="hidden" value="{{ $product->price }}" name="price">
                         <input type="hidden" value="{{ $product->weight }}" name="weight">
-                        <input type="hidden" value="{{ $product->image }}" name="image">
+                        <input type="hidden" value="{{ Storage::url($product->image) }}" name="image">
                         <input type="hidden" value="1" name="quantity">
                         <button class="add-to-cart" data-product-tile="add-to-cart">в корзину</button>
                     </form>
