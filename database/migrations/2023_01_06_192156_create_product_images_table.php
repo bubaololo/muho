@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product_images', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('product_id')
                 ->constrained()
                 ->onUpdate('cascade')
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->string('file');
             $table->string('alt')->nullable();
             $table->boolean('primary')->default(false);
+            $table->unique(['product_id', 'primary']);
             $table->timestamps();
         });
     }
