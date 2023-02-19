@@ -239,48 +239,48 @@
                                                     </div>
                                                 </div>
                                                 <!-- ________SLIDE -->
-                                                <div class="swiper-slide">
-                                                    <div class="quest__slide">
-                                                        <div class="quest__slide_title_wrapper">
-                                                            <div class="quest__slide_title">
-                                                                Регистрация и контакты
-                                                            </div>
-                                                            <div class="quest__slide_subtitle">
-                                                                Предпочтительный способ связи
-                                                            </div>
-                                                            <div class="redline"></div>
-                                                        </div>
-                                                        <div class="quest__slide_forms_wrapper">
-                                                            <div class="quest__input-group">
-                                                                <label for="email">Email</label>
-                                                                <input type="text" id="email" name="email" class="quest__input"
-                                                                        value="@isset($credentials['email']) {{ $credentials['email'] }} @endisset" placeholder="mail@mail.com">
-                                                            </div>
-                                                            <div class="quest__input-group">
-                                                                <label for="password">пароль</label>
-                                                                <input type="password" id="password" name="password" class="quest__input"
-                                                                         >
-                                                            </div>
-                                                            <div class="quest__input-group">
-                                                                <label for="telegram">Отчество</label>
-                                                                <input type="text" id="telegram" name="telegram"
-                                                                        class="quest__input"
-                                                                        value="@isset($credentials['telegram']) {{ $credentials['telegram'] }} @endisset" placeholder="@username">
-                                                            </div>
-                                                            <div class="quest__input-group">
-                                                                <label for="whatsapp">Whatsapp</label>
-                                                                <input type="whatsapp" id="whatsapp" name="telephone"
-                                                                        class="quest__input"
-                                                                        value="@isset($credentials['whatsapp']) {{ $credentials['whatsapp'] }} @endisset" placeholder="89000000000">
-                                                            </div>
+                                                {{--<div class="swiper-slide">--}}
+                                                {{--    <div class="quest__slide">--}}
+                                                {{--        <div class="quest__slide_title_wrapper">--}}
+                                                {{--            <div class="quest__slide_title">--}}
+                                                {{--                Регистрация и контакты--}}
+                                                {{--            </div>--}}
+                                                {{--            <div class="quest__slide_subtitle">--}}
+                                                {{--                Предпочтительный способ связи--}}
+                                                {{--            </div>--}}
+                                                {{--            <div class="redline"></div>--}}
+                                                {{--        </div>--}}
+                                                {{--        <div class="quest__slide_forms_wrapper">--}}
+                                                {{--            <div class="quest__input-group">--}}
+                                                {{--                <label for="email">Email</label>--}}
+                                                {{--                <input type="text" id="email" name="email" class="quest__input"--}}
+                                                {{--                        value="@isset($credentials['email']) {{ $credentials['email'] }} @endisset" placeholder="mail@mail.com">--}}
+                                                {{--            </div>--}}
+                                                {{--            <div class="quest__input-group">--}}
+                                                {{--                <label for="password">пароль</label>--}}
+                                                {{--                <input type="password" id="password" name="password" class="quest__input"--}}
+                                                {{--                         >--}}
+                                                {{--            </div>--}}
+                                                {{--            <div class="quest__input-group">--}}
+                                                {{--                <label for="telegram">Отчество</label>--}}
+                                                {{--                <input type="text" id="telegram" name="telegram"--}}
+                                                {{--                        class="quest__input"--}}
+                                                {{--                        value="@isset($credentials['telegram']) {{ $credentials['telegram'] }} @endisset" placeholder="@username">--}}
+                                                {{--            </div>--}}
+                                                {{--            <div class="quest__input-group">--}}
+                                                {{--                <label for="whatsapp">Whatsapp</label>--}}
+                                                {{--                <input type="whatsapp" id="whatsapp" name="telephone"--}}
+                                                {{--                        class="quest__input"--}}
+                                                {{--                        value="@isset($credentials['whatsapp']) {{ $credentials['whatsapp'] }} @endisset" placeholder="89000000000">--}}
+                                                {{--            </div>--}}
 
-                                                        </div>
-                                                    </div>
-                                                    <div class="quest__slider_buttons_wrapper">
-                                                        <div id="credentials-button" class="quest__next quest__button">Далее</div>
-                                                        <div class="quest__prev quest__button">Назад</div>
-                                                    </div>
-                                                </div>
+                                                {{--        </div>--}}
+                                                {{--    </div>--}}
+                                                {{--    <div class="quest__slider_buttons_wrapper">--}}
+                                                {{--        <div id="credentials-button" class="quest__next quest__button">Далее</div>--}}
+                                                {{--        <div class="quest__prev quest__button">Назад</div>--}}
+                                                {{--    </div>--}}
+                                                {{--</div>--}}
                                                 <!-- ________SLIDE -->
                                                 <div class="swiper-slide">
                                                     <div class="quest__slide">
