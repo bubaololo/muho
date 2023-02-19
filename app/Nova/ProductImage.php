@@ -3,8 +3,11 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class ProductImage extends Resource
@@ -41,8 +44,11 @@ class ProductImage extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
-            Image::make('Картинка','image')->disk('public'),
+//            ID::make()->hideFromIndex(),
+            BelongsTo::make('Product')->dontReorderAssociatables(),
+            Image::make('Картинка','file')->disk('public'),
+            Text::make('Alt','alt'),
+            Boolean::make('Главная','primary')
         ];
     }
 

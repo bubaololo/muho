@@ -47,5 +47,14 @@ class Product extends Model
             get: fn ($value) => Storage::url($value),
         );
     }
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $image = $this->productImage()->where('primary', true)->first();
+                return $image?->file;
+            }
+        );
+    }
 
 }

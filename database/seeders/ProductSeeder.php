@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -45,9 +46,37 @@ class ProductSeeder extends Seeder
                 'image' => '100.jpg',
             ],
         ];
+        
         foreach ($products as &$product) {
             $product['slug'] = Str::slug($product['name'].$product['weight'].'gramm'.$product['price'].'rub');
         }
         Product::insert($products);
+        $images = [
+            [
+                'product_id' => 1,
+                'primary' => true,
+                'alt' => 'Целые шляпки в вакуумной упаковке, собраны в экологически чистых лесах западной сибири, высушены при комнатной температуре',
+                'file' => '20.jpg',
+            ],
+            [
+                'product_id' => 2,
+                'primary' => true,
+                'alt' => 'Целые шляпки в вакуумной упаковке, собраны в экологически чистых лесах западной сибири, высушены при комнатной температуре',
+                'file' => '30.jpg',
+            ],
+            [
+                'product_id' => 3,
+                'primary' => true,
+                'alt' => 'Целые шляпки в вакуумной упаковке, собраны в экологически чистых лесах западной сибири, высушены при комнатной температуре',
+                'file' => '50.jpg',
+            ],
+            [
+                'product_id' => 4,
+                'primary' => true,
+                'alt' => 'Целые шляпки в вакуумной упаковке, собраны в экологически чистых лесах западной сибири, высушены при комнатной температуре',
+                'file' => '100.jpg',
+            ],
+        ];
+        ProductImage::insert($images);
     }
 }
