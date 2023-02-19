@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@section('title', $product->name)
+@section('meta_description', $product->name. " c быстрой доставкой по России и миру, ценa: ".$product->price." рублей" )
 @section('content')
     <section class="bg-sand padding-large">
         <div class="container">

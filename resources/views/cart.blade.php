@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@section('title', 'Корзина')
+@section('meta_description', 'Купить красный мухомор')
 @section('content')
     @push('styles')
         <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}"/>
