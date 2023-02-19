@@ -55,6 +55,7 @@ class Product extends Resource
             Text::make('Название','name')->sortable(),
             Text::make('Цена','price')->sortable(),
             Text::make('Вес','weight')->sortable(),
+//            Text::make('Мета тег description','meta_description'),
             Text::make('Описание','description')->sortable(),
             Image::make('Картинка','image')->disk('public'),
 //            BelongsToMany::make('Order')->fields(new OrderProductFields),

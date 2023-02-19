@@ -35,7 +35,9 @@ class Post extends Resource
         'title',
         'slug',
     ];
-    
+    public static function label() {
+        return 'Статьи';
+    }
     /**
      * Get the fields displayed by the resource.
      *

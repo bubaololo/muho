@@ -1,7 +1,7 @@
 <div class="product-list" >
     <div class="row">
         @foreach ($products as $product)
-            <a href="/product/{{ $product->id }}" class="col-md-3 product__card">
+            <a href="/product/{{ $product->slug }}" class="col-md-3 product__card">
                 <figure class="product-style">
                     <img src="{{ asset(Storage::url($product->image)) }}" alt="muhomor" class="product-item">
                     @csrf

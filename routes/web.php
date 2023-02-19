@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('products', [ProductController::class, 'productList'])->name('products.list');
-Route::get('product/{id}', [ProductController::class, 'singleProduct'])->name('single.product');
+Route::get('product/{slug}', [ProductController::class, 'singleProduct'])->name('single.product');
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
 Route::get('cart/{id}', [BuyNowController::class, 'buySpecificProduct'])->name('cart.now');
 Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');

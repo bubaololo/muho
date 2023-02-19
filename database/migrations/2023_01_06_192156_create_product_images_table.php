@@ -19,6 +19,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('file');
+            $table->string('alt')->nullable();
             $table->boolean('primary')->default(false);
             $table->timestamps();
         });

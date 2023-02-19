@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -16,12 +17,26 @@ class Product extends Model
         'price',
         'image',
         'description',
+        'slug',
     ];
     
     public function orders(){
         return $this->belongsToMany(Order::class);
     }
     
+    public function slugify()
+    {
+        $this->slug = Str::slug($this->name.$this->weight.'gramm'.$this->price.'rub');
+    }
+    
+    public static function boot()
+    {
+        parent::boot();
+        
+        static::saving(function ($product) {
+            $product->slugify();
+        });
+    }
     protected function image_path(): Attribute
     {
         return Attribute::make(

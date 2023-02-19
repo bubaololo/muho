@@ -12,11 +12,10 @@ class ProductController extends Controller
 
         return view('products', compact('products'));
     }
-    public function singleProduct($id)
+    public function singleProduct($slug)
     {
-        $product = Product::find($id);
+        $product = Product::where('slug', $slug)->firstOrFail();
         return view('product', compact('product'));
     }
-
-
+    
 }
