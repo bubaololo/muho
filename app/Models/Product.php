@@ -24,6 +24,10 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }
     
+    public function productImage() {
+        return $this->hasMany(ProductImage::class);
+    }
+    
     public function slugify()
     {
         $this->slug = Str::slug($this->name.$this->weight.'gramm'.$this->price.'rub');

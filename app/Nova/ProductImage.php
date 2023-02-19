@@ -3,30 +3,19 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
-use Illuminate\Support\Facades\Storage;
-use Laravel\Nova\Fields\File;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use  App\Nova\OrderProductFields;
 
-class Product extends Resource
+class ProductImage extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Product::class;
-    
-    public static function label() {
-        return 'Товары';
-    }
-    
+    public static $model = \App\Models\ProductImage::class;
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
@@ -53,14 +42,7 @@ class Product extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Название','name')->sortable(),
-            Text::make('Цена','price')->sortable(),
-            Text::make('Вес','weight')->sortable(),
-//            Text::make('Мета тег description','meta_description'),
-            Text::make('Описание','description')->sortable(),
             Image::make('Картинка','image')->disk('public'),
-            HasMany::make('ProductImage')
-//            BelongsToMany::make('Order')->fields(new OrderProductFields),
         ];
     }
 
