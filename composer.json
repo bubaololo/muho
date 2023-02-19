@@ -20,7 +20,8 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "livewire/livewire": "^2.10",
-        "proengsoft/laravel-jsvalidation": "^4.7"
+        "proengsoft/laravel-jsvalidation": "^4.7",
+        "spatie/laravel-sitemap": "^6.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
