@@ -30,25 +30,6 @@
                             <img class="picture" src="images/tmpimg/muhomor_fallback.png" srcset="images/tmpimg/muhomor_fallback.png 2x" alt="Мухомор" width="700" height="700">
                         </picture>
 
-                        {{--                    <div class="slider-item">--}}
-                        {{--                        <div class="banner-content">--}}
-                        {{--                            <h2 class="banner-title">Birds gonna be Happy</h2>--}}
-                        {{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero--}}
-                        {{--                                ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a--}}
-                        {{--                                eu.</p>--}}
-                        {{--                            <div class="btn-wrap">--}}
-                        {{--                                <a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i--}}
-                        {{--                                        class="icon icon-ns-arrow-right"></i></a>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div><!--banner-content-->--}}
-                        {{--                        <img src="images/dry1.png" alt="banner" class="banner-image">--}}
-                        {{--                    </div><!--slider-item-->--}}
-
-                        {{--                </div><!--slider-->--}}
-
-                        {{--                <button class="next slick-arrow">--}}
-                        {{--                    <i class="icon icon-arrow-right"></i>--}}
-                        {{--                </button>--}}
 
                     </div>
                 </div>
@@ -59,7 +40,49 @@
     {{--<section id="client-holder" data-aos="fade-up">--}}
 
     {{--</section>--}}
+    <section id="best-selling">
 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <figure class="products-thumb" data-aos="fade-right">
+                                <img src="{{ Storage::url($buyNowProduct->image) }}" alt="Красный мухомор купить" class="single-image">
+                            </figure>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="product-entry" data-aos="fade-left">
+                                <h2 class="section-title divider">Для тех кто хочет попробовать в первый раз</h2>
+
+                                <div class="products-content">
+                                    <div class="author-name">{{  $buyNowProduct->name  }}</div>
+                                    <h3 class="item-title">{{  $buyNowProduct->weight  }}г.</h3>
+                                    <p>{{  $buyNowProduct->description  }}</p>
+                                    <div class="item-price">{{  $buyNowProduct->price  }}р.</div>
+                                    <div class="btn-wrap">
+
+
+
+                                        <a href="cart/1" class="btn-accent-arrow gradient">купить сейчас <i
+                                                    class="icon icon-ns-arrow-right"></i></a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- / row -->
+
+                </div>
+
+            </div>
+        </div>
+    </section>
     <section class="packaging">
         <div class="container">
             <div class="row">
@@ -89,49 +112,7 @@
         </div>
     </section>
 
-    <section id="best-selling">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <figure class="products-thumb" data-aos="fade-right">
-                                <img src="images/dry1.png" alt="amanita" class="single-image">
-                            </figure>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="product-entry" data-aos="fade-left">
-                                <h2 class="section-title divider">Для тех кто хочет попробовать в первый раз</h2>
-
-                                <div class="products-content">
-                                    <div class="author-name">Шляпки целые, в вакууме</div>
-                                    <h3 class="item-title">20г.</h3>
-                                    <p>Правильно высушенные целые шляпки октябрьских мухоморов. Вы сами можете увидеть какого качества используются грибы. Оставляют выбор того, как именно вы будете их употреблять.</p>
-                                    <div class="item-price">2500 р.</div>
-                                    <div class="btn-wrap">
-
-
-
-                                            <a href="cart/1" class="btn-accent-arrow gradient">купить сейчас <i
-                                                        class="icon icon-ns-arrow-right"></i></a>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- / row -->
-
-                </div>
-
-            </div>
-        </div>
-    </section>
 
     {{--<section id="popular-books" class="bookshelf">--}}
     {{--    <div class="container">--}}
