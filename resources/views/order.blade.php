@@ -62,7 +62,7 @@
                                         <td>
                                             <div class="d-flex mb-2">
                                                 <div class="flex-shrink-0">
-                                                    <img src="{{ $item['attributes']['image'] }}" alt="" width="35" class="img-fluid">
+                                                    <img src="{{ Storage::url($item['attributes']['image']) }}" alt="" width="35" class="img-fluid">
                                                 </div>
                                                 <div class="flex-lg-grow-1 ms-3">
                                                     <h6 class="small mb-0"><a href="#" class="text-reset">{{ $item['name'] }}</a></h6>
