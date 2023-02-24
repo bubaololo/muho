@@ -8,8 +8,7 @@ class BuyNowController extends Controller
 {
     public function buySpecificProduct($id)
     {
-        $products = Product::all();
-        $product = $products[$id];
+        $product = Product::where('id', '=', $id)->first();
         
         \Cart::add([
             'id' => $product->id,

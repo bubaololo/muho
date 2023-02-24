@@ -66,7 +66,7 @@
 
 
 
-                                        <a href="cart/1" class="btn-accent-arrow gradient">купить сейчас <i
+                                        <a href="cart/{{  $buyNowProduct->id  }}" class="btn-accent-arrow gradient">купить сейчас <i
                                                     class="icon icon-ns-arrow-right"></i></a>
 
                                     </div>
