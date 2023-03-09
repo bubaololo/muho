@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\Credential;
 use App\Models\OrderProduct;
+use App\Models\Product;
 use JsValidator;
 
 class CartController extends Controller
@@ -14,19 +15,22 @@ class CartController extends Controller
     public function cartList()
     {
         $cartItems = \Cart::getContent();
-    
+        
         $user = Auth::user();
         
-        if($user) {
+        if ($user) {
             $credentialsCheck = $user->credential()->first();
-    
+            
             if ($credentialsCheck) {
                 $credentials = $credentialsCheck;
-                info($credentials);
                 return view('cart', compact('cartItems', 'credentials'));
             }
         }
-                $validator = JsValidator::make($this->validationRules);
+        $validator = JsValidator::make($this->validationRules);
+        foreach ($cartItems as $item) {
+            $productSlug = Product::find($item->id)->slug;
+            $item->slug = $productSlug;
+        }
         return view('cart', compact('cartItems', 'validator'));
     }
     
@@ -95,12 +99,12 @@ class CartController extends Controller
     {
         $validated = $request->validate(
             ['user_id' => 'nullable|exists:users,user_id',
-            'name' => 'bail|alpha|required|max:50|string',
-            'surname' => 'alpha_dash|required|max:50|string',
-            'middle_name' => 'alpha|required|max:50|string',
-            'address' => 'required',
-            'telephone' => 'integer'
-        ]);
+                'name' => 'bail|alpha|required|max:50|string',
+                'surname' => 'alpha_dash|required|max:50|string',
+                'middle_name' => 'alpha|required|max:50|string',
+                'address' => 'required',
+                'telephone' => 'integer'
+            ]);
 //        $validator = JsValidator::make($this->validationRules);
         
         $orderNum = rand(10000, 99999);
@@ -126,18 +130,17 @@ class CartController extends Controller
         $itemCounter = 0;
         foreach ($cartItems as $item) {
             $itemCounter++;
-            $cartItemsString = $cartItemsString . $itemCounter. "\r\n";
-            $cartItemsString = $cartItemsString . $item['name']. "\r\n" .
-                'Кол-во: ' . $item['quantity']. "\r\n" .
-                'Вес: ' . $item['attributes']['weight']. "\r\n"
-            ;
+            $cartItemsString = $cartItemsString . $itemCounter . "\r\n";
+            $cartItemsString = $cartItemsString . $item['name'] . "\r\n" .
+                'Кол-во: ' . $item['quantity'] . "\r\n" .
+                'Вес: ' . $item['attributes']['weight'] . "\r\n";
         }
-        $deliveryDataString =   'Адрес: '.$deliveryInfo['address'] . "\r\n" .
-            'квартира: '.$deliveryInfo['apartment'] . "\r\n" .
-            'коммент: '.$deliveryInfo['comment'] . "\r\n" .
-            'ФИО: '.$deliveryInfo['name'] .' ' . $deliveryInfo['surname'] . ' ' . $deliveryInfo['middle_name'] . "\r\n" .
-            'телефон: '.$deliveryInfo['telephone'] . "\r\n" .
-            'способ оплаты: '.$deliveryInfo['pay'];
+        $deliveryDataString = 'Адрес: ' . $deliveryInfo['address'] . "\r\n" .
+            'квартира: ' . $deliveryInfo['apartment'] . "\r\n" .
+            'коммент: ' . $deliveryInfo['comment'] . "\r\n" .
+            'ФИО: ' . $deliveryInfo['name'] . ' ' . $deliveryInfo['surname'] . ' ' . $deliveryInfo['middle_name'] . "\r\n" .
+            'телефон: ' . $deliveryInfo['telephone'] . "\r\n" .
+            'способ оплаты: ' . $deliveryInfo['pay'];
 
 //        $tg = app()->make('App\Services\TelegramService');
 //        $tg->sendMessage('новый заказ!, номер заказа: ' . $orderNum . "\r\n" . "\r\n" .
@@ -165,19 +168,18 @@ class CartController extends Controller
             'credential_id' => $credential->id,
             'total' => $total,
             'subtotal' => $subtotal,
-            'delivery'=> $deliveryType,
-            'delivery_cost'=> $deliveryPrice,
-            'comment'=> $deliveryInfo['comment'],
+            'delivery' => $deliveryType,
+            'delivery_cost' => $deliveryPrice,
+            'comment' => $deliveryInfo['comment'],
         ]);
         
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $user_id = Auth::user()->id;
             $order->user_id = $user_id;
             $order->save();
             
             $currentUserCredentials = Credential::where('user_id', $user_id)->first();
-            if(!$currentUserCredentials){
+            if (!$currentUserCredentials) {
                 $credential->user_id = $user_id;
                 $credential->save();
             }
@@ -190,7 +192,6 @@ class CartController extends Controller
             $products->quantity = $item['quantity'];
             $products->save();
         }
-        
         
         
         \Cart::clear();

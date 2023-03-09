@@ -1348,35 +1348,35 @@ This is main CSS file that contains custom style rules used in this template
 .section-title.divider {
     width: 100%;
 }
+@media screen and (min-width: 1366px) {
+    .section-title.divider:after {
+        content: "";
+        border-bottom: 3px solid var(--secondary-color);
+        position: absolute;
+        right: 0;
+        bottom: -16px;
+        left: 0;
+        width: 50px;
+    }
 
-.section-title.divider:after {
-    content: "";
-    border-bottom: 3px solid var(--secondary-color);
-    position: absolute;
-    right: 0;
-    bottom: -16px;
-    left: 0;
-    width: 50px;
+    .section-header .section-title:before,
+    .section-header .section-title:after {
+        content: "";
+        border-bottom: 1px solid #E0E0E0;
+        position: absolute;
+        top: 30px;
+        width: 25%;
+        align-items: center;
+    }
+
+    .section-header .section-title:before {
+        left: 3px;
+    }
+
+    .section-header .section-title:after {
+        right: 3px;
+    }
 }
-
-.section-header .section-title:before,
-.section-header .section-title:after {
-    content: "";
-    border-bottom: 1px solid #E0E0E0;
-    position: absolute;
-    top: 30px;
-    width: 25%;
-    align-items: center;
-}
-
-.section-header .section-title:before {
-    left: 3px;
-}
-
-.section-header .section-title:after {
-    right: 3px;
-}
-
 .section-header .title span {
     font-size: 14px;
     color: #afafaf;
@@ -2099,8 +2099,8 @@ span.prev-price {
 .product-style img.product-item {
     /*background: #EFEEE8;*/
     border-radius: 16px;
-    border: 1px solid #EAE8DF;
-    padding: 15%;
+    /*border: 1px solid #EAE8DF;*/
+    /*padding: 15%;*/
     cursor: pointer;
     width: 100%;
     --borderWidth: 2px;

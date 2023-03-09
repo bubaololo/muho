@@ -31,13 +31,13 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                                    <a href="/product/{{ $product->slug  }}">
                                                 <div class="bg-image hover-zoom ripple rounded ripple-surface">
                                                     <img src="{{ Storage::url($product->image) }}"
                                                             class="w-100" />
-                                                    <a href="#!">
-                                                        <div class="hover-overlay">
-                                                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                                        </div>
+                                                        {{--<div class="hover-overlay">--}}
+                                                        {{--    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>--}}
+                                                        {{--</div>--}}
                                                     </a>
                                                 </div>
                                             </div>
@@ -66,7 +66,7 @@
                                                 {{--    <span class="text-primary"> • </span>--}}
                                                 {{--    <span>Casual<br /></span>--}}
                                                 {{--</div>--}}
-                                                <p class="text-truncate mb-4 mb-md-0">
+                                                <p class=" mb-4 mb-md-0">
                                                     {{ $product->description }}
                                                 </p>
                                             </div>
@@ -77,7 +77,7 @@
                                                 </div>
                                                 <h6 class="text-success">урожай 2022</h6>
                                                 <div class="d-flex flex-column mt-4">
-                                                    <a href="/product/{{ $product->id  }}" class="btn btn-primary btn-sm">Подробнее</a>
+                                                    <a href="/product/{{ $product->slug  }}" class="btn btn-primary btn-sm">Подробнее</a>
                                                     <form wire:submit.prevent="addToCart({{ $product }})" action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         <input type="hidden" value="{{ $product->name }}" name="name">
