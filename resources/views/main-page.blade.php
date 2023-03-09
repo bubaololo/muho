@@ -55,7 +55,7 @@
 
                         <div class="col-md-6">
                             <div class="product-entry" data-aos="fade-left">
-                                <h2 class="section-title divider">Для тех кто хочет попробовать в первый раз</h2>
+                                <h2 class="section-title divider">Starter pack</h2>
 
                                 <div class="products-content">
                                     <div class="author-name">{{  $buyNowProduct->name  }}</div>
@@ -63,8 +63,6 @@
                                     <p>{{  $buyNowProduct->description  }}</p>
                                     <div class="item-price">{{  $buyNowProduct->price  }}р.</div>
                                     <div class="btn-wrap">
-
-
 
                                         <a href="cart/{{  $buyNowProduct->id  }}" class="btn-accent-arrow gradient">купить сейчас <i
                                                     class="icon icon-ns-arrow-right"></i></a>

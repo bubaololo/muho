@@ -46,12 +46,12 @@
                                     <div class="card-body">
                                         <div class="cart-item__inner">
 
-                                            <a href="/product/{{ $item->id }}" class="cart-item__img">
+                                            <a href="/product/{{ $item->slug }}" class="cart-item__img">
                                                 <img src="{{ asset(Storage::url($item->attributes->image)) }}"
                                                         class="rounded-3"
                                                         alt="Мухомор">
                                             </a>
-                                            <a href="/product/{{ $item->id }}" class="cart-item__info">
+                                            <a href="/product/{{ $item->slug }}" class="cart-item__info">
                                                 <h5>{{ $item->name }}</h5>
                                                 <p class="mb-0">{{ $item->attributes->weight }} гр.</p>
                                             </a>
