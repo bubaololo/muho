@@ -31,8 +31,9 @@
                                         <input type="hidden" value="{{ $product->price }}" name="price">
                                         <input type="hidden" value="{{ $product->image }}"  name="image">
                                         <input type="hidden" value="1" name="quantity">
-                                        <button class="button" data-product-tile="add-to-cart">в корзину</button>
+                                        <button class="btn-accent-arrow gradient" data-product-tile="add-to-cart">купить</button>
                                     </form>
+
 
                     </div>
                 </div>

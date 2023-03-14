@@ -3,21 +3,65 @@
 @section('meta_description', 'Информация о свойствах мухомора и способах его употребления')
 @section('content')
 
-    <!-- Styles -->
 
-    <div class="container p-5">
+    <section class="hero-section jarallax">
 
-        @foreach($posts as $post)
-            <div class="card" style="width: 18rem;">
-                @if ( $post['post']->featured_image )
-                <img src="{{ $post['imagePath'] }}" class="card-img-top" alt="{{ $post['post']->title }}">
-                @endif
-                <div class="card-body">
-                    <h5 class="card-title">{{ $post['post']->title }}</h5>
-                    <p class="card-text">{{ $post['post']->description }}</p>
-                    <a href="{{ $post['url']  }}" class="btn btn-primary">Читать</a>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-title">Статьи</h1>
+                    <div class="breadcrumbs">
+                        <span class="item"><a href="{{ route('index') }}">Главная /</a></span>
+                        <span class="item">Статьи</span>
+                    </div>
                 </div>
             </div>
-        @endforeach
-    </div>
+        </div>
+
+    </section>
+
+    <section id="latest-blog" class="scrollspy-section padding-large">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- post grid -->
+                    <div class="post-grid">
+                        <div class="row">
+                            @foreach($posts as $post)
+
+                            <div class="col-md-4">
+
+                                <article class="post-item">
+
+                                    @if ( $post['post']->featured_image )
+                                    <figure>
+                                        <a href="{{ $post['url']  }}" class="image-hvr-effect">
+                                            <img src="{{ $post['imagePath'] }}" alt="{{ $post['post']->title }}" class="post-image">
+                                        </a>
+                                    </figure>
+                                    @endif
+                                    <div class="post-content">
+                                        {{--<div class="meta-date">Mar 30, 2021</div>--}}
+                                        <h3 class="post-title"><a href="{{ $post['url']  }}">{{ $post['post']->title }}</a></h3>
+                                        <p>{{ $post['post']->description }}</p>
+                                    </div>
+                                </article>
+
+                            </div>
+
+                            @endforeach
+                        </div>
+                    </div>
+                    <!-- / post grid -->
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </section>
 @endsection

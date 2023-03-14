@@ -27,7 +27,22 @@
     }
 
 </style>
+<section class="hero-section jarallax">
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-title">Статьи</h1>
+                <div class="breadcrumbs">
+                    <span class="item"><a href="{{ route('index') }}">Главная /</a></span>
+                    <span class="item"><a href="{{ route('posts.list') }}">Статьи /</a></span>
+                    <span class="item">{{ $post->title }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 <div class="wrapper">
     <div class="hero">

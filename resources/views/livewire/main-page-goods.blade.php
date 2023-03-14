@@ -3,7 +3,7 @@
         @foreach ($products as $product)
             <a href="/product/{{ $product->slug }}" class="col-md-3 product__card">
                 <figure class="product-style">
-                    <img src="{{ asset(Storage::url($product->image)) }}" alt="muhomor" class="product-item">
+                    <div style="background-image: url('{{ Storage::url($product->image) }}');"   alt="купить мухомор" class="product-item"></div>
                     @csrf
                     <input type="hidden" value="{{ $product->name }}" name="name">
                     <input type="hidden" value="{{ $product->id }}" name="id">

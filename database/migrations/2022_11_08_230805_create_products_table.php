@@ -21,7 +21,7 @@ return new class extends Migration
             $table->double('price');
             $table->integer('weight');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +33,8 @@ return new class extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::dropIfExists('products');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 };

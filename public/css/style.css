@@ -1114,8 +1114,8 @@ This is main CSS file that contains custom style rules used in this template
 }
 
 .padding-large {
-    padding-top: 7em;
-    padding-bottom: 7em;
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 
 .padding-xlarge {
@@ -1321,7 +1321,7 @@ This is main CSS file that contains custom style rules used in this template
 -----------------------------------------------*/
 .page-title {
     font-size: 4.5em;
-    margin-top: 2em;
+    margin-top: 0.5em;
 }
 
 @media screen and (max-width: 768px) {
@@ -1342,41 +1342,41 @@ This is main CSS file that contains custom style rules used in this template
     font-weight: 500;
     line-height: 1;
     position: relative;
-    margin-bottom: 75px;
+    margin-bottom: 24px;
 }
 
 .section-title.divider {
     width: 100%;
 }
+@media screen and (min-width: 1366px) {
+    .section-title.divider:after {
+        content: "";
+        border-bottom: 3px solid var(--secondary-color);
+        position: absolute;
+        right: 0;
+        bottom: -16px;
+        left: 0;
+        width: 50px;
+    }
 
-.section-title.divider:after {
-    content: "";
-    border-bottom: 3px solid var(--secondary-color);
-    position: absolute;
-    right: 0;
-    bottom: -16px;
-    left: 0;
-    width: 50px;
+    .section-header .section-title:before,
+    .section-header .section-title:after {
+        content: "";
+        border-bottom: 1px solid #E0E0E0;
+        position: absolute;
+        top: 30px;
+        width: 25%;
+        align-items: center;
+    }
+
+    .section-header .section-title:before {
+        left: 3px;
+    }
+
+    .section-header .section-title:after {
+        right: 3px;
+    }
 }
-
-.section-header .section-title:before,
-.section-header .section-title:after {
-    content: "";
-    border-bottom: 1px solid #E0E0E0;
-    position: absolute;
-    top: 30px;
-    width: 25%;
-    align-items: center;
-}
-
-.section-header .section-title:before {
-    left: 3px;
-}
-
-.section-header .section-title:after {
-    right: 3px;
-}
-
 .section-header .title span {
     font-size: 14px;
     color: #afafaf;
@@ -1598,7 +1598,6 @@ img.post-image {
     font-weight: 500;
     -webkit-text-fill-color: transparent;
     background: -webkit-linear-gradient(-70deg, #db469f, #2188ff);
-    background-clip: border-box;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-box-decoration-break: clone;
@@ -1683,12 +1682,11 @@ img.post-image {
 #best-selling .products-thumb {
     /*width: 50%;*/
     margin-right: 60px;
-    box-shadow: 2px 6px 34px 4px rgba(63, 63, 63, 0.08);
 }
 
 #best-selling .product-entry {
     /*width: 50%;*/
-    margin-top: 80px;
+    /*margin-top: 80px;*/
 }
 
 #best-selling .product-entry h3.item-title {
@@ -2101,11 +2099,22 @@ span.prev-price {
 .product-style img.product-item {
     /*background: #EFEEE8;*/
     border-radius: 16px;
-    border: 1px solid #EAE8DF;
-    padding: 15%;
+    /*border: 1px solid #EAE8DF;*/
+    /*padding: 15%;*/
     cursor: pointer;
     width: 100%;
     --borderWidth: 2px;
+}
+.product-item {
+
+    border-radius: 16px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
 }
 
 /* .product-style img.product-item:after {
@@ -2234,6 +2243,8 @@ span.prev-price {
         margin-bottom: 0;
         padding: 0;
         padding-top: 15vh;
+        padding-bottom: 16px;
+        margin-bottom: 10vh;
     }
 
 }
