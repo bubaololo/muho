@@ -47,15 +47,15 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="row">
 
-                        <div class="col-md-6">
+                        <a href="{{'/product/'.$buyNowProduct->slug  }}" class="col-md-6">
                             <figure class="products-thumb" data-aos="fade-right">
                                 <img src="{{ Storage::url($buyNowProduct->image) }}" alt="Красный мухомор купить" class="single-image">
                             </figure>
-                        </div>
+                        </a>
 
                         <div class="col-md-6">
                             <div class="product-entry" data-aos="fade-left">
-                                <h2 class="section-title divider">Для тех кто хочет попробовать в первый раз</h2>
+                                <h2 class="section-title divider">Starter pack</h2>
 
                                 <div class="products-content">
                                     <div class="author-name">{{  $buyNowProduct->name  }}</div>
@@ -64,10 +64,9 @@
                                     <div class="item-price">{{  $buyNowProduct->price  }}р.</div>
                                     <div class="btn-wrap">
 
-
-
                                         <a href="cart/{{  $buyNowProduct->id  }}" class="btn-accent-arrow gradient">купить сейчас <i
-                                                    class="icon icon-ns-arrow-right"></i></a>
+                                                    class="icon icon-ns-arrow-right"></i>
+                                        </a>
 
                                     </div>
                                 </div>

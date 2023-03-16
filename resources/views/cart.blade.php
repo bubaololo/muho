@@ -46,12 +46,12 @@
                                     <div class="card-body">
                                         <div class="cart-item__inner">
 
-                                            <a href="/product/{{ $item->id }}" class="cart-item__img">
+                                            <a href="/product/{{ $item->slug }}" class="cart-item__img">
                                                 <img src="{{ asset(Storage::url($item->attributes->image)) }}"
                                                         class="rounded-3"
                                                         alt="Мухомор">
                                             </a>
-                                            <a href="/product/{{ $item->id }}" class="cart-item__info">
+                                            <a href="/product/{{ $item->slug }}" class="cart-item__info">
                                                 <h5>{{ $item->name }}</h5>
                                                 <p class="mb-0">{{ $item->attributes->weight }} гр.</p>
                                             </a>
@@ -90,12 +90,12 @@
                             <section class="checkout__slider">
                                 <div class="quest">
                                     <section class="quest__slider">
-                                        <div class="success">
-                                            <img src="img/quest_success.svg" alt="icon" class="quest__success">
-                                            <div class="sucess_text">
-                                                Ваш заказ оформлен!
-                                            </div>
-                                        </div>
+                                        {{--<div class="success">--}}
+                                        {{--    <img src="img/quest_success.svg" alt="icon" class="quest__success">--}}
+                                        {{--    <div class="sucess_text">--}}
+                                        {{--        Ваш заказ оформлен!--}}
+                                        {{--    </div>--}}
+                                        {{--</div>--}}
                                         @if ($errors->any())
                                             <div class="alert alert-danger">
                                                 <ul>
@@ -158,7 +158,7 @@
                                                                 <label for="apartment">Квартира</label>
                                                                 <input type="text" id="apartment" name="apartment"
                                                                         class="quest__input" value="@isset($credentials['apartment']) {{ $credentials['apartment'] }} @endisset"
-                                                                        placeholder="56">
+                                                                        placeholder="56" inputmode="numeric">
                                                             </div>
 
                                                             <div class="quest__input-group">
@@ -228,7 +228,7 @@
                                                                 <label for="tel">Телефон</label>
                                                                 <input type="tel" id="tel" name="telephone"
                                                                         class="quest__input"
-                                                                        value="@isset($credentials['tel']) {{ $credentials['tel'] }} @endisset" placeholder="89000000000">
+                                                                        value="@isset($credentials['tel']) {{ $credentials['tel'] }} @endisset" placeholder="89000000000" inputmode="tel">
                                                             </div>
 
                                                         </div>
@@ -239,89 +239,89 @@
                                                     </div>
                                                 </div>
                                                 <!-- ________SLIDE -->
+                                                <div class="swiper-slide">
+                                                    <div class="quest__slide">
+                                                        <div class="quest__slide_title_wrapper">
+                                                            <div class="quest__slide_title">
+                                                                Регистрация и контакты
+                                                            </div>
+                                                            <div class="quest__slide_subtitle">
+                                                                Предпочтительный способ связи
+                                                            </div>
+                                                            <div class="redline"></div>
+                                                        </div>
+                                                        <div class="quest__slide_forms_wrapper">
+                                                            <div class="quest__input-group">
+                                                                <label for="email">Email</label>
+                                                                <input type="text" id="email" name="email" class="quest__input"
+                                                                        value="@isset($credentials['email']) {{ $credentials['email'] }} @endisset" placeholder="mail@mail.com">
+                                                            </div>
+                                                            <div class="quest__input-group">
+                                                                <label for="password">пароль</label>
+                                                                <input type="password" id="password" name="password" class="quest__input"
+                                                                         >
+                                                            </div>
+                                                            <div class="quest__input-group">
+                                                                <label for="telegram">Отчество</label>
+                                                                <input type="text" id="telegram" name="telegram"
+                                                                        class="quest__input"
+                                                                        value="@isset($credentials['telegram']) {{ $credentials['telegram'] }} @endisset" placeholder="@username">
+                                                            </div>
+                                                            <div class="quest__input-group">
+                                                                <label for="whatsapp">Whatsapp</label>
+                                                                <input type="whatsapp" id="whatsapp" name="telephone"
+                                                                        class="quest__input"
+                                                                        value="@isset($credentials['whatsapp']) {{ $credentials['whatsapp'] }} @endisset" placeholder="89000000000">
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                <div class="quest__slider_buttons_wrapper">
+                                                    <input class="quest__button quest__submit_button" type="submit">
+                                                    <div class="quest__prev quest__button">Назад</div>
+                                                </div>
+                                                </div>
+                                                <!-- ________SLIDE -->
                                                 {{--<div class="swiper-slide">--}}
                                                 {{--    <div class="quest__slide">--}}
                                                 {{--        <div class="quest__slide_title_wrapper">--}}
                                                 {{--            <div class="quest__slide_title">--}}
-                                                {{--                Регистрация и контакты--}}
-                                                {{--            </div>--}}
-                                                {{--            <div class="quest__slide_subtitle">--}}
-                                                {{--                Предпочтительный способ связи--}}
+                                                {{--                Оплата--}}
                                                 {{--            </div>--}}
                                                 {{--            <div class="redline"></div>--}}
                                                 {{--        </div>--}}
                                                 {{--        <div class="quest__slide_forms_wrapper">--}}
+
                                                 {{--            <div class="quest__input-group">--}}
-                                                {{--                <label for="email">Email</label>--}}
-                                                {{--                <input type="text" id="email" name="email" class="quest__input"--}}
-                                                {{--                        value="@isset($credentials['email']) {{ $credentials['email'] }} @endisset" placeholder="mail@mail.com">--}}
-                                                {{--            </div>--}}
-                                                {{--            <div class="quest__input-group">--}}
-                                                {{--                <label for="password">пароль</label>--}}
-                                                {{--                <input type="password" id="password" name="password" class="quest__input"--}}
-                                                {{--                         >--}}
-                                                {{--            </div>--}}
-                                                {{--            <div class="quest__input-group">--}}
-                                                {{--                <label for="telegram">Отчество</label>--}}
-                                                {{--                <input type="text" id="telegram" name="telegram"--}}
-                                                {{--                        class="quest__input"--}}
-                                                {{--                        value="@isset($credentials['telegram']) {{ $credentials['telegram'] }} @endisset" placeholder="@username">--}}
-                                                {{--            </div>--}}
-                                                {{--            <div class="quest__input-group">--}}
-                                                {{--                <label for="whatsapp">Whatsapp</label>--}}
-                                                {{--                <input type="whatsapp" id="whatsapp" name="telephone"--}}
-                                                {{--                        class="quest__input"--}}
-                                                {{--                        value="@isset($credentials['whatsapp']) {{ $credentials['whatsapp'] }} @endisset" placeholder="89000000000">--}}
+                                                {{--                <label for="name">Способ оплаты</label>--}}
+                                                {{--                <fieldset>--}}
+                                                {{--                    <legend>Выберите один из доступных способов оплаты:</legend>--}}
+
+                                                {{--                    <div>--}}
+                                                {{--                        <input type="radio" id="p2p" name="pay" value="p2p"--}}
+                                                {{--                                checked>--}}
+                                                {{--                        <label for="p2p">перевод с карты на карту</label>--}}
+                                                {{--                    </div>--}}
+
+                                                {{--                    <div>--}}
+                                                {{--                        <input type="radio" id="qiwi" name="pay" value="qiwi">--}}
+                                                {{--                        <label for="qiwi">qiwi</label>--}}
+                                                {{--                    </div>--}}
+
+                                                {{--                    <div>--}}
+                                                {{--                        <input type="radio" id="visa" name="pay" value="visa">--}}
+                                                {{--                        <label for="visa">Visa</label>--}}
+                                                {{--                    </div>--}}
+                                                {{--                </fieldset>--}}
                                                 {{--            </div>--}}
 
                                                 {{--        </div>--}}
                                                 {{--    </div>--}}
                                                 {{--    <div class="quest__slider_buttons_wrapper">--}}
-                                                {{--        <div id="credentials-button" class="quest__next quest__button">Далее</div>--}}
+                                                {{--        <input class="quest__button quest__submit_button" type="submit">--}}
                                                 {{--        <div class="quest__prev quest__button">Назад</div>--}}
                                                 {{--    </div>--}}
                                                 {{--</div>--}}
-                                                <!-- ________SLIDE -->
-                                                <div class="swiper-slide">
-                                                    <div class="quest__slide">
-                                                        <div class="quest__slide_title_wrapper">
-                                                            <div class="quest__slide_title">
-                                                                Оплата
-                                                            </div>
-                                                            <div class="redline"></div>
-                                                        </div>
-                                                        <div class="quest__slide_forms_wrapper">
-
-                                                            <div class="quest__input-group">
-                                                                <label for="name">Способ оплаты</label>
-                                                                <fieldset>
-                                                                    <legend>Выберите один из доступных способов оплаты:</legend>
-
-                                                                    <div>
-                                                                        <input type="radio" id="p2p" name="pay" value="p2p"
-                                                                                checked>
-                                                                        <label for="p2p">перевод с карты на карту</label>
-                                                                    </div>
-
-                                                                    <div>
-                                                                        <input type="radio" id="qiwi" name="pay" value="qiwi">
-                                                                        <label for="qiwi">qiwi</label>
-                                                                    </div>
-
-                                                                    <div>
-                                                                        <input type="radio" id="visa" name="pay" value="visa">
-                                                                        <label for="visa">Visa</label>
-                                                                    </div>
-                                                                </fieldset>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="quest__slider_buttons_wrapper">
-                                                        <input class="quest__button quest__submit_button" type="submit">
-                                                        <div class="quest__prev quest__button">Назад</div>
-                                                    </div>
-                                                </div>
                                             </form>
                                         </div>
 
