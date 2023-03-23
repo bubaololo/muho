@@ -39,6 +39,7 @@ class CheckoutController extends Controller
     
     public function store(Request $request)
     {
+
 //        $validated = $request->validate(['user_id' => 'nullable|exists:users,user_id',
 //            'name' => 'bail|alpha|required|max:50|string',
 //            'surname' => 'alpha_dash|required|max:50|string',

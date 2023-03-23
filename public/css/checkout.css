@@ -631,7 +631,9 @@ body {
 .quest__input {
     margin-bottom: 20px;
 }
-
+.quest__input-group_hidden {
+    display: none;
+}
 .quest label {
     font-weight: 400;
     font-size: 16px;
@@ -791,6 +793,8 @@ body {
 }
 #button {
     /*margin-top: 8px;*/
+    display: flex;
+    align-items: center;
     top: 0;
     position: absolute;
     right: 0;

@@ -39,7 +39,6 @@ class CredentialController extends Controller
      */
     public function store(Request $request)
     {
-    info($request->all());
         $validated = $request->validate(['user_id' => 'nullable|exists:users,user_id|unique:credentials,user_id',
             'name' => 'bail|alpha|required|max:50|string',
             'surname' => 'alpha_dash|required|max:50|string',
@@ -75,6 +74,7 @@ class CredentialController extends Controller
                 'tel' => $requestData['tel'],
                 'whatsapp' => $requestData['whatsapp'],
                 'telegram' => $requestData['telegram'],
+                'email' => $requestData['email'],
                 'last_ip' => $request->ip(),
     
             ]);

@@ -14,7 +14,7 @@ class DeliverySelector extends Component
     
     public function render()
     {
-        info(session()->all());
+        
         \Cart::clearCartConditions();
         //check if we got real delivery price from api
         // to show prices on delivery select screen

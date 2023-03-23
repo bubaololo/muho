@@ -92,11 +92,18 @@ class CartController extends Controller
         'name' => 'bail|alpha|required|max:50|string',
         'surname' => 'alpha_dash|required|max:50|string',
         'middle_name' => 'alpha|required|max:50|string',
-        'telephone' => 'integer'
+        'telephone' => 'integer',
+        'password' => 'password',
+        'mail' => 'email'
     ];
     
     public function store(Request $request)
     {
+        info(print_r($request->all(),true));
+        if ($request->has('registerCheck') && $request->input('registerCheck') == '1') {
+            // Call the register method on your authentication controller
+            app('App\Http\Controllers\Auth\RegisterController')->register($request);
+        }
         $validated = $request->validate(
             ['user_id' => 'nullable|exists:users,user_id',
                 'name' => 'bail|alpha|required|max:50|string',
@@ -139,8 +146,7 @@ class CartController extends Controller
             'квартира: ' . $deliveryInfo['apartment'] . "\r\n" .
             'коммент: ' . $deliveryInfo['comment'] . "\r\n" .
             'ФИО: ' . $deliveryInfo['name'] . ' ' . $deliveryInfo['surname'] . ' ' . $deliveryInfo['middle_name'] . "\r\n" .
-            'телефон: ' . $deliveryInfo['telephone'] . "\r\n" .
-            'способ оплаты: ' . $deliveryInfo['pay'];
+            'телефон: ' . $deliveryInfo['telephone'] . "\r\n" ;
 
 //        $tg = app()->make('App\Services\TelegramService');
 //        $tg->sendMessage('новый заказ!, номер заказа: ' . $orderNum . "\r\n" . "\r\n" .
@@ -160,6 +166,9 @@ class CartController extends Controller
             'apartment' => $deliveryInfo['apartment'],
             'comment' => $deliveryInfo['comment'],
             'tel' => $deliveryInfo['telephone'],
+            'whatsapp' => $deliveryInfo['whatsapp'],
+            'telegram' => $deliveryInfo['telegram'],
+            'email' => $deliveryInfo['email'],
         
         ]);
         

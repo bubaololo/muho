@@ -37,7 +37,6 @@ class HomeController extends Controller
             $dataToView['orders'] = $ordersCheck;
         }
         foreach ($ordersCheck as $order) {
-            info(print_r($order->product()->get(), true));
         }
         
         
@@ -49,7 +48,6 @@ class HomeController extends Controller
         $order = $user->order()->find($id);
        
         $products = $order->product()->get();
-        info($products);
         return view('profile-order', compact('order', 'products'));
     }
 }

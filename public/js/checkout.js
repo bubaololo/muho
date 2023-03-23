@@ -76,6 +76,23 @@ if (bar) {
     const successMessage = document.querySelector('.quest .success');
 
 }
+
+const checkbox = document.getElementById('registerCheck');
+const passwordGroup = document.getElementById('password-group');
+
+checkbox.addEventListener('change', function() {
+  if (this.checked) {
+    passwordGroup.classList.remove('quest__input-group_hidden');
+  } else {
+    passwordGroup.classList.add('quest__input-group_hidden');
+  }
+});
+
+
+
+
+
+
     // const form = document.getElementById('quest_form');
     // form.addEventListener('submit', function (e) {
     //     e.preventDefault();

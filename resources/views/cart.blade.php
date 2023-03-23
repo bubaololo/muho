@@ -136,7 +136,7 @@
                                                                     <div id="header">
                                                                         <label for="suggest">Город, улица, дом</label>
                                                                         <div class="address-input">
-                                                                            <input type="text" id="suggest" name="address" class="w-100" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес">
+                                                                            <textarea  id="suggest" name="address" class="w-100" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес"></textarea>
                                                                             <div class="btn btn-gray" id="button">
                                                                                 <img src="{{ asset('/images/icons/refresh.svg')  }}" alt="" class="refresh-icon">
                                                                             </div>
@@ -196,7 +196,7 @@
                                             {{--</div>--}}
                                             <!-- ________SLIDE -->
                                                 <div class="swiper-slide">
-                                                    <div class="quest__slide">
+                                                    <div class="quest__slide credentials-slide">
                                                         <div class="quest__slide_title_wrapper">
                                                             <div class="quest__slide_title">
                                                                 Персональные данные
@@ -251,27 +251,33 @@
                                                             <div class="redline"></div>
                                                         </div>
                                                         <div class="quest__slide_forms_wrapper">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="1" name="registerCheck" id="registerCheck">
+                                                                <label class="form-check-label" for="registerCheck">
+                                                                    Зарегистрироваться
+                                                                </label>
+                                                            </div>
                                                             <div class="quest__input-group">
                                                                 <label for="email">Email</label>
                                                                 <input type="text" id="email" name="email" class="quest__input"
                                                                         value="@isset($credentials['email']) {{ $credentials['email'] }} @endisset" placeholder="mail@mail.com">
                                                             </div>
-                                                            <div class="quest__input-group">
+                                                            <div class="quest__input-group quest__input-group_hidden" id="password-group">
                                                                 <label for="password">пароль</label>
-                                                                <input type="password" id="password" name="password" class="quest__input"
-                                                                         >
+                                                                <input type="password" id="password" name="password" required class="quest__input">
                                                             </div>
                                                             <div class="quest__input-group">
-                                                                <label for="telegram">Отчество</label>
+                                                                <label for="telegram">Telegram</label>
                                                                 <input type="text" id="telegram" name="telegram"
                                                                         class="quest__input"
                                                                         value="@isset($credentials['telegram']) {{ $credentials['telegram'] }} @endisset" placeholder="@username">
                                                             </div>
                                                             <div class="quest__input-group">
                                                                 <label for="whatsapp">Whatsapp</label>
-                                                                <input type="whatsapp" id="whatsapp" name="telephone"
+                                                                <input type="text" id="whatsapp" name="whatsapp"
                                                                         class="quest__input"
                                                                         value="@isset($credentials['whatsapp']) {{ $credentials['whatsapp'] }} @endisset" placeholder="89000000000">
+
                                                             </div>
 
                                                         </div>
@@ -367,7 +373,7 @@
                 }
 
                 function enableRefreshBtn() {
-                  refreshBtn.style.display = 'block';
+                  refreshBtn.style.display = 'flex';
                 }
 
                 function geocode() {
