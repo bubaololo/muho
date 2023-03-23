@@ -265,6 +265,7 @@
                                                             <div class="quest__input-group quest__input-group_hidden" id="password-group">
                                                                 <label for="password">пароль</label>
                                                                 <input type="password" id="password" name="password" required class="quest__input">
+                                                                <input type="password" id="password_confirmation" name="password_confirmation" required class="quest__input">
                                                             </div>
                                                             <div class="quest__input-group">
                                                                 <label for="telegram">Telegram</label>

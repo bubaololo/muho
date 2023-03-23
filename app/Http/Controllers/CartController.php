@@ -26,12 +26,12 @@ class CartController extends Controller
                 return view('cart', compact('cartItems', 'credentials'));
             }
         }
-        $validator = JsValidator::make($this->validationRules);
+//        $validator = JsValidator::make($this->validationRules);
         foreach ($cartItems as $item) {
             $productSlug = Product::find($item->id)->slug;
             $item->slug = $productSlug;
         }
-        return view('cart', compact('cartItems', 'validator'));
+        return view('cart', compact('cartItems', ));
     }
     
     public function addToCart(Request $request)
@@ -85,34 +85,15 @@ class CartController extends Controller
         return redirect()->route('cart.list');
     }
     
-    protected $validationRules = [
-        'user_id' => 'nullable|exists:users,user_id',
-        'address' => 'required',
-        'deliveryType' => 'required|in:sdek,post',
-        'name' => 'bail|alpha|required|max:50|string',
-        'surname' => 'alpha_dash|required|max:50|string',
-        'middle_name' => 'alpha|required|max:50|string',
-        'telephone' => 'integer',
-        'password' => 'password',
-        'mail' => 'email'
-    ];
     
     public function store(Request $request)
     {
-        info(print_r($request->all(),true));
+//        info(print_r($request->all(),true));
         if ($request->has('registerCheck') && $request->input('registerCheck') == '1') {
             // Call the register method on your authentication controller
             app('App\Http\Controllers\Auth\RegisterController')->register($request);
         }
-        $validated = $request->validate(
-            ['user_id' => 'nullable|exists:users,user_id',
-                'name' => 'bail|alpha|required|max:50|string',
-                'surname' => 'alpha_dash|required|max:50|string',
-                'middle_name' => 'alpha|required|max:50|string',
-                'address' => 'required',
-                'telephone' => 'integer'
-            ]);
-//        $validator = JsValidator::make($this->validationRules);
+
         
         $orderNum = rand(10000, 99999);
         $total = \Cart::getTotal();
@@ -122,11 +103,7 @@ class CartController extends Controller
         $deliveryPrice = $deliveryPrice[0];
         preg_match('/(?<={")[^"]*/', $rawDelivery, $deliveryType);
         $deliveryType = $deliveryType[0];
-
-//        info(print_r($request->all(),true));
-//        info(print_r($request->ip(),true));
-//        info(print_r($validated,true));
-//        info(print_r($cartItems = \Cart::getContent(),true));
+        
 //        return redirect(route('cart.list'))->with(['success' => 'заказ успешно оформлен, номер вашего заказа: ']);
         $cartItems = \Cart::getContent();
         $deliveryInfo = $request->all();
@@ -201,7 +178,6 @@ class CartController extends Controller
             $products->quantity = $item['quantity'];
             $products->save();
         }
-        
         
         \Cart::clear();
         return view('order', compact('cartItems', 'deliveryInfo', 'orderNum', 'subtotal', 'deliveryPrice', 'deliveryType', 'total'));
