@@ -795,11 +795,13 @@ body {
     /*margin-top: 8px;*/
     display: flex;
     align-items: center;
-    top: 0;
+    bottom: 5px;
     position: absolute;
-    right: 0;
-    height: 100%;
+    right: 3px;
+    height: 36px;
+    width: 36px;
     margin: 0;
+    background-color: rgba(0,0,0, .3);
     display: none;
 }
 .address-input {

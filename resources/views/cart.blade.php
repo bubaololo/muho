@@ -137,7 +137,7 @@
                                                                         <label for="suggest">Город, улица, дом</label>
                                                                         <div class="address-input">
                                                                             <textarea  id="suggest" name="address" class="w-100" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес"></textarea>
-                                                                            <div class="btn btn-gray" id="button">
+                                                                            <div class="btn" id="button">
                                                                                 <img src="{{ asset('/images/icons/refresh.svg')  }}" alt="" class="refresh-icon">
                                                                             </div>
                                                                         </div>
@@ -351,6 +351,8 @@
               let addressIsValid = null;
               ymaps.ready(init);
 
+
+
               function init() {
                 // Подключаем поисковые подсказки к полю ввода.
                 var suggestView = new ymaps.SuggestView('suggest'),
@@ -358,8 +360,10 @@
                     placemark;
 
                 // При клике по кнопке запускаем верификацию введёных данных.
+
                 $('#button').bind('click', function(e) {
                   geocode();
+
                 });
 
                 document.getElementById('suggest').addEventListener('blur', () => {
@@ -377,6 +381,8 @@
                 }
 
                 function geocode() {
+                  console.log('geocode launched');
+
                   // Забираем запрос из поля ввода.
                   var request = $('#suggest').val();
                   // Геокодируем введённые данные.
@@ -445,7 +451,6 @@
                       }
                     })
                         .then((response) => {
-                          // console.log(response)
                           return response.json();
                         })
                         .then((result) => {
