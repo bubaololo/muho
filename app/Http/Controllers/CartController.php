@@ -134,6 +134,10 @@ class CartController extends Controller
 //        );
 
 //        store data
+    
+        foreach ($deliveryInfo as $key => $value) {
+            $deliveryInfo[$key] = trim($value);
+        }
         
         $credential = Credential::create([
             'name' => $deliveryInfo['name'],
@@ -146,7 +150,6 @@ class CartController extends Controller
             'whatsapp' => $deliveryInfo['whatsapp'],
             'telegram' => $deliveryInfo['telegram'],
             'email' => $deliveryInfo['email'],
-        
         ]);
         
         $order = Order::create([

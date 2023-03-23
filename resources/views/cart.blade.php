@@ -136,7 +136,11 @@
                                                                     <div id="header">
                                                                         <label for="suggest">Город, улица, дом</label>
                                                                         <div class="address-input">
-                                                                            <textarea  id="suggest" name="address" class="w-100" value="@isset($credentials['address']) {{ $credentials['address'] }} @endisset" placeholder="Введите адрес"></textarea>
+                                                                            <textarea  id="suggest"
+                                                                                    name="address"
+                                                                                    class="w-100"
+                                                                                    value="@isset($credentials['address']){{ $credentials['address'] }}@endisset"
+                                                                                    placeholder="Введите адрес">@isset($credentials['address']){{ $credentials['address'] }}@endisset</textarea>
                                                                             <div class="btn" id="button">
                                                                                 <img src="{{ asset('/images/icons/refresh.svg')  }}" alt="" class="refresh-icon">
                                                                             </div>
@@ -157,7 +161,7 @@
                                                             <div class="quest__input-group">
                                                                 <label for="apartment">Квартира</label>
                                                                 <input type="text" id="apartment" name="apartment"
-                                                                        class="quest__input" value="@isset($credentials['apartment']) {{ $credentials['apartment'] }} @endisset"
+                                                                        class="quest__input" value="@isset($credentials['apartment']){{ $credentials['apartment'] }}@endisset"
                                                                         placeholder="56" inputmode="numeric">
                                                             </div>
 
@@ -228,7 +232,7 @@
                                                                 <label for="tel">Телефон</label>
                                                                 <input type="tel" id="tel" name="telephone"
                                                                         class="quest__input"
-                                                                        value="@isset($credentials['tel']) {{ $credentials['tel'] }} @endisset" placeholder="89000000000" inputmode="tel">
+                                                                        value="@isset($credentials['tel']){{ $credentials['tel'] }}@endisset" placeholder="89000000000" inputmode="tel">
                                                             </div>
 
                                                         </div>
@@ -251,16 +255,18 @@
                                                             <div class="redline"></div>
                                                         </div>
                                                         <div class="quest__slide_forms_wrapper">
+                                                            @guest
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" value="1" name="registerCheck" id="registerCheck">
                                                                 <label class="form-check-label" for="registerCheck">
                                                                     Зарегистрироваться
                                                                 </label>
                                                             </div>
+                                                            @endguest
                                                             <div class="quest__input-group">
                                                                 <label for="email">Email</label>
                                                                 <input type="text" id="email" name="email" class="quest__input"
-                                                                        value="@isset($credentials['email']) {{ $credentials['email'] }} @endisset" placeholder="mail@mail.com">
+                                                                        value="@isset($credentials['email']){{ $credentials['email'] }}@endisset" placeholder="mail@mail.com">
                                                             </div>
                                                             <div class="quest__input-group quest__input-group_hidden" id="password-group">
                                                                 <label for="password">пароль</label>
@@ -382,7 +388,6 @@
                 }
 
                 function geocode() {
-                  console.log('geocode launched');
 
                   // Забираем запрос из поля ввода.
                   var request = $('#suggest').val();
@@ -584,6 +589,7 @@
 
 
           document.getElementById('address-button').addEventListener('click', () => {
+              @if( empty($credentials['address']) )
             let address = form.validate().element('#suggest');
             let delivery = form.validate().element('#sdek');
             let addressCondition = address && addressIsValid && delivery;
@@ -593,7 +599,10 @@
               $('#notice').css('display', 'block');
             }
             checkIfAllFieldsValidated(addressCondition);
-
+            @else
+            let delivery = form.validate().element('#sdek');
+            checkIfAllFieldsValidated(delivery);
+            @endif
           });
 
           document.getElementById('credentials-button').addEventListener('click', () => {
