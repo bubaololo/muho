@@ -56,36 +56,36 @@
                                     <p class="text-muted mb-4">Зарегистрирован: {{ Auth::user()->created_at }}</p>
                                     <div class="d-flex justify-content-center mb-2">
                                         <a href="password/reset" class="btn btn-primary">Сбросить пароль</a>
-                                        <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                                        {{--<button type="button" class="btn btn-outline-primary ms-1">Message</button>--}}
                                     </div>
                                 </div>
                             </div>
-                            <div class="card mb-4 mb-lg-0">
-                                <div class="card-body p-0">
-                                    <ul class="list-group list-group-flush rounded-3">
-                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                            <i class="fas fa-globe fa-lg text-warning"></i>
-                                            <p class="mb-0">lorem</p>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                            <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                            <p class="mb-0">lorem</p>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                            <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                            <p class="mb-0">lorem</p>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                            <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                            <p class="mb-0">lorem</p>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                            <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                            <p class="mb-0">lorem</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            {{--<div class="card mb-4 mb-lg-0">--}}
+                            {{--    <div class="card-body p-0">--}}
+                            {{--        <ul class="list-group list-group-flush rounded-3">--}}
+                            {{--            <li class="list-group-item d-flex justify-content-between align-items-center p-3">--}}
+                            {{--                <i class="fas fa-globe fa-lg text-warning"></i>--}}
+                            {{--                <p class="mb-0">lorem</p>--}}
+                            {{--            </li>--}}
+                            {{--            <li class="list-group-item d-flex justify-content-between align-items-center p-3">--}}
+                            {{--                <i class="fab fa-github fa-lg" style="color: #333333;"></i>--}}
+                            {{--                <p class="mb-0">lorem</p>--}}
+                            {{--            </li>--}}
+                            {{--            <li class="list-group-item d-flex justify-content-between align-items-center p-3">--}}
+                            {{--                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>--}}
+                            {{--                <p class="mb-0">lorem</p>--}}
+                            {{--            </li>--}}
+                            {{--            <li class="list-group-item d-flex justify-content-between align-items-center p-3">--}}
+                            {{--                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>--}}
+                            {{--                <p class="mb-0">lorem</p>--}}
+                            {{--            </li>--}}
+                            {{--            <li class="list-group-item d-flex justify-content-between align-items-center p-3">--}}
+                            {{--                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>--}}
+                            {{--                <p class="mb-0">lorem</p>--}}
+                            {{--            </li>--}}
+                            {{--        </ul>--}}
+                            {{--    </div>--}}
+                            {{--</div>--}}
                         </div>
                         @if(empty($credentials))
 
@@ -170,6 +170,7 @@
                                     </div>
                                     </form>
                                 </div>
+
                             </div>
 
                     </div>
@@ -227,8 +228,6 @@
                     <div class="card mb-4">
                         <div class="card-body">
 
-                            <a href="/credentials" class="btn btn-gray mb-3">редактировать</a>
-
                             <div class="row">
                                 <div class="col-sm-3">
                                     <p class="mb-0">ФИО</p>
@@ -259,36 +258,37 @@
                             {{--<hr>--}}
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">Address</p>
+                                    <p class="mb-0">Адрес</p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">{{ $credentials->address }}</p>
                                 </div>
                             </div>
+                            <a href="/credentials" class="btn btn-gray mt-3">редактировать</a>
+
                         </div>
+
                     </div>
                     @endif
-                    @if(!empty($order))
-                    <div class="card-body">
-                        <p class="mb-4"> Заказы
-                        </p>
-                        <div class="table-responsive">
-                            <table class="table table-striped custom-table">
-                                <thead>
-                                <tr>
 
-                                    <th scope="col">Номер</th>
-                                    <th scope="col">Cумма</th>
-                                    <th scope="col">Трек</th>
-                                    <th scope="col">Создан</th>
-                                    <th scope="col">Статус</th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                        <div class="card-body">
+                            <h2 class="mb-4"> Заказы
+                            </h2>
+                            @if(!empty($order))
+                            <div class="table-responsive">
+                                <table class="table table-striped custom-table">
+                                    <thead>
+                                    <tr>
 
-
-
+                                        <th scope="col">Номер</th>
+                                        <th scope="col">Cумма</th>
+                                        <th scope="col">Трек</th>
+                                        <th scope="col">Создан</th>
+                                        <th scope="col">Статус</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
                                     @foreach($orders as $order)
                                         <tr scope="row">
@@ -310,13 +310,16 @@
                                         </tr>
                                     @endforeach
 
-
-
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                            @else
+                                Вы ещё не сделали заказ
+                            @endif
                         </div>
-                    </div>
-                    @endif
+
+
+
                     {{--<div class="row">--}}
 
                     {{--    <div class="col-md-6">--}}

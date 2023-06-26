@@ -290,7 +290,7 @@
                                                         </div>
                                                     </div>
                                                 <div class="quest__slider_buttons_wrapper">
-                                                    <input class="quest__button quest__submit_button" type="submit">
+                                                    <input class="quest__button quest__submit_button" value="Оформить заказ" type="submit">
                                                     <div class="quest__prev quest__button">Назад</div>
                                                 </div>
                                                 </div>

@@ -80,14 +80,15 @@ if (bar) {
 const checkbox = document.getElementById('registerCheck');
 const passwordGroup = document.getElementById('password-group');
 
-checkbox.addEventListener('change', function() {
-  if (this.checked) {
-    passwordGroup.classList.remove('quest__input-group_hidden');
-  } else {
-    passwordGroup.classList.add('quest__input-group_hidden');
-  }
-});
-
+if(checkbox) {
+  checkbox.addEventListener('change', function() {
+    if (this.checked) {
+      passwordGroup.classList.remove('quest__input-group_hidden');
+    } else {
+      passwordGroup.classList.add('quest__input-group_hidden');
+    }
+  });
+}
 
 
 

@@ -20,7 +20,7 @@ class CredentialController extends Controller
         return view('credentials-edit', compact('credentials'));
         
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -30,11 +30,11 @@ class CredentialController extends Controller
     {
         //
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -48,71 +48,67 @@ class CredentialController extends Controller
             'index' => 'integer'
         ]);
         
-
-       
+        
         $user = Auth::user();
         $requestData = $request->all();
-
-        
         
         
         $credentialsCheck = $user->credential()->first();
-        if($credentialsCheck) {
+        if ($credentialsCheck) {
             $credentials = $credentialsCheck;
             return view('home', compact('credentials'));
         } else {
-    
-           $credentials = Credential::create([
+            
+            $credentials = Credential::create([
                 
-                'name' => $requestData['name'],
+                'name' => $requestData['name']?? null,
                 'user_id' => $user->id,
-                'surname' => $requestData['surname'],
-                'middle_name' => $requestData['middle_name'],
-                'address' => $requestData['address'],
-                'apartment' => $requestData['apartment'],
-                'comment' => $requestData['comment'],
-                'tel' => $requestData['tel'],
-                'whatsapp' => $requestData['whatsapp'],
-                'telegram' => $requestData['telegram'],
-                'email' => $requestData['email'],
+                'surname' => $requestData['surname'] ?? null,
+                'middle_name' => $requestData['middle_name'] ?? null,
+                'address' => $requestData['address'] ?? null,
+                'apartment' => $requestData['apartment'] ?? null,
+                'comment' => $requestData['comment'] ?? null,
+                'tel' => $requestData['tel'] ?? null,
+                'whatsapp' => $requestData['whatsapp'] ?? null,
+                'telegram' => $requestData['telegram'] ?? null,
+                'email' => $requestData['email'] ?? null,
                 'last_ip' => $request->ip(),
-    
+            
             ]);
             $credentials = $user->credential()->first();
             return view('home', compact('credentials'));
         }
         
         
-        
     }
-
+    
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -132,27 +128,27 @@ class CredentialController extends Controller
         $requestData = $request->all();
         $credentials = $user->credential()->first();
         $credentials->query()->update([
-        
-            'name' => $requestData['name'],
-            'surname' => $requestData['surname'],
-            'middle_name' => $requestData['middle_name'],
-            'address' => $requestData['address'],
-            'apartment' => $requestData['apartment'],
-            'comment' => $requestData['comment'],
-            'tel' => $requestData['tel'],
-            'whatsapp' => $requestData['whatsapp'],
-            'telegram' => $requestData['telegram'],
-            'index' => $requestData['index'],
+            
+            'name' => $requestData['name'] ?? null,
+            'surname' => $requestData['surname'] ?? null,
+            'middle_name' => $requestData['middle_name'] ?? null,
+            'address' => $requestData['address'] ?? null,
+            'apartment' => $requestData['apartment'] ?? null,
+            'comment' => $requestData['comment'] ?? null,
+            'tel' => $requestData['tel'] ?? null,
+            'whatsapp' => $requestData['whatsapp'] ?? null,
+            'telegram' => $requestData['telegram'] ?? null,
+            'index' => $requestData['index'] ?? null,
             'last_ip' => $request->ip(),
         ]);
         $credentials = $user->credential()->first();
         return view('home', compact('credentials'));
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
