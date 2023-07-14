@@ -36,10 +36,6 @@ class HomeController extends Controller
         if($ordersCheck) {
             $dataToView['orders'] = $ordersCheck;
         }
-        foreach ($ordersCheck as $order) {
-        }
-        
-        
         return view('home', $dataToView);
     }
     

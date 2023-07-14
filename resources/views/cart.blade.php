@@ -352,7 +352,7 @@
     </main>
     @push('scripts')
         <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
-        @if( empty($credentials['address']) )
+
             <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU" type="text/javascript"></script>
             <script>
               let addressIsValid = null;
@@ -372,7 +372,9 @@
                   geocode();
 
                 });
-
+                  @if( @isset($credentials['address']) )
+                  geocode();
+                  @endif
                 document.getElementById('suggest').addEventListener('blur', () => {
                   geocode();
                 })
@@ -548,8 +550,9 @@
                   $('#message').text(message);
                 }
               }
+
             </script>
-        @endif
+
         <script src="{{ asset('js/checkout.js') }}"></script>
         @if( empty($credentials) )
             <script>

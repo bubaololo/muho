@@ -4,8 +4,6 @@
     <div class="container">
 
         <div class="card">
-            <div class="card-header">{{ __('Dashboard') }}</div>
-
             <div class="card-body">
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -38,7 +36,7 @@
                             <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                                 <ol class="breadcrumb mb-0">
                                     <li class="breadcrumb-item"><a href="#">Кабинет</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Профиль</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Профиль</li>
                                     {{--<li class="breadcrumb-item active" aria-current="page">User Profile</li>--}}
                                 </ol>
                             </nav>
@@ -274,7 +272,7 @@
                         <div class="card-body">
                             <h2 class="mb-4"> Заказы
                             </h2>
-                            @if(!empty($order))
+                            @if(!empty($orders))
                             <div class="table-responsive">
                                 <table class="table table-striped custom-table">
                                     <thead>
@@ -298,7 +296,7 @@
                                             <td class="pl-0">
                                                 <div class="d-flex align-items-center">
 
-                                                    <a href="#">{{ $order['total']  }}</a>
+                                                    {{ $order['total']  }}
                                                 </div>
                                             </td>
                                             <td>
@@ -306,7 +304,7 @@
                                             </td>
                                             <td> {{ $order['created_at']  }}</td>
                                             <td>{{ $order['status']  }}</td>
-                                            <td><a href="/order/{{ $order['id']  }}" class="more">Details</a></td>
+                                            <td><a href="/order/{{ $order['id']  }}" class="more">Подробнее</a></td>
                                         </tr>
                                     @endforeach
 
