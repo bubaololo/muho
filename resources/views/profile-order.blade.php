@@ -5,75 +5,113 @@
         <div class="text-uppercase">
             <p>Информация о заказе</p>
         </div>
-        <div class="h4">Заказ оформлен: {{ $order['created_at']  }}</div>
-        <div class="pt-1">
-            <p>Заказ № {{ $order['order_num']  }}<b class="text-dark"> {{ $order['status'] }}</b></p>
+        <div class="h4">Заказ оформлен:<br> <b>{{ $order['created_at']->isoFormat('D MMMM YYYY, HH:mm')  }}</b></div>
+        <div class="pt-1 text-center">
+            <p>Заказ № <span class="text-dark">{{ $order['order_num']  }}</span></p>
+            @if($order['track'])
+                <p>Трек № {{ $order['track']  }}</p>
+                @endif
+            <p>Статус: <b class="text-dark"> {{ $order['status'] }}</b></p>
+            <p>Оплачен: <b class="text-dark">@if($order['paid'])
+                <span style="color: green;" >ДА</span>
+                    @else
+                        <span style="color: red;" >НЕТ</span>
+                    @endif
+                </b></p>
         </div>
-        <div class="btn close text-white"> &times; </div>
+        <div class="btn close text-white"> &times;</div>
     </div>
+
     <div class="wrapper bg-white">
         <div class="table-responsive">
-            <table class="table table-borderless">
+            <table class="table table-borderless table-spacing">
                 <thead>
                 <tr class="text-uppercase text-muted">
-                    <th scope="col">product</th>
-                    <th scope="col" class="text-right">total</th>
+                    <th scope="col" class="text-sm">#</th>
+                    <th scope="col" class="text-sm">фото</th>
+                    <th scope="col" class="text-sm">наименование</th>
+                    <th scope="col" class="text-sm">вес</th>
+                    <th scope="col" class="text-sm">количество</th>
+                    <th scope="col" class="text-sm">цена</th>
+                    <th scope="col" class="text-right text-sm">сумма</th>
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($products as $product)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration  }}</th>
+                        <td><img src="{{ asset('/storage/'.$product['image']) }}" alt="muhomor" width="80" height="auto"></td>
+                        <td>{{ $product['name']  }}</td>
+                        <td class="text-nowrap text-center">{{ $product['weight'] }} г.</td>
+                        <td class="text-nowrap text-center">{{ $product['pivot']['quantity'] }} шт.</td>
+                        <td class="text-nowrap text-center">{{ $product['price'] }} р.</td>
+                        <td class="text-nowrap text-center">{{ $product['price'] * $product['pivot']['quantity'] }} р.</td>
+                    </tr>
+                @endforeach
                 <tr>
-                    <th scope="row">Babyblends: 1meal/day</th>
-                    <td class="text-right"><b>$69.86</b></td>
+                    <td colspan="6">Цена товаров:</td>
+                    <td class="text-right"> {{ $order->subtotal }} </td>
+                </tr>
+                <tr>
+                    <td colspan="6">Доставка {{ $order->delivery }}</td>
+                    <td class="text-right"> {{ $order->delivery_cost }} </td>
+                </tr>
+                <tr>
+                    <td colspan="6">ИТОГО</td>
+                    <td class="text-right"> {{ $order->total  }} </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        @foreach($products as $product)
-        <div class="d-flex justify-content-start align-items-center list py-1">
-            <div><b>{{ $product['pivot']['quantity']  }} шт.</b></div>
-            <div class="mx-3"> <img src="{{ asset($product['image']) }}" alt="apple" class="rounded-circle" width="30" height="30"> </div>
-            <div class="order-item">{{ $product['name']  }}</div>
-            <div class="order-item">{{ $product['weight']  }} г.</div>
-        </div>
-        @endforeach
+        {{--        @foreach($products as $product)--}}
+        {{--        <div class="d-flex justify-content-start align-items-center list py-1">--}}
+        {{--            <div class="mx-3"> <img src="{{ asset('/storage/'.$product['image']) }}" alt="muhomor" class="rounded-circle" width="80" height="80"> </div>--}}
+        {{--            <div class="order-item">{{ $product['name']  }}</div>--}}
+        {{--            <div class="order-item">{{ $product['weight']  }} г.</div>--}}
+        {{--            <div><b>{{ $product['pivot']['quantity']  }} шт.</b></div>--}}
+        {{--        </div>--}}
+        {{--        @endforeach--}}
 
         <div class="pt-2 border-bottom mb-3"></div>
         <div class="d-flex justify-content-start align-items-center pl-3">
             <div class="text-muted">Payment Method</div>
-            <div class="ml-auto"> <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30"> <label>Mastercard ******5342</label> </div>
+            <div class="ml-auto"><img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30">
+                <label>Mastercard ******5342</label></div>
         </div>
         <div class="d-flex justify-content-start align-items-center py-1 pl-3">
             <div class="text-muted">Shipping</div>
-            <div class="ml-auto"> <label>Free</label> </div>
+            <div class="ml-auto"><label>Free</label></div>
         </div>
         <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
-            <div class="text-muted"> <button class="text-white btn">50% Discount</button> </div>
-            <div class="ml-auto price"> -$34.94 </div>
+            <div class="text-muted">
+                <button class="text-white btn">50% Discount</button>
+            </div>
+            <div class="ml-auto price"> -$34.94</div>
         </div>
         <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
-            <div class="text-muted"> Today's Total </div>
-            <div class="ml-auto h5"> $34.94 </div>
+            <div class="text-muted"> Today's Total</div>
+            <div class="ml-auto h5"> $34.94</div>
         </div>
         <div class="row border rounded p-1 my-3">
+            {{--<div class="col-md-6 py-3">--}}
+            {{--    <div class="d-flex flex-column align-items start"><b>Billing Address</b>--}}
+            {{--        <p class="text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>--}}
+            {{--        <p class="text-justify">New York</p>--}}
+            {{--    </div>--}}
+            {{--</div>--}}
             <div class="col-md-6 py-3">
-                <div class="d-flex flex-column align-items start"> <b>Billing Address</b>
-                    <p class="text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
-                    <p class="text-justify">New York</p>
-                </div>
-            </div>
-            <div class="col-md-6 py-3">
-                <div class="d-flex flex-column align-items start"> <b>Shipping Address</b>
-                    <p class="text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
-                    <p class="text-justify">New York</p>
+                <div class="d-flex flex-column align-items start"><b>Адрес доставки</b>
+                    <p class="text-justify pt-2">{{ $credentials->address }}, {{ $credentials->apartment }} </p>
+                    <p class="text-justify">Тел: {{ $credentials->tel }}</p>
                 </div>
             </div>
         </div>
         <div class="pl-3 font-weight-bold">Related Subsriptions</div>
         <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
-            <div> <b>#9632</b> </div>
+            <div><b>#9632</b></div>
             <div>December 08, 2020</div>
             <div>Status: Processing</div>
-            <div> Total: <b> $68.8 for 10 items</b> </div>
+            <div> Total: <b> $68.8 for 10 items</b></div>
         </div>
     </div>
 
@@ -84,7 +122,7 @@
             padding: 0;
             margin: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
@@ -97,7 +135,8 @@
             border-top-left-radius: 25px;
             max-width: 800px;
             padding-top: 20px;
-            margin: 30px auto 0px
+            margin: 30px auto 0px;
+            overflow: hidden;
         }
 
         #order-heading .text-uppercase {
@@ -107,12 +146,13 @@
         }
 
         #order-heading .h4 {
-            font-weight: 600
+            font-weight: 600;
+            color: black;
         }
 
-        #order-heading .h4+div p {
+        #order-heading .h4 + div p {
             font-size: 0.8rem;
-            color: #777
+            color: #777;
         }
 
         .close {
@@ -121,7 +161,7 @@
             border-radius: 50%;
             position: absolute;
             right: -15px;
-            top: -20px
+            top: -20px;
         }
 
         .wrapper {
@@ -129,100 +169,78 @@
             max-width: 800px;
             margin: 0px auto 40px;
             border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px
-        }
-
-        .table th {
-            border-top: none
-        }
-
-        .table thead tr.text-uppercase th {
-            font-size: 0.8rem;
-            padding-left: 0px;
-            padding-right: 0px
-        }
-
-        .table tbody tr th,
-        .table tbody tr td {
-            font-size: 0.9rem;
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-bottom: 5px
-        }
-
-        .table-responsive {
-            height: 100px
+            border-bottom-right-radius: 25px;
         }
 
         .list div b {
-            font-size: 0.8rem
+            font-size: 0.8rem;
         }
 
         .list .order-item {
             font-weight: 600;
-            color: #6db3ec
+            color: #6db3ec;
         }
 
         .list:hover {
             background-color: #f4f4f4;
             cursor: pointer;
-            border-radius: 5px
+            border-radius: 5px;
         }
 
         label {
             margin-bottom: 0;
             padding: 0;
-            font-weight: 900
+            font-weight: 900;
         }
 
         button.btn {
             font-size: 0.9rem;
-            background-color: #66cdaa
+            background-color: #66cdaa;
         }
 
         button.btn:hover {
-            background-color: #5cb99a
+            background-color: #5cb99a;
         }
 
         .price {
             color: #5cb99a;
-            font-weight: 700
+            font-weight: 700;
         }
 
         p.text-justify {
             font-size: 0.9rem;
-            margin: 0
+            margin: 0;
         }
 
         .row {
-            margin: 0px
+            margin: 0px;
         }
 
         .subscriptions {
             border: 1px solid #ddd;
             border-left: 5px solid #ffa500;
-            padding: 10px
+            padding: 10px;
         }
 
         .subscriptions div {
-            font-size: 0.9rem
+            font-size: 0.9rem;
         }
 
-        @media(max-width: 425px) {
+        @media (max-width: 425px) {
             .wrapper {
-                padding: 20px
+                padding: 20px;
             }
 
             body {
-                font-size: 0.85rem
+                font-size: 0.85rem;
             }
 
             .subscriptions div {
-                padding-left: 5px
+                padding-left: 5px;
             }
 
-            img+label {
-                font-size: 0.75rem
+            img + label {
+                font-size: 0.75rem;
             }
         }
     </style>

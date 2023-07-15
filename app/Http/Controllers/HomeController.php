@@ -42,8 +42,10 @@ class HomeController extends Controller
     public function order($id) {
         $user = Auth::user();
         $order = $user->order()->find($id);
-       
+
         $products = $order->product()->get();
-        return view('profile-order', compact('order', 'products'));
+        $credentials = $order->credential()->get()[0];
+//        dd($credentials);
+        return view('profile-order', compact('order', 'products', 'credentials'));
     }
 }
