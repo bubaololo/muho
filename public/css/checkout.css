@@ -915,6 +915,9 @@ max-width: 25ch;
 .delivery-selector label {
     margin-bottom: 8px;
 }
+.mobile-cart {
+    display: none !important;
+}
 @media screen and (max-width: 400px) {
     .delivery-selector {
         line-height: 0.5em;

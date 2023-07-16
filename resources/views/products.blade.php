@@ -4,6 +4,6 @@
 @section('content')
 @livewire('products-table')
 
-
+@include('mobile-cart')
 @endsection
 

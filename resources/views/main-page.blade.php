@@ -804,5 +804,5 @@
     {{--</section>--}}
 
 
-
+    @include('mobile-cart')
 @endsection

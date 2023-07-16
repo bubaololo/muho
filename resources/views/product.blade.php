@@ -41,4 +41,5 @@
             </div>
         </div>
     </section>
+    @include('mobile-cart')
 @endsection

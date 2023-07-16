@@ -87,6 +87,7 @@ body.no-scroll {
 a {
     color: var(--accent-color);
     transition: 0.3s color ease-out;
+    text-decoration: none!important;
 }
 
 a:hover {
@@ -2542,7 +2543,11 @@ span.prev-price {
         margin-left: 8px;
     }
 }
-
+.cart svg {
+    width: 14px !important;
+    height: auto;
+    margin-right: 6px;
+}
 .footer-icon {
     width: 24px;
     margin-right: 7px;
