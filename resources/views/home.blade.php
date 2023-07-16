@@ -302,8 +302,8 @@
                                             <td>
                                                 {{ $order['track']  }}
                                             </td>
-                                            <td> {{ $order['created_at']  }}</td>
-                                            <td>{{ $order['status']  }}</td>
+                                            <td class="text-nowrap" > {{ $order['created_at']->isoFormat('D MMMM YYYY, HH:mm')  }}</td>
+                                            <td class="text-nowrap"  >{{ $order['status']  }}</td>
                                             <td><a href="/order/{{ $order['id']  }}" class="more">Подробнее</a></td>
                                         </tr>
                                     @endforeach

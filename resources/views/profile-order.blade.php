@@ -72,26 +72,26 @@
         {{--        </div>--}}
         {{--        @endforeach--}}
 
-        <div class="pt-2 border-bottom mb-3"></div>
-        <div class="d-flex justify-content-start align-items-center pl-3">
-            <div class="text-muted">Payment Method</div>
-            <div class="ml-auto"><img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30">
-                <label>Mastercard ******5342</label></div>
-        </div>
-        <div class="d-flex justify-content-start align-items-center py-1 pl-3">
-            <div class="text-muted">Shipping</div>
-            <div class="ml-auto"><label>Free</label></div>
-        </div>
-        <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
-            <div class="text-muted">
-                <button class="text-white btn">50% Discount</button>
-            </div>
-            <div class="ml-auto price"> -$34.94</div>
-        </div>
-        <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
-            <div class="text-muted"> Today's Total</div>
-            <div class="ml-auto h5"> $34.94</div>
-        </div>
+        {{--<div class="pt-2 border-bottom mb-3"></div>--}}
+        {{--<div class="d-flex justify-content-start align-items-center pl-3">--}}
+        {{--    <div class="text-muted">Payment Method</div>--}}
+        {{--    <div class="ml-auto"><img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30">--}}
+        {{--        <label>Mastercard ******5342</label></div>--}}
+        {{--</div>--}}
+        {{--<div class="d-flex justify-content-start align-items-center py-1 pl-3">--}}
+        {{--    <div class="text-muted">Shipping</div>--}}
+        {{--    <div class="ml-auto"><label>Free</label></div>--}}
+        {{--</div>--}}
+        {{--<div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">--}}
+        {{--    <div class="text-muted">--}}
+        {{--        <button class="text-white btn">50% Discount</button>--}}
+        {{--    </div>--}}
+        {{--    <div class="ml-auto price"> -$34.94</div>--}}
+        {{--</div>--}}
+        {{--<div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">--}}
+        {{--    <div class="text-muted"> Today's Total</div>--}}
+        {{--    <div class="ml-auto h5"> $34.94</div>--}}
+        {{--</div>--}}
         <div class="row border rounded p-1 my-3">
             {{--<div class="col-md-6 py-3">--}}
             {{--    <div class="d-flex flex-column align-items start"><b>Billing Address</b>--}}
@@ -106,13 +106,13 @@
                 </div>
             </div>
         </div>
-        <div class="pl-3 font-weight-bold">Related Subsriptions</div>
-        <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
-            <div><b>#9632</b></div>
-            <div>December 08, 2020</div>
-            <div>Status: Processing</div>
-            <div> Total: <b> $68.8 for 10 items</b></div>
-        </div>
+        {{--<div class="pl-3 font-weight-bold">Related Subsriptions</div>--}}
+        {{--<div class="d-sm-flex justify-content-between rounded my-3 subscriptions">--}}
+        {{--    <div><b>#9632</b></div>--}}
+        {{--    <div>December 08, 2020</div>--}}
+        {{--    <div>Status: Processing</div>--}}
+        {{--    <div> Total: <b> $68.8 for 10 items</b></div>--}}
+        {{--</div>--}}
     </div>
 
     <style>
