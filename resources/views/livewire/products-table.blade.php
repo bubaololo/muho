@@ -40,7 +40,7 @@
                                                     {{--<span class="text-danger"><s>$20.99</s></span>--}}
                                                 </div>
                                                 <h6 class="text-success">урожай 2022</h6>
-                                                <div class="d-flex align-items-center gap-3 mt-4">
+                                                <div class="d-flex flex-wrap align-items-center gap-3 mt-4">
                                                     <form wire:submit.prevent="addToCart({{ $product }})" action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         <input type="hidden" value="{{ $product->name }}" name="name">
