@@ -255,7 +255,7 @@
                                                         </div>
                                                         <div class="quest__slide_forms_wrapper">
                                                             @guest
-                                                                <div class="form-check">
+                                                                <div data-tippy="This is a simple tooltip" class="form-check">
                                                                     <input class="form-check-input" type="checkbox" value="1" name="registerCheck" id="registerCheck">
                                                                     <label class="form-check-label" for="registerCheck">
                                                                         Зарегистрироваться
@@ -270,6 +270,7 @@
                                                             <div class="quest__input-group quest__input-group_hidden" id="password-group">
                                                                 <label for="password">пароль</label>
                                                                 <input type="password" id="password" name="password" required class="quest__input">
+                                                                <label for="password_confirmation">подтверждение пароля</label>
                                                                 <input type="password" id="password_confirmation" name="password_confirmation" required class="quest__input">
                                                             </div>
                                                             <div class="quest__input-group">
@@ -349,9 +350,11 @@
         </div>
 
     </main>
+
     @push('scripts')
         <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
-
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
         <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU" type="text/javascript"></script>
         <script>
           let addressIsValid = null;
@@ -605,7 +608,14 @@
             checkIfAllFieldsValidated(delivery);
               @endif
           });
-
+          //tooltip
+          const registerCheck = document.querySelector('.form-check');
+          const tooltipContent = 'Рекомендуем зарегистрировать аккаунт, так вы сможете отслеживать заказ в личном кабинете'
+          tippy(registerCheck, {
+            content: tooltipContent,
+          });
+          const tooltipInstance = tippy(registerCheck);
+          tooltipInstance.setContent(tooltipContent);
           document.getElementById('credentials-button').addEventListener('click', () => {
 
             let name = form.validate().element('#name');
@@ -614,8 +624,18 @@
             let tel = form.validate().element('#tel');
             let credentialsCondition = name && surname && middle_name && tel;
             checkIfAllFieldsValidated(credentialsCondition);
+            tooltipInstance.show();
+
+            // Hide the tooltip after 5 seconds
+            setTimeout(function () {
+              tooltipInstance.hide();
+            }, 5000);
 
           }, 10);
+        </script>
+        <script>
+          // Initialize tippy on all elements with the data-tippy attribute
+
         </script>
     @endpush
 @endsection

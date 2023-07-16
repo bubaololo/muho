@@ -48,7 +48,6 @@
                                     @endif
                                 </b></p>
                         </div>
-                        <div class="btn close text-white"> &times;</div>
                     </div>
 
                     <div class="wrapper bg-white">
@@ -150,17 +149,6 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body {
-            background-color: #7C4135
-        }
 
         #order-heading {
             background-color: #edf4f7;
