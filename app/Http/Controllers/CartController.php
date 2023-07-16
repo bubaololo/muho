@@ -107,7 +107,6 @@ class CartController extends Controller
 //        return redirect(route('cart.list'))->with(['success' => 'заказ успешно оформлен, номер вашего заказа: ']);
         $cartItems = \Cart::getContent();
         $deliveryInfo = $request->all();
-
 //        preparing data to send via bot
         
         $cartItemsString = '';

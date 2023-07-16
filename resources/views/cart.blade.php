@@ -40,7 +40,7 @@
                                 </div>
 
                             </div>
-
+                            @if(count($cartItems))
                             @foreach ($cartItems as $item)
                                 <div class="card mb-3">
                                     <div class="card-body">
@@ -86,6 +86,10 @@
 
                             @livewire('cart-total')
                         </div>
+                        @else
+                            <a class="btn btn-success" href="{{ route('products.list')  }}">Выбрать</a>
+                        @endif
+                        @if(count($cartItems))
                         <div class="col-lg-5">
                             <section class="checkout__slider">
                                 <div class="quest">
@@ -136,7 +140,7 @@
                                                                     <div id="header">
                                                                         <label for="suggest">Город, улица, дом</label>
                                                                         <div class="address-input">
-                                                                            <textarea  id="suggest"
+                                                                            <textarea id="suggest"
                                                                                     name="address"
                                                                                     class="w-100"
                                                                                     value="@isset($credentials['address']){{ $credentials['address'] }}@endisset"
@@ -146,11 +150,6 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    @if( empty($credentials['address']) )
-
-
-
-                                                                    @endif
                                                                 </div>
                                                             </div>
                                                             <p id="notice"></p>
@@ -256,12 +255,12 @@
                                                         </div>
                                                         <div class="quest__slide_forms_wrapper">
                                                             @guest
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="1" name="registerCheck" id="registerCheck">
-                                                                <label class="form-check-label" for="registerCheck">
-                                                                    Зарегистрироваться
-                                                                </label>
-                                                            </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" value="1" name="registerCheck" id="registerCheck">
+                                                                    <label class="form-check-label" for="registerCheck">
+                                                                        Зарегистрироваться
+                                                                    </label>
+                                                                </div>
                                                             @endguest
                                                             <div class="quest__input-group">
                                                                 <label for="email">Email</label>
@@ -289,10 +288,10 @@
 
                                                         </div>
                                                     </div>
-                                                <div class="quest__slider_buttons_wrapper">
-                                                    <input class="quest__button quest__submit_button" value="Оформить заказ" type="submit">
-                                                    <div class="quest__prev quest__button">Назад</div>
-                                                </div>
+                                                    <div class="quest__slider_buttons_wrapper">
+                                                        <input class="quest__button quest__submit_button" value="Оформить заказ" type="submit">
+                                                        <div class="quest__prev quest__button">Назад</div>
+                                                    </div>
                                                 </div>
                                                 <!-- ________SLIDE -->
                                                 {{--<div class="swiper-slide">--}}
@@ -342,7 +341,7 @@
                                 </div>
                             </section>
                         </div>
-
+                        @endif
                     </div>
                 </div>
             </section>
@@ -353,205 +352,204 @@
     @push('scripts')
         <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
 
-            <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU" type="text/javascript"></script>
-            <script>
-              let addressIsValid = null;
-              ymaps.ready(init);
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=13c7547f-2a6d-45df-b5d4-e5d0ab448ddc&lang=ru_RU" type="text/javascript"></script>
+        <script>
+          let addressIsValid = null;
+          ymaps.ready(init);
 
 
+          function init() {
+            // Подключаем поисковые подсказки к полю ввода.
+            var suggestView = new ymaps.SuggestView('suggest'),
+                map,
+                placemark;
 
-              function init() {
-                // Подключаем поисковые подсказки к полю ввода.
-                var suggestView = new ymaps.SuggestView('suggest'),
-                    map,
-                    placemark;
+            // При клике по кнопке запускаем верификацию введёных данных.
 
-                // При клике по кнопке запускаем верификацию введёных данных.
+            $('#button').bind('click', function(e) {
+              geocode();
 
-                $('#button').bind('click', function(e) {
-                  geocode();
+            });
+              @if( @isset($credentials['address']) )
+              geocode();
+              @endif
+              document.getElementById('suggest').addEventListener('blur', () => {
+                geocode();
+              })
 
-                });
-                  @if( @isset($credentials['address']) )
-                  geocode();
-                  @endif
-                document.getElementById('suggest').addEventListener('blur', () => {
-                  geocode();
-                })
+            let refreshBtn = document.getElementById('button');
 
-                let refreshBtn = document.getElementById('button');
+            function disableRefreshBtn() {
+              refreshBtn.style.display = 'none';
+            }
 
-                function disableRefreshBtn() {
-                  refreshBtn.style.display = 'none';
-                }
+            function enableRefreshBtn() {
+              refreshBtn.style.display = 'flex';
+            }
 
-                function enableRefreshBtn() {
-                  refreshBtn.style.display = 'flex';
-                }
+            function geocode() {
 
-                function geocode() {
-
-                  // Забираем запрос из поля ввода.
-                  var request = $('#suggest').val();
-                  // Геокодируем введённые данные.
-                  ymaps.geocode(request).then(function(res) {
-                    var obj = res.geoObjects.get(0),
-                        error, hint;
-                    if (obj) {
-                      // Об оценке точности ответа геокодера можно прочитать тут: https://tech.yandex.ru/maps/doc/geocoder/desc/reference/precision-docpage/
-                      switch (obj.properties.get('metaDataProperty.GeocoderMetaData.precision')) {
-                        case 'exact':
-                          break;
-                        case 'number':
-                        case 'near':
-                        case 'range':
-                          error = 'Неточный адрес, требуется уточнение';
-                          hint = 'Уточните номер дома';
-                          break;
-                        case 'street':
-                          error = 'Неполный адрес, требуется уточнение';
-                          hint = 'Уточните номер дома';
-                          break;
-                        case 'other':
-                        default:
-                          error = 'Неточный адрес, требуется уточнение';
-                          hint = 'Уточните адрес';
-                      }
-                    } else {
-                      error = 'Адрес не найден';
+              // Забираем запрос из поля ввода.
+              var request = $('#suggest').val();
+              // Геокодируем введённые данные.
+              ymaps.geocode(request).then(function(res) {
+                var obj = res.geoObjects.get(0),
+                    error, hint;
+                if (obj) {
+                  // Об оценке точности ответа геокодера можно прочитать тут: https://tech.yandex.ru/maps/doc/geocoder/desc/reference/precision-docpage/
+                  switch (obj.properties.get('metaDataProperty.GeocoderMetaData.precision')) {
+                    case 'exact':
+                      break;
+                    case 'number':
+                    case 'near':
+                    case 'range':
+                      error = 'Неточный адрес, требуется уточнение';
+                      hint = 'Уточните номер дома';
+                      break;
+                    case 'street':
+                      error = 'Неполный адрес, требуется уточнение';
+                      hint = 'Уточните номер дома';
+                      break;
+                    case 'other':
+                    default:
+                      error = 'Неточный адрес, требуется уточнение';
                       hint = 'Уточните адрес';
-
-                    }
-
-                    // Если геокодер возвращает пустой массив или неточный результат, то показываем ошибку.
-                    if (error) {
-                      showError(error);
-                      showMessage(hint);
-                      addressIsValid = false;
-                    } else {
-                      showResult(obj);
-                    }
-                  }, function(e) {
-                  })
-
-                }
-
-                function showResult(obj) {
-                  //Извлекаем город из адреса
-                  // const adressString = obj.getAddressLine();
-                  // const city = adressString.match(/^[^,]*/)[0];
-                  addressRetryCount = 0;
-                  const coord = obj.properties.get('boundedBy')[0];
-                  const city = obj._getParsedXal().localities[0];
-                  const post_index = obj.properties.get('metaDataProperty').GeocoderMetaData.Address.postal_code;
-                  addressIsValid = true;
-                  const sendCityToCDEK = (city) => {
-                    fetch('/delivery', {
-                      method: 'POST',
-                      body: JSON.stringify({
-                        city,
-                        post_index,
-                        coord
-                      }),
-                      headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                      }
-                    })
-                        .then((response) => {
-                          return response.json();
-                        })
-                        .then((result) => {
-                          // console.log(result);
-                        })
-                        .catch((error) => {
-                          console.log('Error:', error);
-                        });
-                  };
-
-                  sendCityToCDEK(city);
-                  // Удаляем сообщение об ошибке, если найденный адрес совпадает с поисковым запросом.
-                  $('#suggest').removeClass('input_error');
-                  $('#notice').css('display', 'none');
-                  disableRefreshBtn();
-
-                  var mapContainer = $('#map'),
-                      bounds = obj.properties.get('boundedBy'),
-                      // Рассчитываем видимую область для текущего положения пользователя.
-                      mapState = ymaps.util.bounds.getCenterAndZoom(
-                          bounds,
-                          [mapContainer.width(), mapContainer.height()]
-                      ),
-                      // Сохраняем полный адрес для сообщения под картой.
-                      address = [obj.getCountry(), obj.getAddressLine()].join(', '),
-                      // Сохраняем укороченный адрес для подписи метки.
-                      shortAddress = [obj.getThoroughfare(), obj.getPremiseNumber(), obj.getPremise()].join(' ');
-                  // Убираем контролы с карты.
-                  mapState.controls = [];
-                  // Создаём карту.
-                  createMap(mapState, shortAddress);
-                  // Выводим сообщение под картой.
-                  showFullMessage(address);
-                  setTimeout(function() {
-                    Livewire.emit('delivery_price_set');
-                  }, 1500);
-
-                }
-
-                let addressRetryCount = 0;
-
-                function showError(message) {
-                  if (addressRetryCount == 0) {
-                    geocode();
-                    setTimeout(function() {
-                      $('#button').trigger('click');
-                    }, 1000);
-                    addressRetryCount = 1;
                   }
+                } else {
+                  error = 'Адрес не найден';
+                  hint = 'Уточните адрес';
+
+                }
+
+                // Если геокодер возвращает пустой массив или неточный результат, то показываем ошибку.
+                if (error) {
+                  showError(error);
+                  showMessage(hint);
                   addressIsValid = false;
-                  $('#messageHeader').text('');
-                  $('#notice').text(message);
-                  $('#suggest').addClass('input_error');
-                  $('#notice').css('display', 'block');
-                  // Удаляем карту.
-                  if (map) {
-                    map.destroy();
-                    map = null;
+                } else {
+                  showResult(obj);
+                }
+              }, function(e) {
+              })
+
+            }
+
+            function showResult(obj) {
+              //Извлекаем город из адреса
+              // const adressString = obj.getAddressLine();
+              // const city = adressString.match(/^[^,]*/)[0];
+              addressRetryCount = 0;
+              const coord = obj.properties.get('boundedBy')[0];
+              const city = obj._getParsedXal().localities[0];
+              const post_index = obj.properties.get('metaDataProperty').GeocoderMetaData.Address.postal_code;
+              addressIsValid = true;
+              const sendCityToCDEK = (city) => {
+                fetch('/delivery', {
+                  method: 'POST',
+                  body: JSON.stringify({
+                    city,
+                    post_index,
+                    coord
+                  }),
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                   }
-                  enableRefreshBtn();
-                }
+                })
+                    .then((response) => {
+                      return response.json();
+                    })
+                    .then((result) => {
+                      // console.log(result);
+                    })
+                    .catch((error) => {
+                      console.log('Error:', error);
+                    });
+              };
 
-                function createMap(state, caption) {
-                  // Если карта еще не была создана, то создадим ее и добавим метку с адресом.
-                  if (!map) {
-                    map = new ymaps.Map('map', state);
-                    placemark = new ymaps.Placemark(
-                        map.getCenter(), {
-                          iconCaption: caption,
-                          balloonContent: caption
-                        }, {
-                          preset: 'islands#redDotIconWithCaption'
-                        });
-                    map.geoObjects.add(placemark);
-                    // Если карта есть, то выставляем новый центр карты и меняем данные и позицию метки в соответствии с найденным адресом.
-                  } else {
-                    map.setCenter(state.center, state.zoom);
-                    placemark.geometry.setCoordinates(state.center);
-                    placemark.properties.set({iconCaption: caption, balloonContent: caption});
-                  }
-                }
+              sendCityToCDEK(city);
+              // Удаляем сообщение об ошибке, если найденный адрес совпадает с поисковым запросом.
+              $('#suggest').removeClass('input_error');
+              $('#notice').css('display', 'none');
+              disableRefreshBtn();
 
-                function showMessage(message) {
-                  $('#message').text(message);
-                }
+              var mapContainer = $('#map'),
+                  bounds = obj.properties.get('boundedBy'),
+                  // Рассчитываем видимую область для текущего положения пользователя.
+                  mapState = ymaps.util.bounds.getCenterAndZoom(
+                      bounds,
+                      [mapContainer.width(), mapContainer.height()]
+                  ),
+                  // Сохраняем полный адрес для сообщения под картой.
+                  address = [obj.getCountry(), obj.getAddressLine()].join(', '),
+                  // Сохраняем укороченный адрес для подписи метки.
+                  shortAddress = [obj.getThoroughfare(), obj.getPremiseNumber(), obj.getPremise()].join(' ');
+              // Убираем контролы с карты.
+              mapState.controls = [];
+              // Создаём карту.
+              createMap(mapState, shortAddress);
+              // Выводим сообщение под картой.
+              showFullMessage(address);
+              setTimeout(function() {
+                Livewire.emit('delivery_price_set');
+              }, 1500);
 
-                function showFullMessage(message) {
-                  $('#messageHeader').text('Данные получены:');
-                  $('#message').text(message);
-                }
+            }
+
+            let addressRetryCount = 0;
+
+            function showError(message) {
+              if (addressRetryCount == 0) {
+                geocode();
+                setTimeout(function() {
+                  $('#button').trigger('click');
+                }, 1000);
+                addressRetryCount = 1;
               }
+              addressIsValid = false;
+              $('#messageHeader').text('');
+              $('#notice').text(message);
+              $('#suggest').addClass('input_error');
+              $('#notice').css('display', 'block');
+              // Удаляем карту.
+              if (map) {
+                map.destroy();
+                map = null;
+              }
+              enableRefreshBtn();
+            }
 
-            </script>
+            function createMap(state, caption) {
+              // Если карта еще не была создана, то создадим ее и добавим метку с адресом.
+              if (!map) {
+                map = new ymaps.Map('map', state);
+                placemark = new ymaps.Placemark(
+                    map.getCenter(), {
+                      iconCaption: caption,
+                      balloonContent: caption
+                    }, {
+                      preset: 'islands#redDotIconWithCaption'
+                    });
+                map.geoObjects.add(placemark);
+                // Если карта есть, то выставляем новый центр карты и меняем данные и позицию метки в соответствии с найденным адресом.
+              } else {
+                map.setCenter(state.center, state.zoom);
+                placemark.geometry.setCoordinates(state.center);
+                placemark.properties.set({iconCaption: caption, balloonContent: caption});
+              }
+            }
+
+            function showMessage(message) {
+              $('#message').text(message);
+            }
+
+            function showFullMessage(message) {
+              $('#messageHeader').text('Данные получены:');
+              $('#message').text(message);
+            }
+          }
+
+        </script>
 
         <script src="{{ asset('js/checkout.js') }}"></script>
         @if( empty($credentials) )
@@ -602,10 +600,10 @@
               $('#notice').css('display', 'block');
             }
             checkIfAllFieldsValidated(addressCondition);
-            @else
+              @else
             let delivery = form.validate().element('#sdek');
             checkIfAllFieldsValidated(delivery);
-            @endif
+              @endif
           });
 
           document.getElementById('credentials-button').addEventListener('click', () => {
