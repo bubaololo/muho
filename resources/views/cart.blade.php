@@ -124,7 +124,7 @@
                                                             <div class="quest__slide_title">
                                                                 Адрес
                                                                 @isset($credentials)
-                                                                    <span class="badge badge-info cart-badge">данные взяты из <a href="/home">профиля</a> </span>@endisset
+                                                                    <span class="badge badge-info cart-badge">данные взяты из <a href="{{ route('profile') }}">профиля</a> </span>@endisset
                                                             </div>
 
                                                         </div>

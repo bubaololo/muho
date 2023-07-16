@@ -87,7 +87,7 @@
                     <li class="menu-item"><a href="{{ route('posts.list') }}" class="nav-link"
                                 data-effect="Contact">Статьи</a></li>
                     @auth
-                        <li class="menu-item"><a href="{{ route('home') }}" class="user-account for-buy"><i
+                        <li class="menu-item"><a href="{{ route('profile') }}" class="user-account for-buy"><i
                                         class="icon icon-user"></i><span>Профиль</span></a></li>
                     @endauth
                     <li class="menu-item">

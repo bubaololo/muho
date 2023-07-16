@@ -56,7 +56,7 @@ class CredentialController extends Controller
         $credentialsCheck = $user->credential()->first();
         if ($credentialsCheck) {
             $credentials = $credentialsCheck;
-            return view('home', compact('credentials'));
+            return view('profile', compact('credentials'));
         } else {
             
             $credentials = Credential::create([
@@ -76,7 +76,7 @@ class CredentialController extends Controller
             
             ]);
             $credentials = $user->credential()->first();
-            return view('home', compact('credentials'));
+            return view('profile', compact('credentials'));
         }
         
         
@@ -142,7 +142,7 @@ class CredentialController extends Controller
             'last_ip' => $request->ip(),
         ]);
         $credentials = $user->credential()->first();
-        return view('home', compact('credentials'));
+        return view('profile', compact('credentials'));
     }
     
     /**

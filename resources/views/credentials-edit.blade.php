@@ -4,7 +4,6 @@
     <div class="container">
 
         <div class="card">
-            <div class="card-header">{{ __('Dashboard') }}</div>
 
             <div class="card-body">
                 @if (session('status'))
@@ -24,9 +23,8 @@
                         <div class="col">
                             <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                                 <ol class="breadcrumb mb-0">
-                                    <li class="breadcrumb-item"><a href="/home">Кабинет</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('profile') }}">Профиль</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Данные для доставки</li>
-                                    {{--<li class="breadcrumb-item active" aria-current="page">User Profile</li>--}}
                                 </ol>
                             </nav>
                         </div>

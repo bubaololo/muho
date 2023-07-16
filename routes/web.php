@@ -2,13 +2,11 @@
 
 use App\Http\Controllers\BuyNowController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CredentialController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MainPageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DeliveryCostController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,9 +41,9 @@ Route::get('/', [MainPageController::class, 'index'])->name('index'); // TODO н
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-Route::get('/order/{id}', [HomeController::class, 'order'])->name('order.details');
+Route::get('/order/{id}', [ProfileController::class, 'order'])->name('order.details');
 
 Route::resource('credentials', CredentialController::class);
 Route::get('posts', [PostController::class, 'postsList'])->name('posts.list');
