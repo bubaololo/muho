@@ -96,6 +96,7 @@
                                             {{--    </div>--}}
                                             {{--</div>--}}
                                             <div class="mt-5 text-center">
+                                                <a class="btn btn-secondary profile-button" href="{{ route('profile')  }}" >Отмена</a>
                                                 <input class="btn btn-primary profile-button" type="submit" value="Сохранить">
                                             </div>
                                         </form>
