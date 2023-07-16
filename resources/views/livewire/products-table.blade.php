@@ -3,25 +3,6 @@
     <div class="h-1 bg-red-500 w-36"></div>
     <div class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
-            {{--<div class="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-md shadow-md">--}}
-            {{--    <img src="{{ $product->image }}" alt="" style="width: 120px;">--}}
-            {{--    <div class="flex items-end justify-end w-full bg-cover">--}}
-
-            {{--    </div>--}}
-            {{--    <div class="px-5 py-3">--}}
-            {{--        <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>--}}
-            {{--        <span class="mt-2 text-gray-500">{{ $product->price }} р.</span>--}}
-            {{--        <span class="mt-2 text-gray-500">{{ $product->weight }} г.</span>--}}
-            {{--        <form wire:submit.prevent="addToCart({{ $product }})" action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">--}}
-            {{--            @csrf--}}
-            {{--            <input type="hidden" value="{{ $product->name }}" name="name">--}}
-            {{--            <input type="hidden" value="{{ $product->price }}" name="price">--}}
-            {{--            <input type="hidden" value="{{ $product->weight }}" name="weight">--}}
-            {{--            <input type="hidden" value="{{ $product->image }}" name="image">--}}
-            {{--            <input type="hidden" value="1" name="quantity">--}}
-            {{--            <button class="px-4 py-1.5 text-white text-sm bg-blue-800 rounded">добавить в корзину</button>--}}
-            {{--        </form>--}}
-            {{--    </div>--}}
                 <section style="background-color: #eee;">
                     <div class="container py-5">
                         @foreach ($products as $product)
@@ -34,10 +15,7 @@
                                                     <a href="/product/{{ $product->slug  }}">
                                                 <div class="bg-image hover-zoom ripple rounded ripple-surface">
                                                     <img src="{{ Storage::url($product->image) }}"
-                                                            class="w-100" />
-                                                        {{--<div class="hover-overlay">--}}
-                                                        {{--    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>--}}
-                                                        {{--</div>--}}
+                                                            class="w-100" alt="мухомор сушёный"/>
                                                     </a>
                                                 </div>
                                             </div>
@@ -52,20 +30,6 @@
                                                     </div>
                                                     <span>{{ $product->weight }} г.</span>
                                                 </div>
-                                                {{--<div class="mt-1 mb-0 text-muted small">--}}
-                                                {{--    <span>100% cotton</span>--}}
-                                                {{--    <span class="text-primary"> • </span>--}}
-                                                {{--    <span>Light weight</span>--}}
-                                                {{--    <span class="text-primary"> • </span>--}}
-                                                {{--    <span>Best finish<br /></span>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="mb-2 text-muted small">--}}
-                                                {{--    <span>Unique design</span>--}}
-                                                {{--    <span class="text-primary"> • </span>--}}
-                                                {{--    <span>For men</span>--}}
-                                                {{--    <span class="text-primary"> • </span>--}}
-                                                {{--    <span>Casual<br /></span>--}}
-                                                {{--</div>--}}
                                                 <p class=" mb-4 mb-md-0">
                                                     {{ $product->description }}
                                                 </p>
@@ -76,8 +40,7 @@
                                                     {{--<span class="text-danger"><s>$20.99</s></span>--}}
                                                 </div>
                                                 <h6 class="text-success">урожай 2022</h6>
-                                                <div class="d-flex flex-column mt-4">
-                                                    <a href="/product/{{ $product->slug  }}" class="btn btn-primary btn-sm">Подробнее</a>
+                                                <div class="d-flex align-items-center gap-3 mt-4">
                                                     <form wire:submit.prevent="addToCart({{ $product }})" action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         <input type="hidden" value="{{ $product->name }}" name="name">
@@ -85,11 +48,9 @@
                                                         <input type="hidden" value="{{ $product->weight }}" name="weight">
                                                         <input type="hidden" value="{{ $product->image }}" name="image">
                                                         <input type="hidden" value="1" name="quantity">
-                                                        <input type="submit" class="btn btn-outline-primary btn-sm mt-2" value="добавить в корзину">
-
-
+                                                        <input type="submit" class="btn  btn-primary btn-sm" value="добавить в корзину">
                                                     </form>
-
+                                                    <a href="/product/{{ $product->slug  }}" class="btn btn-outline-primary btn-sm">Подробнее</a>
                                                 </div>
                                             </div>
                                         </div>
