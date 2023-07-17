@@ -251,7 +251,7 @@
 </g>
 </svg>
 
-                            <a class="footer-menu__item_email" href="mailto:bubaololo@gmail.com"">E-mail</a>
+                            <a class="footer-menu__item_email" href="mailto:yo@muho.store">yo@muho.store</a>
                         </li>
                         {{--                        <li class="menu-item">--}}
                         {{--                            <a href="#">donate</a>--}}

@@ -12,6 +12,16 @@ use JsValidator;
 
 class CartController extends Controller
 {
+    protected $validationRules = ['user_id' => 'nullable|exists:users,user_id',
+        'name' => 'bail|alpha|required|max:50|string',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+        'surname' => 'alpha_dash|required|max:50|string',
+        'middle_name' => 'alpha|required|max:50|string',
+        'address' => 'required',
+        'telephone' => 'integer'
+    ];
+    
     public function cartList()
     {
         $cartItems = \Cart::getContent();
@@ -31,7 +41,7 @@ class CartController extends Controller
             $productSlug = Product::find($item->id)->slug;
             $item->slug = $productSlug;
         }
-        return view('cart', compact('cartItems', ));
+        return view('cart', compact('cartItems',));
     }
     
     public function addToCart(Request $request)
@@ -88,12 +98,11 @@ class CartController extends Controller
     
     public function store(Request $request)
     {
-//        info(print_r($request->all(),true));
         if ($request->has('registerCheck') && $request->input('registerCheck') == '1') {
             // Call the register method on your authentication controller
             app('App\Http\Controllers\Auth\RegisterController')->register($request);
         }
-
+        
         
         $orderNum = rand(10000, 99999);
         $total = \Cart::getTotal();
@@ -103,7 +112,7 @@ class CartController extends Controller
         $deliveryPrice = $deliveryPrice[0];
         preg_match('/(?<={")[^"]*/', $rawDelivery, $deliveryType);
         $deliveryType = $deliveryType[0];
-        
+
 //        return redirect(route('cart.list'))->with(['success' => 'заказ успешно оформлен, номер вашего заказа: ']);
         $cartItems = \Cart::getContent();
         $deliveryInfo = $request->all();
@@ -122,7 +131,7 @@ class CartController extends Controller
             'квартира: ' . $deliveryInfo['apartment'] . "\r\n" .
             'коммент: ' . $deliveryInfo['comment'] . "\r\n" .
             'ФИО: ' . $deliveryInfo['name'] . ' ' . $deliveryInfo['surname'] . ' ' . $deliveryInfo['middle_name'] . "\r\n" .
-            'телефон: ' . $deliveryInfo['telephone'] . "\r\n" ;
+            'телефон: ' . $deliveryInfo['telephone'] . "\r\n";
 
 //        $tg = app()->make('App\Services\TelegramService');
 //        $tg->sendMessage('новый заказ!, номер заказа: ' . $orderNum . "\r\n" . "\r\n" .
@@ -133,7 +142,7 @@ class CartController extends Controller
 //        );
 
 //        store data
-    
+        
         foreach ($deliveryInfo as $key => $value) {
             $deliveryInfo[$key] = trim($value);
         }

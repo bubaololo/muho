@@ -922,6 +922,7 @@ max-width: 25ch;
     }
     .delivery-selector small {
         font-size: 10px!important;
+        white-space: nowrap;
     }
 }
 
