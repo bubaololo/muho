@@ -11,14 +11,15 @@
                                 <div class="card shadow-0 border rounded-3">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                                    <a href="/product/{{ $product->slug  }}">
-                                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                            <a href="/product/{{ $product->slug  }}" class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+
+
                                                     <img src="{{ Storage::url($product->image) }}"
                                                             class="w-100" alt="мухомор сушёный"/>
-                                                    </a>
-                                                </div>
-                                            </div>
+
+
+                                                </a>
+
                                             <div class="col-md-6 col-lg-6 col-xl-6">
                                                 <h5>{{ $product->name }}</h5>
                                                 <div class="d-flex flex-row">
